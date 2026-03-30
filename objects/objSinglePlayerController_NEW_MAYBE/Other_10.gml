@@ -1,0 +1,2 @@
+/// @description PLAYER CHOPS A LOG
+CHOPS_COUNTER++;

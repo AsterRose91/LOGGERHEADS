@@ -1,0 +1,7 @@
+/// @description CHOP THEM
+image_speed = 0;
+image_index = 2;
+YY = -10;
+XX = 0;
+FRIEND_ID = choose(FRIENDS.CHIPMUNK_GIRL, FRIENDS.CHIPMUNK_BOY, FRIENDS.CAT_BOY, FRIENDS.CAT_GIRL);
+BOUNCE = 3;

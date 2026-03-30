@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"bgm02_LevelTheme1OLD",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":3,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":64.02612,
+  "exportDir":"",
+  "name":"bgm02_LevelTheme1OLD",
+  "parent":{
+    "name":"[OLD]OldTracks",
+    "path":"folders/Sounds/BGM/[OLD]OldTracks.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"bgm02_LevelTheme1OLD.mp3",
+  "volume":1.0,
+}

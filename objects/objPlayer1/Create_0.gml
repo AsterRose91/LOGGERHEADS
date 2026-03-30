@@ -1,0 +1,32 @@
+/// @description THE PLAYER OBJECT FOR THE MULTIPLAYER MODE
+image_speed = 0;
+
+STATE = CHARACTER_STATES.NONE;
+FACING = DIRECTION.RIGHT; // OLD BEHAVIOR HAD THIS FIXED. WILL HAVE TO WORK ON IMPLEMENTING ABILITY TO CHANGE IT
+IS_FALL = false;
+IS_AI = false;
+COLOR = LOG_COLORS.BLUE;
+PLAYER_ID = PLAYERS.PLAYER_1;
+
+DEST_X = x;
+DEST_Y = y;
+
+KEY_DELAY = 0;
+
+// use a lerp() to control the animation/movement now?
+ANIM_TIMER= 0;
+
+CAN_MOVE_UP = false;
+CAN_MOVE_DOWN = false;
+CAN_MOVE_LEFT = false;
+CAN_MOVE_RIGHT = false;
+
+AI_PATH_NAV = noone; //USED BY PLAYER 2 OBJECT IN VERSUS MODE
+
+CAN_KILL= false;
+CAN_DIE = false;
+GIFTED = false;
+OOPSY_WOOPSY = 0; // the type of indignity suffered
+
+START_SPURT = false;
+SPURT_FREQUENCY = GAMESPEED div 2;

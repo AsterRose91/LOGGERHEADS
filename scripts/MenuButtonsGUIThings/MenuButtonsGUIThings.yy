@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"MenuButtonsGUIThings",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"MenuButtonsGUIThings",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

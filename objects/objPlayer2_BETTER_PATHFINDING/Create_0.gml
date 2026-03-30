@@ -1,0 +1,27 @@
+/// @description THE OPPONENT OBJECT FOR THE MULTIPLAYER MODE
+event_inherited()
+image_speed = 0;
+
+STATE = CHARACTER_STATES.NONE;
+FACING = DIRECTION.LEFT;
+IS_AI = true;
+COLOR = LOG_COLORS.RED;
+PLAYER_ID = PLAYERS.PLAYER_2;
+
+FINAL_X = -1;
+FINAL_Y = -1;
+FINAL_DIR = DIRECTION.LEFT;
+
+PATH = noone;
+PATH_INDEX = 0;
+
+CAN_KILL = true;
+CAN_DIE = false;
+
+START_SPURT = false;
+SPURT_FREQUENCY = GAMESPEED div 2;
+
+GIFTED = false;
+KEY_DELAY = 0;
+//THINKING_STATE = 0;
+OOPSY_WOOPSY = 0; // the type of indignity suffered

@@ -1,0 +1,2 @@
+/// @description HIDE MOUSE AFTER CERTAIN TIME AGAIN
+HIDE_MOUSE = true;

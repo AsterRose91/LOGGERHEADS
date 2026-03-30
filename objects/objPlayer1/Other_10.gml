@@ -1,0 +1,21 @@
+/// @description GET A PRIZE
+
+
+var _x = (FACING == DIRECTION.LEFT) ? T : 0;
+
+if (!CAN_DIE) {exit;}
+if (GIFTED) {exit;}
+STATE = CHARACTER_STATES.OOPS;
+OOPSY_WOOPSY = OOPSY_TYPES.CHOPPED;
+
+add_friend(FRIENDS.BOBBIE);
+
+play_sfx(sfxChop1);
+var gift = instance_create_layer(x + _x, y, layer, objFriendGift);
+with (gift) {
+	image_xscale = other.FACING; 
+	XX = image_xscale * -4; 
+	YY = -5;
+	FRIEND_ID = FRIENDS.BOBBIE;
+}	
+GIFTED = true;	

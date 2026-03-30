@@ -1,0 +1,2 @@
+/// @description FADE AWAY OVER TIME
+ANIM_TIMER = GAMESPEED * 2;

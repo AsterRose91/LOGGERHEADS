@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"BackgroundStuff",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"BackgroundStuff",
+  "parent":{
+    "name":"OTHER",
+    "path":"folders/Scripts/OTHER.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

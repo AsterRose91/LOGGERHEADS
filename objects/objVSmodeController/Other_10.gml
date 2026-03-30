@@ -1,0 +1,31 @@
+///@description END OF TURN
+
+if (TESTING) {show_debug_message("TURN ENDED");}
+
+var MATCH_ENDED = false;
+var OTHER_PLAYER = (CURRENT_TURN == PLAYERS.PLAYER_1) ? PLAYERS.PLAYER_2 : PLAYERS.PLAYER_1;
+
+
+//CHECK IF THERE ARE ANY LOGS LEFT
+//IF A PLAYER ELIMINATES ALL THE LOGS, THE OTHER PLAYER CAN'T MAKE A VALID MOVE
+//SO THE PLAYER WHO GETS RID OF THE LAST LOG WINS
+if ( !AnyValidLogs(OTHER_PLAYER) ) {
+	MATCH_ENDED= true;
+	MATCH_WINNER = CURRENT_TURN;
+	if (TESTING) {show_debug_message("MATCH WON BY " + string(CURRENT_TURN) );}
+}
+
+
+if (!MATCH_ENDED) {
+	//SWITCH CURRENT PLAYER
+	MATCH_STATE = MATCH_STAGE.MATCH_DURING;
+	CURRENT_TURN = OTHER_PLAYER;
+	TURN_COUNT++;
+	
+	if (TESTING) {show_debug_message("STARTING A NEW TURN...");}
+
+	event_perform(ev_other, ev_user3); //TURN START EVENT
+} else {
+	
+	event_perform(ev_other, ev_user2); //MATCH END EVENT
+}

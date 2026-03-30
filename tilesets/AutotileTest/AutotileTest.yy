@@ -1,0 +1,47 @@
+{
+  "$GMTileSet":"v1",
+  "%Name":"AutotileTest",
+  "autoTileSets":[
+    {"$GMAutoTileSet":"","%Name":"water_test","closed_edge":false,"name":"water_test","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[
+        205,109,110,111,112,113,114,115,126,127,128,129,130,131,132,133,144,145,146,147,148,149,150,151,162,
+        163,164,165,166,167,168,169,180,181,182,183,184,185,186,187,198,199,200,201,202,203,204,
+      ],},
+    {"$GMAutoTileSet":"","%Name":"path_test","closed_edge":false,"name":"path_test","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[
+        97,1,2,3,4,5,6,7,18,19,20,21,22,23,24,25,36,37,38,39,40,41,42,43,54,55,56,57,58,59,60,61,72,73,74,75,
+        76,77,78,79,90,91,92,93,94,95,96,
+      ],},
+  ],
+  "macroPageTiles":{
+    "SerialiseHeight":0,
+    "SerialiseWidth":0,
+    "TileSerialiseData":[],
+  },
+  "name":"AutotileTest",
+  "out_columns":15,
+  "out_tilehborder":2,
+  "out_tilevborder":2,
+  "parent":{
+    "name":"Tile Sets",
+    "path":"folders/Tile Sets.yy",
+  },
+  "resourceType":"GMTileSet",
+  "resourceVersion":"2.0",
+  "spriteId":{
+    "name":"sprLevelSelectTilesetNEW",
+    "path":"sprites/sprLevelSelectTilesetNEW/sprLevelSelectTilesetNEW.yy",
+  },
+  "spriteNoExport":false,
+  "textureGroupId":{
+    "name":"Default",
+    "path":"texturegroups/Default",
+  },
+  "tileAnimationFrames":[],
+  "tileAnimationSpeed":15.0,
+  "tileHeight":16,
+  "tilehsep":0,
+  "tilevsep":0,
+  "tileWidth":16,
+  "tilexoff":0,
+  "tileyoff":0,
+  "tile_count":216,
+}

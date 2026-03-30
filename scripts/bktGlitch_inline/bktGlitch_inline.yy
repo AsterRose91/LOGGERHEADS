@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"bktGlitch_inline",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"bktGlitch_inline",
+  "parent":{
+    "name":"bktGlitch_Scripts",
+    "path":"folders/bktGlitch/bktGlitch_Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,1 @@
+level_select_map_collisions("Tiles_1", "Collision",[3, 6, 7, 8, 9, 16, 17, 18, 19]);

@@ -1,0 +1,2 @@
+// DON'T DRAW SPRITES
+exit;

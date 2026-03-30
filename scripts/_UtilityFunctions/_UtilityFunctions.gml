@@ -1,0 +1,191 @@
+///@func Point(_x, _y)
+///@desc I should have made a generic Point struct a long time ago
+///@arg {real} _x x-coordinate
+///@arg {real} _y y-coordinate
+function Point(_x = 0, _y= 0) constructor{
+	x = _x;
+	y = _y;	
+}
+
+///@func approach(_initial, _final, _rate)
+///@desc approach final value at a given rate
+///@arg {Real} _initial
+///@arg {Real} _final
+///@arg {Real} _rate
+///@returns {Real}
+function approach(_initial, _final, _rate) { 
+	if (_initial < _final) {
+		return min(_initial + _rate, _final);
+	}
+	return max(_initial - _rate, _final);
+}
+
+///@deprecated
+///@func is_null(_original,_replacement)
+///@desc if the original value is undefined, replace it with an alternative value.
+///@arg {any} _original
+///@arg {any} _replacement
+///@returns {any}
+function is_null(_original, _replacement) {
+	return _original ?? _replacement;
+}
+
+///@func debug_msg(_str)
+///@desc shortcut method for doing debug messages
+///@arg {String} _str the message to display
+///@returns {Bool}
+function debug_msg(_str) {
+	if (!TESTING) {return false;}
+	show_debug_message(_str);
+	// perhaps other logging methods/things can go here
+	return true;
+}
+
+///@func remap(_value, _min1, _max1, _min2, _max2)
+///@desc maps a value in one range onto another
+///@arg {real} _value the value in range (min1, max1)
+///@arg {real} _min1
+///@arg {real} _max1
+///@arg {real} _min2
+///@arg {real} _max2
+///@returns {real}
+function remap(_value, _min1, _max1, _min2, _max2) {
+	var _range1 = abs(_max1 - _min1);
+	var _range2 = abs(_max2 - _min2);
+	var _clamped = clamp(_value, _min1, _max1);
+	return  ( ((_clamped - _min1) * _range2) / _range1) + _min2;
+	
+}
+
+///@func Quit()
+///@desc used to allow GUI/menu buttons to quit the game
+function Quit() { game_end(); }
+
+///@func TransitionEffectActive()
+///@desc returns true if a transition effect exists
+function TransitionEffectActive() {
+	if (instance_exists(objScreenTransitionParent)) {
+		return true;
+	}
+	return false;
+}
+
+///@func ActivateMenu(menu_obj,[self_obj],[deactivate_self])
+///@desc used within a menu to activate another menu object
+///@arg {Asset.GMObject|ID.Instance} menu_obj the menu object that needs to be activated
+///@arg {Asset.GMObject|ID.Instance} [self_obj] the object calling the function
+///@arg {Bool} [deactivate_self] whether or not to deactivate the menu object calling this function
+function ActivateMenu(menu_obj, self_obj = id, deactivate_self = true) {
+	if (TESTING) {debug_msg($"activating {object_get_name(menu_obj)}");}
+	var _target;
+	
+	if (menu_obj != noone) {
+		if (!instance_exists(menu_obj)) {
+			// CREATE A NEW INSTANCE OF menu_obj IF IT DOESN'T ALREADY EXIST
+			_target = instance_create_layer(x, y, "Instances", menu_obj);
+		} else {
+			_target = instance_nearest(x, y, menu_obj);
+		}
+		// ACTIVATE THE MENU
+		with (_target) { MENU_ACTIVE = true; }
+	}
+	
+	if (deactivate_self) {
+		with (self_obj) {
+			// ONLY WORK WITH MENU OBJECTS
+			if (object_get_parent(object_index) == objParentMenu)	{
+				MENU_ACTIVE = false;
+				// WITH SETTINGS MENU, USE THIS TO SAVE THE GAME SETTINGS TO FILE
+				event_perform(ev_other, ev_user0);
+			}
+		}
+	}
+	return;
+}
+
+///@func DestroyMenu([_id])
+///@desc Outright destroy a menu instance or other object from a menu
+///@arg {ID.Instance} [_id] the menu object to be destroyed
+function DestroyMenu(_id = id) {
+	instance_destroy(_id);
+}
+
+
+///@func DeactivateMenu([target_menu_obj])
+///@desc Deactivate the menu object.
+///@arg {Asset.Instance} [target_menu_obj] 
+function DeactivateMenu(target_menu_obj = id){
+	with (target_menu_obj) {
+		if (object_get_parent(object_index) == objParentMenu)	{
+			MENU_ACTIVE = false;
+			// WITH SETTINGS MENU, USE THIS TO SAVE THE GAME SETTINGS TO FILE
+			event_perform(ev_other, ev_user0);
+			// if (object_index == objSettingsMenu) { saveSettings(); }
+		}
+	}
+	ErrorCorrection(); // Error Correction 
+	return;
+}
+
+///@func ToggleParticles()
+///@desc Toggles particles to be either on or off.
+///@returns {bool}
+function ToggleParticles() {
+	PARTICLES_ENABLED ^= true;
+	return PARTICLES_ENABLED;
+}
+
+///@func ToggleGrid()
+///@desc Toggles Grid to be either on or off.
+///@returns {bool}
+function ToggleGrid() {
+	SHOWGRID_SETTING = !SHOWGRID_SETTING;
+	return SHOWGRID_SETTING;
+}
+
+///@func ToggleFullscreen()
+///@desc used to toggle fullscreen.
+///@returns {bool}
+function ToggleFullscreen(){
+	FULLSCREEN_MODE = !FULLSCREEN_MODE;
+	window_set_fullscreen(FULLSCREEN_MODE);
+	
+	// cursor desync issue?
+	if (instance_exists(objCursor)) {
+		with (objCursor) {
+			MOUSE_PREV_X = GUI_MOUSE_X;
+			MOUSE_PREV_Y = GUI_MOUSE_Y;
+		}
+	}
+	return FULLSCREEN_MODE;
+}
+
+///@func ToggleMovehints()
+///@desc used to toggle movement hints.
+///@returns {bool}
+function ToggleMovehints(){
+	MOVEMENT_HINTS = !MOVEMENT_HINTS;
+	return MOVEMENT_HINTS;
+}
+
+///@func ToggleErrorCorrection()
+///@desc used to toggle "error correction".
+function ToggleErrorCorrection(){
+	ENABLE_SECRETS = !ENABLE_SECRETS;
+	return;
+}
+
+
+///@func ErrorCorrection()
+///@desc this isn't actually for errors, it's for secrets
+///@returns {real}
+function ErrorCorrection() {
+	SECRET_VALUE = irandom(20);
+	if (TESTING) {debug_msg( $"{SECRET_VALUE}"); }
+	
+	// CALL THE ERROR HANDLER
+	if (ENABLE_SECRETS) {
+		with (objErrorHandler) { event_perform(ev_other, ev_user0); }
+	}
+	return SECRET_VALUE;
+}
