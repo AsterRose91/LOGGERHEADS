@@ -20,6 +20,35 @@ function approach(_initial, _final, _rate) {
 	return max(_initial - _rate, _final);
 }
 
+///@func random_array_element( _arr, [_start], [_end] )
+///@desc returns a random element from an array, (from between indexes [_start] and [_end] if specified)
+///@arg {Array} _arr
+///@arg {Real} [_start]
+///@arg {Real} [_end]
+///@returns {Any}
+function random_array_element(_arr, _start = 0, _end = -1) {
+	try {
+		var _len = array_length(_arr);
+		
+		
+		var _index = 0;
+		if (_end != -1) {
+			_index = irandom_range(_start, _end);
+		} else {
+			_index = irandom_range(_start, _len - 1);	
+		}
+
+		return _arr[_index];
+		
+	} catch (e) {
+		// this'll probably happen if I send in something that isn't an array
+		// or if the values of _start and _end are fucked somehow
+		debug_msg(e);
+	}
+
+}
+
+
 ///@deprecated
 ///@func is_null(_original,_replacement)
 ///@desc if the original value is undefined, replace it with an alternative value.
@@ -110,7 +139,6 @@ function DestroyMenu(_id = id) {
 	instance_destroy(_id);
 }
 
-
 ///@func DeactivateMenu([target_menu_obj])
 ///@desc Deactivate the menu object.
 ///@arg {Asset.Instance} [target_menu_obj] 
@@ -174,7 +202,6 @@ function ToggleErrorCorrection(){
 	ENABLE_SECRETS = !ENABLE_SECRETS;
 	return;
 }
-
 
 ///@func ErrorCorrection()
 ///@desc this isn't actually for errors, it's for secrets

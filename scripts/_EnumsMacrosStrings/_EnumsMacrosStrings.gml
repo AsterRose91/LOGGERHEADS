@@ -148,10 +148,8 @@ enum TRANSITION_TYPES {
 ///@func change_game_speed([amt])
 ///@desc increase or decrease game speed
 ///@arg {Real} [amt] 
+///@returns {Bool}
 function change_game_speed(amt) {
-	//var final_speed = MAX_MOVESPEED;
-	//if (amt < 0) {final_speed = MIN_MOVESPEED;}
-	//MOVEMENT_SPEEDSETTING = approach(MOVEMENT_SPEEDSETTING, MAX_MOVESPEED, 1);
 	MOVEMENT_SPEEDSETTING = clamp(MOVEMENT_SPEEDSETTING + amt, MIN_MOVESPEED, MAX_MOVESPEED);
 	return true;
 }
@@ -189,10 +187,6 @@ global.CUSTOMLOGFILE = "custom.log";	// SAVE LOGS TO FILE?
 //#macro kPAUSE global.keybinds.PAUSE
 //#macro kRESET global.keybinds.RESET
 //#macro kDEBUG global.keybinds.DEBUG
-
-
-#region STRINGs
-
 
 
 #region	STRINGS, MESSAGES
@@ -263,7 +257,8 @@ function populateCreepyMessagesList(){
 	array_push(CREEPY_MSG, {text:"THE MAIN CHARACTER OF THIS GAME IS A\nSMALL, BROWN, FLAT-CHESTED INSANE FURRY LESBIAN\nDEI SWEET BABY WOKESLOP CONFIRMED", fatal: false});
 	array_push(CREEPY_MSG, {text:"IF YOU DON'T LIKE THIS GAME,\nFREE TO STEAL THIS ITS ASSETS\nAND MAKE A SHITTIER VERSION CALLED 'LOG GAME'\nWHERE THE MAIN CHARACTER IS STRAIGHT\nIT WON'T ACHIEVE A THING IN THE LONG RUN\nBUT YOU'LL MAKE PEOPLE UPSET WITH YOU, AND YOU'LL ALSO LOOK LIKE A POMPOUS FUDGE BURGLAR!", fatal: false});
 	array_push(CREEPY_MSG, {text:"THE CREATOR OF SNOOT GAME WAS FOUND LYING DEAD IN HIS OWN SHIT\nAFTER HE ATE SOMETHING LABELED 'STOMACH-EXPLODING POISON: DO NOT EAT' BECAUSE\nHE DIDN'T WANT LABELS TO DENY HIM HIS AGENCY", fatal: false});
-	// array_push(CREEPY_MSG, {text:"GAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!", fatal: false});
+	array_push(CREEPY_MSG, {text:"GAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!", fatal: false});
+	array_push(CREEPY_MSG, {text:"TRANS RIGHTS ARE HUMAN RIGHTS\n'GENDER CRITICAL' IDEOLOGY AND TERFISM HURTS THE WOMEN IT AIMS TO PROTECT\nJ.K. ROWLING'S HEAD IS FULL OF BLACK MOLD", fatal: false});
 	
 	// EPIC
 	array_push(CREEPY_MSG, {text:"YOU AREN'T GOING TO THE WATER\nYOU ARE VERY INSANE", fatal: false});
@@ -347,8 +342,7 @@ function populateCreepyMessagesList(){
 			if (random(1) > 0.5) {Quit();}
 		}
 		
-		// PERHAPS SHOUTOUTS TO SPECIFIC USERS?
-		
+		// PERHAPS SHOUTOUTS TO SPECIFIC USERS/STREAMERS?
 		if (string_lower(_name) == "asmongold") {
 			array_push(CREEPY_MSG, {text:$"GO CLEAN YOUR ROOM, {_name}\nAND STOP SMEARING YOUR BLEEDING GUMS ALL OVER THE PLACE", fatal: true}); 
 			array_push(CREEPY_MSG, {text:$"REMINDER TO {_name} TO GET A NEW DEAD RAT TO USE AS AN ALARM CLOCK", fatal: true}); 
@@ -358,14 +352,14 @@ function populateCreepyMessagesList(){
 	}
 	#endregion
 
-	// SEE FULL LIST OF CREEPY MESSAGES
+	// DO NOT EXPOSE THE FULL LIST OF CREEPY MESSAGES ANYMORE
 	var len = array_length(CREEPY_MSG);
 	var i = 0;
 	debug_msg($"There are {len} possible error messages:");
-	repeat(len){
-		debug_msg( CREEPY_MSG[i] );
-		i++;
-	}
+	//repeat(len){
+	//	debug_msg( CREEPY_MSG[i] );
+	//	i++;
+	//}
 	
 }
 populateCreepyMessagesList();
@@ -375,11 +369,8 @@ populateCreepyMessagesList();
 ///@returns {String}
 function getCreepyMessage(){
 	var len = array_length(CREEPY_MSG);
-	if (len <= 0) {return "WHAT THE FUCK DID YOU JUST BRING UPON THIS CURSED LAND";}
-	return CREEPY_MSG[irandom(len - 1)];
+	if (len <= 0) {return {text:"SOMEHOW, NO CREEPY ERROR MESSAGES WERE FOUND", fatal: false}; }
+	return random_array_element(CREEPY_MSG); //CREEPY_MSG[irandom(len - 1)];
 }
-
-#endregion
-
 
 #endregion

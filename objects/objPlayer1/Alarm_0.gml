@@ -1,9 +1,5 @@
 /// @description JUICE SPRAY EVERY COUPLE SECONDS
-
 if (PARTICLES_ENABLED) {
 	part_particles_create(PARTICLE_MAN,MID_X,MID_Y + 5,JUICE,20);
 }
-
-if (START_SPURT) {
-	alarm[0] = SPURT_FREQUENCY;
-}
+if (START_SPURT) { 	alarm[0] = SPURT_FREQUENCY; }

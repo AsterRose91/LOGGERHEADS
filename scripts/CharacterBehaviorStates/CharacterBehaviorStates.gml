@@ -36,9 +36,9 @@ function characterThinksBetterPF() {
 		var LOG_CHOICE = NewLogChooser();
 		if (LOG_CHOICE != noone) {
 			var OFF = T div 2;
-			FINAL_X = LOG_CHOICE[0].x + OFF;
-			FINAL_Y = LOG_CHOICE[0].y + OFF;
-			FINAL_DIR = LOG_CHOICE[1];
+			FINAL_X = LOG_CHOICE.id.x + OFF;  //LOG_CHOICE[0].x + OFF;
+			FINAL_Y = LOG_CHOICE.id.y + OFF;  //LOG_CHOICE[0].y + OFF;
+			FINAL_DIR = LOG_CHOICE.direction; //LOG_CHOICE[1];
 			NewAIPathfind(MID_X, MID_Y, FINAL_X, FINAL_Y);
 			PATH = getAIPath();
 			PATH_INDEX = 0;

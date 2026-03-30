@@ -39,7 +39,7 @@ global.credits = [
 	,"Ian"
 	,"Maedaez"
 	,"Goobie Snoobert"
-	,"Xak"
+	,"Xakire"
 	,"Tony"
 	,"Callan"
 	,"Juniper"

@@ -42,9 +42,6 @@ switch (STATE) {
 	
 	case CHARACTER_STATES.OOPS:
 		if (GIFTED) {
-			//if (PARTICLES_ENABLED) {
-			//	part_particles_create(PARTICLE_MAN,MID_X,MID_Y + 5,JUICE,12);
-			//}
 			if (!START_SPURT) {
 				alarm[0] = 1;
 				START_SPURT = true;

@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"BackgroundStuff",
+  "%Name":"BackgroundSetup",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"BackgroundStuff",
+  "name":"BackgroundSetup",
   "parent":{
     "name":"OTHER",
     "path":"folders/Scripts/OTHER.yy",

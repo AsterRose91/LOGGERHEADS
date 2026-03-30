@@ -36,6 +36,12 @@ function getAIPath() {
 	}
 }
 
+
+function AILogChoice(_id, _direction) constructor {
+	id = _id;
+	direction = _direction;
+}
+
 ///@func NewLogChooser()
 ///@desc Finds the best log (max first, then nearest)
 function NewLogChooser() {
@@ -74,15 +80,16 @@ function NewLogChooser() {
 	var best_id_left = (best_id != noone) ? NewAIPathfind(START_X, START_Y, best_id.x - T + OFF,  best_id.y + OFF) : false;
 	var best_id_right = (best_id != noone) ? NewAIPathfind(START_X, START_Y, best_id.x + T + OFF,  best_id.y + OFF) : false;
 	var possible_choices = []
-	if (near_id_left) {array_push(possible_choices, [near_id, DIRECTION.LEFT] );}
-	if (near_id_right) {array_push(possible_choices, [near_id, DIRECTION.RIGHT] );}
-	if (best_id_left) {array_push(possible_choices, [best_id, DIRECTION.LEFT] );}
-	if (best_id_right) {array_push(possible_choices, [best_id, DIRECTION.RIGHT] );}
+	if (near_id_left) {array_push(possible_choices, new AILogChoice(near_id, DIRECTION.LEFT) );} // [near_id, DIRECTION.LEFT] );}
+	if (near_id_right) {array_push(possible_choices, new AILogChoice(near_id, DIRECTION.RIGHT) );} // [near_id, DIRECTION.RIGHT] );}
+	if (best_id_left) {array_push(possible_choices, new AILogChoice(best_id, DIRECTION.LEFT) );} //[best_id, DIRECTION.LEFT] );}
+	if (best_id_right) {array_push(possible_choices, new AILogChoice(best_id, DIRECTION.RIGHT) );} //[best_id, DIRECTION.RIGHT] );}
 	
 	// CHOOSE A LOG
 	var len = array_length(possible_choices) 
 	if (len > 0) {
-		return possible_choices[ irandom_range(0, len - 1)];
+		return random_array_element(possible_choices);
+		//return possible_choices[ irandom_range(0, len - 1) ];
 	}
 	
 	// IF THIS INTELLIGENT LOG SELECTION DIDN'T WORK, PICK THE FIRST LOG PATHFINDING IS ABLE TO REACH
@@ -91,8 +98,8 @@ function NewLogChooser() {
 		if (BLOCKSTATE == LOG_STATES.NONE && canChopLog(other.COLOR, BLOCKTYPE)) {
 			reach_left = NewAIPathfind(START_X, START_Y,  MID_X - T,  MID_Y);
 			reach_right = NewAIPathfind(START_X, START_Y, MID_X + T,  MID_Y);
-			if (reach_right) {return [id, DIRECTION.RIGHT];}
-			if (reach_left) {return [id, DIRECTION.LEFT];}
+			if (reach_right) {return new AILogChoice(id, DIRECTION.RIGHT);} //[id, DIRECTION.RIGHT];}
+			if (reach_left) {return new AILogChoice(id, DIRECTION.LEFT);} //[id, DIRECTION.LEFT];}
 		}
 	}
 	
