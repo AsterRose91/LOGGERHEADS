@@ -5,16 +5,11 @@ switch (SECRET_VALUE) {
 	default:
 		break;
 	
+	case 0:
 	case 1:
 	case 5:
-		// SPOOKY FACE
-
-		// IGNORES RESTRICTION ON PARTICLES
-		part_particles_create(PARTICLE_MAN, view_xport[view_current] + irandom(view_wport[view_current]), view_yport[view_current] + irandom(view_hport[view_current]), JUMP_FACE, 1);
-		
-		break;
 	case 16:
-		// CREATE A CREEPY ERROR 
+		// CREATE A CREEPY ERROR MESSAGE
 		ActivateMenu(objFunnyErrorMessageType1, noone, false);
 
 		break;

@@ -31,7 +31,7 @@ switch FRIEND_ID {
 			new Dialog("Hi Mrs. Scratch, what's happening?",objPlayer_SP, sfxTalksound_Bobr),
 			new Dialog("Hello Bobbie! Not much today. Yourself?",objFriend, sfxTalksound_Scrachy),
 			new Dialog("Just looking for some pretty furniture for my house- Hm, I don't see Mr. Scratch anywhere. Where's he at?",objPlayer_SP, sfxTalksound_Bobr),
-			new Dialog("Oh! He just went out to get some things. Maybe you'll spot him by the lake",objFriend, sfxTalksound_Scrachy),
+			new Dialog("Oh! He's still at the hardware store. He said he'll be there till late today.",objFriend, sfxTalksound_Scrachy),
 		],x,y);
 		break;
 	}

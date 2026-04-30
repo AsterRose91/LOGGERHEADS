@@ -244,27 +244,35 @@ function populateCreepyMessagesList(){
 	
 	// PETSCOP
 	array_push(CREEPY_MSG, {text:"DO YOU REMEMBER BEING BORN?", fatal: false});
+	array_push(CREEPY_MSG, {text:"SHE TRIPPED AND FELL AND IS NOW LOST", fatal: false});
+	
+	// SCP REFERENCES
+	array_push(CREEPY_MSG, {text:"YOU DO NOT RECOGNIZE THE BODIES IN THE WATER", fatal: false});
+	
+	// 'the/CORONATION DAY REFERENCES
 	
 	// NES GODZILLA CREEPYPASTA
 	array_push(CREEPY_MSG, {text:"STILL THE BEST- 1973", fatal: false});
 	
+	// TWIN PEAKS
+	array_push(CREEPY_MSG, {text:"THROUGH THE DARKNESS OF FUTURE PAST,\nTHE MAGICIAN LONGS TO SEE\nONE CHANTS OUT BETWEEN TWO WORLDS\n'FIRE WALK WITH ME'", fatal: false});
+	array_push(CREEPY_MSG, {text:"I HAVE THE FURY OF MY OWN MOMENTUM", fatal: false});
+	array_push(CREEPY_MSG, {text:"HOW'S ANNIE?", fatal: false});
 	
 	// POLITICS
 	array_push(CREEPY_MSG, {text:"THIS GAME CONTRADICTS PRE-EXISTING LORE\n(ONE LINE SAID BY A GLUP SHITTO IN EITHER EPISODE 2 OF A MOSTLY LOST SHOW\nOR AN OUT OF PRINT TIE-IN NOVEL)!\n GO TO SOCIAL MEDIA AND WHINE ABOUT IT AND GIVE IT FREE ADVERTISING OUT THE WAZOO!!", fatal: false});
-	array_push(CREEPY_MSG, {text:"CAUTION ALL GAME REVIEWERS!\nFOR THE SAKE OF ETHICS AND TRANSPARENCY IN GAMING JOURNALISM\nAND TO AVOID 'CONFLICTS OF INTEREST'\nYOU'RE REQUIRED TO SOLEMNLY DECLARE IN YOUR REVIEW WHETHER YOU ARE OR ARE NOT FUCKING ME!\nAND IF YOU AREN'T...\nWELL, DO YOU WANT TO? ;)", fatal: false});
+	array_push(CREEPY_MSG, {text:"CAUTION TO ALL GAME REVIEWERS!\nFOR THE SAKE OF ETHICS AND TRANSPARENCY IN GAMING JOURNALISM\nAND TO AVOID 'CONFLICTS OF INTEREST'\nYOU'RE REQUIRED TO SOLEMNLY DECLARE IN YOUR REVIEW WHETHER YOU ARE OR ARE NOT FUCKING ME!\nAND IF YOU AREN'T...\nWELL, DO YOU WANT TO? ;)", fatal: false});
 	array_push(CREEPY_MSG, {text:"IF YOU STREAM THIS GAME\nYOU ARE ADVISED TO NOT OPENLY DISCUSS WOMBO POLICIES\nSKUB/ANTI-SKUB STANCES, GLUNGUS PROPAGANDA\nAND SKIBIDITIZATION IN MEDIA", fatal: false});
 	array_push(CREEPY_MSG, {text:"SOME OF THESE JOKES ARE\nLIKELY TO BE SUPER DATED\nBY THE TIME THIS GAME COMES OUT... WHICH IS FINE.\nALL THINGS ARE A TIME CAPSULE OF THE ERA THEY WERE MADE IN", fatal: false});
 	array_push(CREEPY_MSG, {text:"THE MAIN CHARACTER OF THIS GAME IS A\nSMALL, BROWN, FLAT-CHESTED INSANE FURRY LESBIAN\nDEI SWEET BABY WOKESLOP CONFIRMED", fatal: false});
 	array_push(CREEPY_MSG, {text:"IF YOU DON'T LIKE THIS GAME,\nFREE TO STEAL THIS ITS ASSETS\nAND MAKE A SHITTIER VERSION CALLED 'LOG GAME'\nWHERE THE MAIN CHARACTER IS STRAIGHT\nIT WON'T ACHIEVE A THING IN THE LONG RUN\nBUT YOU'LL MAKE PEOPLE UPSET WITH YOU, AND YOU'LL ALSO LOOK LIKE A POMPOUS FUDGE BURGLAR!", fatal: false});
 	array_push(CREEPY_MSG, {text:"THE CREATOR OF SNOOT GAME WAS FOUND LYING DEAD IN HIS OWN SHIT\nAFTER HE ATE SOMETHING LABELED 'STOMACH-EXPLODING POISON: DO NOT EAT' BECAUSE\nHE DIDN'T WANT LABELS TO DENY HIM HIS AGENCY", fatal: false});
-	array_push(CREEPY_MSG, {text:"GAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!", fatal: false});
-	array_push(CREEPY_MSG, {text:"TRANS RIGHTS ARE HUMAN RIGHTS\n'GENDER CRITICAL' IDEOLOGY AND TERFISM HURTS THE WOMEN IT AIMS TO PROTECT\nJ.K. ROWLING'S HEAD IS FULL OF BLACK MOLD", fatal: false});
+	array_push(CREEPY_MSG, {text:"GAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\n", fatal: false});
 	
 	// EPIC
 	array_push(CREEPY_MSG, {text:"YOU AREN'T GOING TO THE WATER\nYOU ARE VERY INSANE", fatal: false});
-	array_push(CREEPY_MSG, {text:"YOU DO NOT RECOGNIZE THE BODIES IN THE WATER", fatal: false});
-	
 
+	
 	// OS-SPECIFIC CREEPY MESSAGES
 	#region OS-SPECIFIC EASTER EGGS
 	switch os_type {
@@ -329,37 +337,12 @@ function populateCreepyMessagesList(){
 		}
 			
 		// SOME STUFF FOR SPECIFIC STREAMERS/CELEBRITIES?
-		if (string_lower(_name) == "pewdiepie") {
-			array_push(CREEPY_MSG, {text:$"Would the nine-year-old army all be legal adults by this point?", fatal: true}); 
-			array_push(CREEPY_MSG, {text:$"Now with 20% more heated gamer moments", fatal: true});
-			array_push(CREEPY_MSG, {text:$"lol T-Series won", fatal: true});
-			if (random(1) > 0.5) {Quit();}
-		}
-		
-		// FUCK THAT GUY
-		if (string_lower(_name) == "elonmusk" || string_lower(_name) == "elon musk" || string_lower(_name) == "elon_musk") {
-			array_push(CREEPY_MSG, {text:$"Top 10 Epic Divorce Men, Number One- {_name}", fatal: true}); 
-			if (random(1) > 0.5) {Quit();}
-		}
-		
-		// PERHAPS SHOUTOUTS TO SPECIFIC USERS/STREAMERS?
-		if (string_lower(_name) == "asmongold") {
-			array_push(CREEPY_MSG, {text:$"GO CLEAN YOUR ROOM, {_name}\nAND STOP SMEARING YOUR BLEEDING GUMS ALL OVER THE PLACE", fatal: true}); 
-			array_push(CREEPY_MSG, {text:$"REMINDER TO {_name} TO GET A NEW DEAD RAT TO USE AS AN ALARM CLOCK", fatal: true}); 
-			if (random(1) > 0.5) {Quit();}
-		}
 		
 	}
 	#endregion
 
-	// DO NOT EXPOSE THE FULL LIST OF CREEPY MESSAGES ANYMORE
-	var len = array_length(CREEPY_MSG);
-	var i = 0;
-	debug_msg($"There are {len} possible error messages:");
-	//repeat(len){
-	//	debug_msg( CREEPY_MSG[i] );
-	//	i++;
-	//}
+	// DO NOT EXPOSE THE FULL LIST OF CREEPY MESSAGES IN THE CONSOLE LOG 
+	debug_msg($"There are {array_length(CREEPY_MSG)} possible error messages:");
 	
 }
 populateCreepyMessagesList();

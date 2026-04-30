@@ -49,15 +49,15 @@ function random_array_element(_arr, _start = 0, _end = -1) {
 }
 
 
-///@deprecated
+
 ///@func is_null(_original,_replacement)
 ///@desc if the original value is undefined, replace it with an alternative value.
 ///@arg {any} _original
 ///@arg {any} _replacement
 ///@returns {any}
-function is_null(_original, _replacement) {
-	return _original ?? _replacement;
-}
+//function is_null(_original, _replacement) {
+//	return _original ?? _replacement;
+//}
 
 ///@func debug_msg(_str)
 ///@desc shortcut method for doing debug messages
@@ -113,6 +113,7 @@ function ActivateMenu(menu_obj, self_obj = id, deactivate_self = true) {
 			// CREATE A NEW INSTANCE OF menu_obj IF IT DOESN'T ALREADY EXIST
 			_target = instance_create_layer(x, y, "Instances", menu_obj);
 		} else {
+			// GRAB THE NEAREST INSTANCE OF menu_obj IF IT EXISTS
 			_target = instance_nearest(x, y, menu_obj);
 		}
 		// ACTIVATE THE MENU
