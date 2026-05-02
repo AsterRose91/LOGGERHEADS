@@ -1,7 +1,7 @@
 ///CREDITS///
 
 global.credits = [
-	"GRAPHICS, SOUND, CONCEPT"
+	"GRAPHICS, SOUND, CONCEPT, CODING"
 	,"The Blue Rose"
 	,"The Star"
 	,"The Devil"
@@ -27,6 +27,8 @@ global.credits = [
 	,"PixelatedPope"
 	,"GhostlyCosmonaut"
 	,"Marcess"
+	,"Gloobys"
+	,"Germ"
 
 	,"SPECIAL THANKS TO"
 	,"Emiko"

@@ -48,16 +48,18 @@ function random_array_element(_arr, _start = 0, _end = -1) {
 
 }
 
-
-
-///@func is_null(_original,_replacement)
-///@desc if the original value is undefined, replace it with an alternative value.
-///@arg {any} _original
-///@arg {any} _replacement
-///@returns {any}
-//function is_null(_original, _replacement) {
-//	return _original ?? _replacement;
-//}
+///@func string_pad_zeroes(_value, _length)
+///@desc pads a (numeric) string with zeroes
+///@arg {Real} _value
+///@arg {Real} _length
+///@returns {String}
+function string_pad_zeroes(_value, _length) {
+//    var _string = string(_value);
+//    var _count = max(0, _length - string_length(_string));
+//    var _zeroes = string_repeat("0", _count);
+//    return $"{_zeroes}{_string}";
+	return string_replace_all(string_format(_value, _length, 0), " ", "0");
+}
 
 ///@func debug_msg(_str)
 ///@desc shortcut method for doing debug messages
@@ -217,3 +219,13 @@ function ErrorCorrection() {
 	}
 	return SECRET_VALUE;
 }
+
+
+///@func is_null(_original,_replacement)
+///@desc if the original value is undefined, replace it with an alternative value.
+///@arg {any} _original
+///@arg {any} _replacement
+///@returns {any}
+//function is_null(_original, _replacement) {
+//	return _original ?? _replacement;
+//}

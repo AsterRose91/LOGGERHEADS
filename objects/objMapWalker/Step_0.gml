@@ -52,7 +52,7 @@ YY = approach(YY, FINAL_YY , 0.5);
 
 
 #region MEET THE HAT MAN
-MEET_HAT = collision_rectangle(bbox_left - 1, bbox_top - 1, bbox_right + 1, bbox_bottom + 1, objMapHatman, false, true);
+MEET_HAT = collision_rectangle(bbox_left - 3, bbox_top - 3, bbox_right + 3, bbox_bottom + 3, objMapHatman, false, true);
 if (MEET_HAT != noone && instance_exists(MEET_HAT)) {
 	if (MEET_HAT.ENABLED) {
 		gotoLevelWithTransition(SPECIALROOMS.HATMAN_ROOM, TRANSITION_TYPES.PIXELATE);
