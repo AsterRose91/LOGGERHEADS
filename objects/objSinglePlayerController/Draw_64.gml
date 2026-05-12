@@ -22,31 +22,27 @@ var draw_x = 8, draw_y = 8, _text, draw_h;
 //_text = $"CHOPS: {CHOPS_COUNTER}";
 _text = $"CHOPS: ";
 draw_h = string_height(_text);
-draw_text_drop_shadow(draw_x, draw_y, _text, c_white, c_black, 2, 2);
+draw_text_outline(draw_x, draw_y, _text, c_white, c_black);
 draw_y += draw_h + 2;
-number_to_sprites(CHOPS_COUNTER, sprGUInumbers, draw_x + 40, draw_y - 10, c_white, 1);
+number_to_sprites(CHOPS_COUNTER, sprGUInumbers, draw_x + 50, draw_y - 10, c_white, 1);
 
 
 //_text = $"BEST: {GetRoomHighscore(room)}";
 _text = $"BEST: ";
-draw_text_drop_shadow(draw_x, draw_y, _text, c_white, c_black, 2, 2);
+draw_text_outline(draw_x, draw_y, _text, c_white, c_black);
 draw_y += draw_h + 2;
-number_to_sprites(GetRoomHighscore(room), sprGUInumbers, draw_x + 40, draw_y - 10, c_white, 1);
+number_to_sprites(GetRoomHighscore(room), sprGUInumbers, draw_x + 50, draw_y - 10, c_white, 1);
 
 
 
-_text = $"RETRIES: {RETRIES_COUNTER}";
-draw_text_drop_shadow(draw_x, draw_y, _text, c_white, c_black, 2, 2);
+_text = $"RETRIES: ";
+draw_text_outline(draw_x, draw_y, _text, c_white, c_black);
 draw_y += draw_h + 2;
-
-//if (WAIT_TIMER > 0) {
-//	_text = $"WAIT...: {WAIT_TIMER}";
-//	draw_text_drop_shadow(draw_x, draw_y, _text, c_white, c_black, 2, 2);
-//	draw_y += draw_h + 2;
-//}
+number_to_sprites(RETRIES_COUNTER, sprGUInumbers, draw_x + 50, draw_y - 10, c_white, 1);
 
 _text = "P- pause menu, \nR- restart level\nC- undo move";
-draw_text_drop_shadow(draw_x, draw_y, _text, c_white, c_black, 2, 2);
+draw_text_outline(draw_x, draw_y, _text, c_white, c_black);
 
+// draw a certain number off to the side of the screen
 draw_text(GUI_W - 32, 8, $"{SECRET_VALUE}")
 

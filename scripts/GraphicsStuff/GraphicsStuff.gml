@@ -46,16 +46,47 @@ function room_y_to_gui(view = 0) {
 
 #region TEXT BOXES AND MESSAGES
 
+///@func draw_text_outline(x, y, str, color, [outline_color], [width])
+///@desc draw a string with an outline of [outline_color] around it
+///@arg {real} x
+///@arg {real} y
+///@arg {string} str
+///@arg {constant.color} color
+///@arg {constant.color} [outline_color]
+///@arg {real} [width]
+function draw_text_outline(x, y, str, color, outline_color = c_black, width = -1) {
+	var do_fixed_width = (width != -1);
+	var c_text = color ?? COLORS.COLOR_RED, c_line = outline_color ?? c_black;
+	
+	if (!do_fixed_width) {
+		// DEFAULT
+		draw_text_color(x + 1, y, str, c_line, c_line, c_line, c_line, 1);
+		draw_text_color(x - 1, y, str, c_line, c_line, c_line, c_line, 1);
+		draw_text_color(x, y + 1, str, c_line, c_line, c_line, c_line, 1);
+		draw_text_color(x, y - 1, str, c_line, c_line, c_line, c_line, 1);
+		draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
+		
+	} else {
+		// FIXED-WIDTH
+		draw_text_ext_color(x - 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
+		draw_text_ext_color(x + 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
+		draw_text_ext_color(x, y - 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
+		draw_text_ext_color(x, y + 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
+		draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
+	}
 
-///@func draw_text_drop_shadow(x, y, str, color, shadow_color, x_offset, y_offset, [width])
+}
+
+
+///@func draw_text_drop_shadow(x, y, str, color, [shadow_color], [x_offset], [y_offset], [width])
 ///@desc draw a string with a shadow below it.
 ///@arg {real} x
 ///@arg {real} y
 ///@arg {string} str
 ///@arg {constant.colour} color 
-///@arg {constant.colour} shadow_color
-///@arg {real} x_offset
-///@arg {real} y_offset
+///@arg {constant.colour} [shadow_color]
+///@arg {real} [x_offset]
+///@arg {real} [y_offset]
 ///@arg {real} [width]
 function draw_text_drop_shadow(x, y, str, color = COLORS.COLOR_RED, shadow_color = c_black, x_offset = 3, y_offset = 3, width = -1) {
 	// IF WIDTH IS SET TO ANYTHING BESIDES THE DEFAULT VALUE (-1) ENTER "FIXED-WIDTH" MODE
@@ -197,18 +228,7 @@ function number_to_sprites(value, sprite_index, x, y, color = c_white, alpha = 1
 		else  {_e = (value mod power(10, _i + 1) ) div power(10, _i);} // TENS, HUNDREDS, ET AL
 		draw_sprite_ext(sprGUInumbers, _e, x + _num_length_pixels - (_w * _i), y, 1, 1, 0, color, alpha);
 	}
-	
-	#region STRING CONVERSION BASED CODE
-	//var _string = string(value);
-	//var _len = string_length(_string);
-	
-	//var _i = 1;
-	//repeat(_len) {
-	//	var _e = string_char_at(_string, _i);
-	//	draw_sprite_ext(sprGUInumbers, real(_e), x + ((_i - 1) * 10), y, 1, 1, 0, color, alpha);
-	//	_i++;
-	//}
-	#endregion
+
 	return true;
 }
 
