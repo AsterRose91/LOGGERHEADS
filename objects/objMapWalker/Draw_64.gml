@@ -5,8 +5,8 @@ if (isGamePaused()) {exit;} // THIS GOD FORSAKEN FUNCTION DOESN'T WORK?
 // if (PAUSE_MENU != noone) {if (PAUSE_MENU.MENU_ACTIVE) { exit; } }
 
 // DRAW SOME DIAGNOSTIC STUFF HERE?
-var _position_string = $"POSITION: ({x}, {y})";
-draw_text(GUI_W - string_width(_position_string), GUI_H - string_height(_position_string), _position_string)
+//var _position_string = $"POSITION: ({x}, {y})";
+//draw_text(GUI_W - string_width(_position_string), GUI_H - string_height(_position_string), _position_string)
 
 
 if (ON_SIGNPOST == noone) {exit;}

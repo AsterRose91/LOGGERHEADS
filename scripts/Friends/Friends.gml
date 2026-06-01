@@ -160,3 +160,11 @@ function have_met_friend(friendID){
 	);
 	return (i != -1) ? FRIENDS_MET[i].met : false;
 }
+///@func totalFriendsMet()
+///@desc return the total number of friends you've met
+///@returns {Real}
+function totalFriendsMet() {
+	var i = array_length( array_filter(FRIENDS_MET, function(k) {return k.met;}) );
+	return i;
+}
+

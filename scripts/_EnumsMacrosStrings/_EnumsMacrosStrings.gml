@@ -1,8 +1,6 @@
 /// NOT EVERY ENUM AND MACRO IS IN HERE BUT A LOT ARE.
 
-
 #macro GAME_VERSION_THINGY 23
-// USE THIS WITH SAVE FILES?
 
 #macro TAU (2*pi)
 
@@ -63,7 +61,7 @@ enum LOG_STATES {
 	MAGNET_PULL = 7,		// pulled by a magnet
 }
 
-enum CHARACTER_STATES {		// States for Player objects
+enum CHARACTER_STATES {						// States for Player objects
 	NONE = 0,				// Default state, standby
 	MOVING = 1,				// Moving
 	CHOPPING = 2,			// Chopping logs
@@ -72,7 +70,7 @@ enum CHARACTER_STATES {		// States for Player objects
 	OOPS= 5,				// when the player character does an oopsy and has to restart
 }
 
-enum OOPSY_TYPES {			// When the Player gets hurt
+enum OOPSY_TYPES {							// When the Player gets hurt
 	CRUSHED = 0,
 	BURNT = 1,
 	CRUSHED_2 = 2,
@@ -89,7 +87,7 @@ enum SPECIALROOMS {
 	HUB_LEVEL_1 = -9,
 }
 
-enum ROOMTYPES {			// WHAT TYPE OF ROOM
+enum ROOMTYPES {							// WHAT TYPE OF ROOM
 	OTHER = -1,
 	NORMAL = 0,				// NORMAL SINGLE PLAYER PUZZLE ROOMS
 	FRIEND_HOUSE = 1,		// A FRIEND'S HOUSE
@@ -98,7 +96,7 @@ enum ROOMTYPES {			// WHAT TYPE OF ROOM
 	HATMAN_ENCOUNTER = 6,	// DETECTIVE!
 }
 
-enum DIRECTION {			// WONDER IF I CAN ADD MORE DIRECTIONS THAN LEFT AND RIGHT?
+enum DIRECTION {							// WONDER IF I CAN ADD MORE DIRECTIONS THAN LEFT AND RIGHT?
 	DOWN  = -2, 
 	LEFT  = -1,
 	NONE  = 0,
@@ -136,11 +134,11 @@ enum TRANSITION_TYPES {
 
 
 
-#macro T 40					// TILE AND SPRITE SIZE CONSTANT
+#macro T 40									// TILE AND SPRITE SIZE CONSTANT
 
 #region GAME SPEED SETTINGS
-#macro MOVE_SPEED 6			// CHARACTER/LOG MOVEMENT 
-#macro DEFAULT_MOVESPEED 6	// THIS IS GOING TO BE CHANGABLE NOW
+#macro MOVE_SPEED 6							// CHARACTER/LOG MOVEMENT 
+#macro DEFAULT_MOVESPEED 6					// THIS IS GOING TO BE CHANGABLE NOW
 
 #macro MIN_MOVESPEED 1
 #macro MAX_MOVESPEED 24
@@ -156,37 +154,11 @@ function change_game_speed(amt) {
 #endregion
 
 
-global.DEBUGFLAG = true;				// TURN THIS OFF LATER
-global.CUSTOMLOGFILE = "custom.log";	// SAVE LOGS TO FILE?
+global.DEBUGFLAG = true;									// TURN THIS OFF LATER
+global.CUSTOMLOGFILE = $"{working_directory}/Log/err";		// SAVE LOGS TO FILE?
 #macro TESTING global.DEBUGFLAG
 #macro CUSTOMLOGGERFILE global.CUSTOMLOGFILE
-
-// THERE WILL BE NO CHANGING OF CONTROLS. 
-// PHASE THIS OUT SLOWLY AND USE THE INPUT 6.1 ADDON
-//global.keybinds = {
-//		LEFT:		[vk_left, ord("A")],
-//		RIGHT:		[vk_right, ord("D")],
-//		UP:			[vk_up, ord("W")],
-//		DOWN:		[vk_down, ord("S")],
-//		CHOP:		[ord("Z"), ord("K")],
-//		TURN:		[ord("X"), ord("J")],
-//		PAUSE:		[ord("P")],
-//		RESET:		[ord("R")],
-		
-//		// THIS MUST BE DISABLED LATER
-//		DEBUG:		[vk_f3],
-				
-//};
-#macro KEY_DELAY_MAX 8 // USED TO PUT A DELAY IN CHARACTER MOVEMENT
-//#macro kLEFT global.keybinds.LEFT
-//#macro kRIGHT global.keybinds.RIGHT
-//#macro kUP global.keybinds.UP
-//#macro kDOWN global.keybinds.DOWN
-//#macro kCHOP global.keybinds.CHOP
-//#macro kTURN global.keybinds.TURN
-//#macro kPAUSE global.keybinds.PAUSE
-//#macro kRESET global.keybinds.RESET
-//#macro kDEBUG global.keybinds.DEBUG
+#macro KEY_DELAY_MAX 8										// USED TO PUT A DELAY IN CHARACTER MOVEMENT
 
 
 #region	STRINGS, MESSAGES
@@ -224,9 +196,6 @@ function creepyErrorMessage(_text, _fatal) constructor {
 	text = _text;
 	fatal = _fatal;
 }
-
-
-
 
 ///@function populateCreepyMessagesList()
 ///@description Creates a list of possible creepy messages to show the user
