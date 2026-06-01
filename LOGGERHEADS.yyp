@@ -364,7 +364,7 @@
     {"id":{"name":"_Attributions","path":"scripts/_Attributions/_Attributions.yy",},},
     {"id":{"name":"_EnumsMacrosStrings","path":"scripts/_EnumsMacrosStrings/_EnumsMacrosStrings.yy",},},
     {"id":{"name":"_ProgressFlags","path":"scripts/_ProgressFlags/_ProgressFlags.yy",},},
-    {"id":{"name":"_UtilityFunctions","path":"scripts/_UtilityFunctions/_UtilityFunctions.yy",},},
+    {"id":{"name":"_Utility","path":"scripts/_Utility/_Utility.yy",},},
     {"id":{"name":"AIHelperMethods","path":"scripts/AIHelperMethods/AIHelperMethods.yy",},},
     {"id":{"name":"BackgroundSetup","path":"scripts/BackgroundSetup/BackgroundSetup.yy",},},
     {"id":{"name":"bktGlitch_inline","path":"scripts/bktGlitch_inline/bktGlitch_inline.yy",},},

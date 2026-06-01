@@ -1,4 +1,5 @@
 /// @description DIAGNOSTICS
+if (!TESTING) {exit;}
 if (!show_diag) {exit;}
 var draw_x = 8, draw_y = 8, _text, text_w, text_h, max_w = 480;
 
