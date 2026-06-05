@@ -132,45 +132,4 @@ if (gate != noone && instance_exists(gate)) {
 if (!worldmap_move_x(id, "Collision", XX)) {XX = 0;}
 if (!worldmap_move_y(id, "Collision", YY)) {YY = 0;}
 
-
-//var x_collide, y_collide, x_tilecollide, y_tilecollide;
-//repeat( abs(floor(XX)) ) {	
-//	// TILE COLLISION
-//	x_tilecollide = tileCollision(x + sign(XX), y, "Collision");
-//	if (x_tilecollide) {XX = 0; break;}
-	
-//	// INSTANCE COLLISION
-//	x_collide = instance_place(x + sign(XX), y, objSolid);
-//	if (x_collide != noone) {
-//		if (object_get_parent(x_collide.object_index)  == objGatePar) {
-//			if (!x_collide.DISABLED) {
-//				if (!x_collide.ALL_DONE) {XX = 0; break;}
-//			}
-//		} else {XX = 0; break;}
-//	}
-//	// AVOID GOING OUT OF BOUNDS
-//	if (XX < 0 && bbox_left + sign(XX) < 0) {XX = 0; break;}
-//	if (XX > 0 && bbox_right + sign(XX) > room_width) {XX = 0; break;}
-//	x += sign(XX);
-//}
-
-//repeat( abs(floor(YY)) ) { 
-//	// TILE COLLISION
-//	y_tilecollide = tileCollision(x, y + sign(YY), "Collision");
-//	if (y_tilecollide) {YY = 0; break;}
-		
-//	// INSTANCE COLLISION
-//	y_collide = instance_place(x , y + sign(YY), objSolid);
-//	if (y_collide != noone) {
-//		if (object_get_parent(y_collide.object_index) == objGatePar) {
-//			if (!y_collide.DISABLED) {
-//				if (!y_collide.ALL_DONE) {YY = 0; break;}
-//			}
-//		} else { YY = 0; break; }
-//	}
-//	// AVOID GOING OUT OF BOUNDS		
-//	if (YY < 0 && bbox_top + sign(YY) < 0) {YY = 0; break;}
-//	if (YY > 0 && bbox_bottom + sign(YY) > room_height) {YY = 0; break;}
-//	y += sign(YY);
-//}
 #endregion

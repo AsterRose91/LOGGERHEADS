@@ -128,7 +128,7 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2024.14.4.222",
+    "IDEVersion":"2026.0.0.16",
   },
   "name":"LOGGERHEADS",
   "resources":[
@@ -162,6 +162,7 @@
     {"id":{"name":"objErrorHandler","path":"objects/objErrorHandler/objErrorHandler.yy",},},
     {"id":{"name":"objFinishFlag","path":"objects/objFinishFlag/objFinishFlag.yy",},},
     {"id":{"name":"objFriend","path":"objects/objFriend/objFriend.yy",},},
+    {"id":{"name":"objFriendGate","path":"objects/objFriendGate/objFriendGate.yy",},},
     {"id":{"name":"objFriendGift","path":"objects/objFriendGift/objFriendGift.yy",},},
     {"id":{"name":"objFunnyErrorMessageType1","path":"objects/objFunnyErrorMessageType1/objFunnyErrorMessageType1.yy",},},
     {"id":{"name":"objGameOverSpecialEffect","path":"objects/objGameOverSpecialEffect/objGameOverSpecialEffect.yy",},},
@@ -727,6 +728,7 @@
     {"id":{"name":"sprGameTitleLogo","path":"sprites/sprGameTitleLogo/sprGameTitleLogo.yy",},},
     {"id":{"name":"sprGate","path":"sprites/sprGate/sprGate.yy",},},
     {"id":{"name":"sprGate2","path":"sprites/sprGate2/sprGate2.yy",},},
+    {"id":{"name":"sprGate3","path":"sprites/sprGate3/sprGate3.yy",},},
     {"id":{"name":"sprGateColor","path":"sprites/sprGateColor/sprGateColor.yy",},},
     {"id":{"name":"sprGroundTileNEW","path":"sprites/sprGroundTileNEW/sprGroundTileNEW.yy",},},
     {"id":{"name":"sprGUInumbers","path":"sprites/sprGUInumbers/sprGUInumbers.yy",},},

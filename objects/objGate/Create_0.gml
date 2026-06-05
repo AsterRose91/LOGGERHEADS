@@ -10,6 +10,7 @@ CONVERT_STRING_TO_ARR = function(_str) {
 	// LEVELS_NEEDED is stored as a string with commas
 	// it needs to be split first 
 	// each element of LEVELS_NEEDED must be converted to real()
+	// Maybe you can skip this and make it an expression now?
 	var str_list = string_split(_str,",",true)
 	, lvl
 	, lvl_id

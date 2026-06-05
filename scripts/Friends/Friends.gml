@@ -58,7 +58,7 @@ FRIENDS_BIOS = 	[
 		id: FRIENDS.CAT_BOY // 2
 		, name: "MR. SCRATCH"
 		, desc: "Has a thing for blue rats"
-		, sprite: sprPal1
+		, sprite: sprPal2
 		, likes_you: false
 	}
 	,{
@@ -70,10 +70,10 @@ FRIENDS_BIOS = 	[
 	}
 	,{
 		id: FRIENDS.BUNNY_BOY // 4
-		, name: "FALCORE"
-		, desc: "PLACEHOLDER DESCRIPTION"
+		, name: "RAINBOW"
+		, desc: "I think he said don't forget the video?"
 		, sprite: sprPal4
-		, likes_you: true
+		, likes_you: false
 	}
 	,{
 		id: FRIENDS.BUNNY_GIRL // 5
