@@ -17,13 +17,13 @@ CHECK_ALL_COMPLETED = function(_arr) {
 }
 
 UPDATE_MESSAGE = function(_arr) {
-	var _message = "To open this gate, you need to say hi to "
+	var _message = "To open this gate, you need to say hi to: "
 	// UPDATE THE LIST OF HOW MANY OBJECTIVES HAVE BEEN COMPLETED
 	for (var l = 0; l < array_length(_arr); l++){
 		var _met = have_met_friend(_arr[l]);
 		
-		if !(_met) {
-			var _name = FRIENDS_BIOS[_arr[l]].name
+		if (!_met) {
+			var _name = getFriendBiography(_arr[l]).name
 			_message += $"{_name}, "
 		}
 	}

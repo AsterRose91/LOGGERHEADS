@@ -20,6 +20,24 @@ function approach(_initial, _final, _rate) {
 	return max(_initial - _rate, _final);
 }
 
+///@func string_to_num_arr(_str, [_sep])
+///@desc convert a comma separated string into an array of numbers
+///@arg {String} _str
+///@arg {String} [_sep]
+///@returns {Array<Real>} 
+function string_to_num_arr(_str, _sep = ",") {
+	// pass string of numbers separated by commas or other separator into this function
+	// split it
+	var str_list = string_split(_str,_sep,true), _arr = [];
+	
+	_arr = array_map(str_list, function(value, index) {return real(value);})
+	//for (var i = 0; i < array_length(str_list); i++) {
+	//	array_push(_arr, real(str_list[i]) );
+	//}
+	return _arr;	
+};
+
+
 ///@func random_array_element( _arr, [_start], [_end] )
 ///@desc returns a random element from an array, (from between indexes [_start] and [_end] if specified)
 ///@arg {Array} _arr

@@ -48,6 +48,7 @@
     {"name":"inst_7059F12D","path":"rooms/Hub0/Hub0.yy",},
     {"name":"inst_63662B70","path":"rooms/Hub0/Hub0.yy",},
     {"name":"inst_29496C34","path":"rooms/Hub0/Hub0.yy",},
+    {"name":"inst_6A5385F9","path":"rooms/Hub0/Hub0.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -104,7 +105,7 @@
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":4.0,"scaleY":1.0,"x":208.0,"y":160.0,},
         {"$GMRInstance":"v4","%Name":"inst_709A0893","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_709A0893","objectId":{"name":"objGate","path":"objects/objGate/objGate.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objGate","path":"objects/objGate/objGate.yy",},"propertyId":{"name":"LEVELS_NEEDED","path":"objects/objGate/objGate.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"7,8,9,10\"",},
-          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":1.0,"x":432.0,"y":336.0,},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":1.0,"x":432.0,"y":304.0,},
         {"$GMRInstance":"v4","%Name":"inst_3A4703C7","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_3A4703C7","objectId":{"name":"objLevelSign","path":"objects/objLevelSign/objLevelSign.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objLevelSign","path":"objects/objLevelSign/objLevelSign.yy",},"propertyId":{"name":"LEVEL_ID","path":"objects/objLevelSign/objLevelSign.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"14",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":432.0,"y":368.0,},
@@ -182,6 +183,9 @@
         {"$GMRInstance":"v4","%Name":"inst_29496C34","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_29496C34","objectId":{"name":"objMapHatman","path":"objects/objMapHatman/objMapHatman.yy",},"properties":[
             {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objMapHatman","path":"objects/objMapHatman/objMapHatman.yy",},"propertyId":{"name":"ASSOCIATED_CUTSCENE_FLAG","path":"objects/objMapHatman/objMapHatman.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"\"post_mrs_scratchy_killed_detective_encounter\"",},
           ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":160.0,"y":432.0,},
+        {"$GMRInstance":"v4","%Name":"inst_6A5385F9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_6A5385F9","objectId":{"name":"objFriendGate","path":"objects/objFriendGate/objFriendGate.yy",},"properties":[
+            {"$GMOverriddenProperty":"v1","%Name":"","name":"","objectId":{"name":"objFriendGate","path":"objects/objFriendGate/objFriendGate.yy",},"propertyId":{"name":"FRIENDS_NEEDED","path":"objects/objFriendGate/objFriendGate.yy",},"resourceType":"GMOverriddenProperty","resourceVersion":"2.0","value":"[FRIENDS.CHIPMUNK_GIRL, FRIENDS.DOG_GIRL]",},
+          ],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":2.0,"scaleY":1.0,"x":432.0,"y":336.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRTileLayer":"","%Name":"Collision","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Collision","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":43,"SerialiseWidth":50,"TileCompressedData":[-353,-2147483648,-4,0,-47,-2147483648,-3,0,-46,-2147483648,-3,0,-47,-2147483648,-2,0,-1645,-2147483648,],"TileDataFormat":1,},"tilesetId":{"name":"CollisionMap","path":"tilesets/CollisionMap/CollisionMap.yy",},"userdefinedDepth":false,"visible":false,"x":0,"y":0,},
     {"$GMRTileLayer":"","%Name":"Tiles_1","depth":300,"effectEnabled":true,"effectType":"none","gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Tiles_1","properties":[],"resourceType":"GMRTileLayer","resourceVersion":"2.0","tiles":{"SerialiseHeight":43,"SerialiseWidth":50,"TileCompressedData":[

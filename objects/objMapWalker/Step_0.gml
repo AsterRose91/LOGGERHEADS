@@ -117,13 +117,6 @@ if (gate != noone && instance_exists(gate)) {
 	}
 }
 
-gate = instance_nearest(x, y, objGatePar);
-if (gate != noone && instance_exists(gate)) {
-	if (distance_to_object(gate) <= 4) {
-		with (gate) {DRAW_MESSAGE = true;}
-	}
-}
-
 #endregion
 
 #region MOVE THE PLAYER

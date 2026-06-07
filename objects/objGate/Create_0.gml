@@ -1,27 +1,32 @@
 /// @description BLOCK OFF ACCESS UNLESS CERTAIN LEVELS OR CONDITIONS ARE MET
 
 ALL_DONE = false;
-LEVELS_NEEDED_ARR = [];
+LEVELS_NEEDED_ARR = string_to_num_arr(LEVELS_NEEDED,","); //[]; //string_to_num_arr(LEVELS_NEEDED,","); //[];
 DRAW_MESSAGE = false;
 DISABLED = false;
 
-CONVERT_STRING_TO_ARR = function(_str) {
-	// pass LEVELS_NEEDED into this function
-	// LEVELS_NEEDED is stored as a string with commas
-	// it needs to be split first 
-	// each element of LEVELS_NEEDED must be converted to real()
-	// Maybe you can skip this and make it an expression now?
-	var str_list = string_split(_str,",",true)
-	, lvl
-	, lvl_id
-	, _arr = [];
-	for (var i = 0; i < array_length(str_list); i++) {
-		lvl = str_list[i];
-		lvl_id = real(lvl); 
-		array_push(_arr, lvl);
-	}
-	return _arr;	
-};
+//CONVERT_STRING_TO_ARR= string_to_num_arr
+
+//CONVERT_STRING_TO_ARR = function(_str) {
+//	// pass LEVELS_NEEDED into this function
+//	// LEVELS_NEEDED is stored as a string with commas
+//	// it needs to be split first 
+//	// each element of LEVELS_NEEDED must be converted to real()
+//	// Maybe you can skip this and make it an expression now?
+//	var str_list = string_split(_str,",",true)
+//	, lvl
+//	, lvl_id
+//	, _arr = [];
+	
+//	_arr = array_map(str_list, function(value, index) {return real(value);})
+	
+//	//for (var i = 0; i < array_length(str_list); i++) {
+//	//	lvl = str_list[i];
+//	//	lvl_id = real(lvl); 
+//	//	array_push(_arr, lvl);
+//	//}
+//	return _arr;	
+//};
 
 CHECK_ALL_COMPLETED = function(_arr) {
 	var _done = true, lvl;
