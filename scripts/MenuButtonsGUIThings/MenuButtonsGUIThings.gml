@@ -186,8 +186,8 @@ function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 4, do_action = d
 	self.image_blend = c_white;
 	
 	self.pad = pad; 
-	self.w = string_width(message) + (2 * self.pad); 
-	self.h = string_height(message) + (2 * self.pad);
+	self.w = string_width_scribble(message) + (2 * self.pad); 
+	self.h = string_height_scribble(message) + (2 * self.pad);
 	self.do_action = do_action; 
 	self.play_sound_on_click = play_sound_on_click;
 	self.name = name;
@@ -196,8 +196,7 @@ function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 4, do_action = d
 	///@function draw()
 	static draw = function() { 
 		if (!visible) {return;}
-		draw_text_box(self.x, self.y, self.w, self.h, self.message, self.sprite_index, self.has_focus, self.pad, true);
-		
+		draw_text_box_v2(self.x, self.y, self.w, self.h, self.message, self.sprite_index, self.has_focus, 1, self.pad, true);
 	}
 	_ElementGUIid++;
 }
@@ -217,8 +216,8 @@ function GUITextMessage(message = "CAPTION!", x = 0, y = 0, pad = 2, name = "GUI
 	self.x = x; 
 	self.y = y; 
 	self.pad = pad; 
-	self.w = string_width(self.message) + (2 * self.pad);
-	self.h = string_height(self.message) + (2 * self.pad);
+	self.w = string_width_scribble(self.message) + (2 * self.pad);
+	self.h = string_height_scribble(self.message) + (2 * self.pad);
 	self.do_action = noone; // does nothing when clicked
 	self.enabled = false;
 	self.visible = true;
@@ -313,7 +312,6 @@ function GamespeedIndicator(x, y) : GUIButton() constructor {
 	static draw = function() {
 		var _lerp = 0;
 		
-		//_lerp = lerp(0, self.w - 10, BGM_VOL);
 		_lerp = remap(MOVEMENT_SPEEDSETTING, MIN_MOVESPEED, MAX_MOVESPEED, 0, self.w - 10);
 		draw_sprite_ext(self.sprite_index, 0, self.x, self.y, 1, 1, 0, c_white, 1);	
 		draw_sprite_ext(self.indicator_index, 0, self.x + _lerp, self.y, 1, 1, 0, c_white, 1);
@@ -342,15 +340,12 @@ function GUIUserInputTextDisplayer(message, x, y, pad): TextButton(message, x, y
 	static draw = function() { 
 		// use message variable to get contents of a global variable?
 		var _ = "";
-		//draw_text_box(self.x, self.y, self.w, self.h, _, self.sprite_index, self.has_focus, self.pad, true);
 		draw_sprite_ext(sprTextInputBoxBack,0,self.x, self.y, 1, 1, 0, c_white, 1);
-		//if variable_global_exists(self.message){
 		if (instance_exists(objTextEntry)) {
-			//_ = string(variable_global_get(self.message));
 			with (objTextEntry) {_ = TEXT_INPUT;}
 		}
 		if (!visible) {return;}
-		draw_text_box(self.x, self.y, self.w, self.h, _, self.sprite_index, self.has_focus, self.pad, true);
+		draw_text_box_v2(self.x, self.y, self.w, self.h, _, self.sprite_index, self.has_focus, 1, self.pad, true);
 		
 	}
 
@@ -550,21 +545,21 @@ function gui_text_clear() {
 ///@arg {Real} [pad]
 ///@returns {Struct<Real, Real>}
 function MenuResizeFunctionNew(array_menuelements, pad = 2){
-	var _width = 0, _height = 0;
+	var _width = 0, _height = 0, _2p = pad * 2;
 	
-	var min_x = array_menuelements[0].x - pad, 
-		max_x = array_menuelements[0].x + array_menuelements[0].w + pad, 
+	var min_x = array_menuelements[0].x - _2p, 
+		max_x = array_menuelements[0].x + array_menuelements[0].w + _2p, 
 		min_y = array_menuelements[0].y, 
-		max_y = array_menuelements[0].y + array_menuelements[0].h + pad;
+		max_y = array_menuelements[0].y + array_menuelements[0].h + _2p;
 	
 	// WORK OUT THE BIGGEST AND SMALLEST X, Y VALUES
 	var i, j;
 	for (i = 0; i < array_length(array_menuelements); i++) {
 		j = array_menuelements[i];
-		min_x = min( j.x - pad, min_x);
-		max_x = max( j.x + j.w + pad, max_x);
-		min_y = min( j.y - pad, min_y);
-		max_y = max( j.y + j.h + pad, max_y);
+		min_x = min( j.x - _2p, min_x);
+		max_x = max( j.x + j.w + _2p, max_x);
+		min_y = min( j.y - _2p, min_y);
+		max_y = max( j.y + j.h + _2p, max_y);
 	}
 	x = min_x;
 	y = min_y;

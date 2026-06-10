@@ -34,4 +34,3 @@ if (global.is_changing_hublevel) {
 		debug_msg($"LAST_VISITED_LEVEL: {LAST_VISITED_LEVEL}\nPOSITION: {_X},{_Y}\n");
 	}
 }
-// debug_msg($"WHERE THE FUCK AM I NOW? {x}, {y}, {room}");

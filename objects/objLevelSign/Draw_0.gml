@@ -14,9 +14,6 @@ switch (SPRITE_TYPE) {
 		// OR A QUESTION MARK
 		if (DEMO_END_FLAG) {
 			c = c_white;
-			//draw_x = x + (sprite_width div 2) - (string_width( string("?") ) div 2);
-			//draw_y = y + ((sprite_height div 2) - 5) - (string_height( string("?") ) div 2);
-			//draw_text_color(draw_x, draw_y, string("?"), c, c, c, c, 1);
 			_offset = 0; //5 * ( (LEVEL_ID < 10) ? 0 : floor(log10(abs(LEVEL_ID))) );
 
 			draw_x = x + (sprite_width div 2) - 5 - _offset;

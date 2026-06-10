@@ -7,7 +7,7 @@
 #macro DISP_H 720 
 #macro GAMESPEED 60
 
-// TRANSITON FILTERS
+// ROOM TRANSITION EFFECTS
 fx_create("_filter_pixelate");
 fx_create("_filter_linear_blur");
 fx_create("_filter_large_blur");
@@ -15,6 +15,10 @@ fx_create("_filter_large_blur");
 // BLUR EFFECT
 fx_create("_effect_gaussian_blur");
 
+// SCRIBBLE STUFF
+scribble_font_bake_outline_and_shadow("Font_Diagnostics","Font_Diagnostics_new",2,2,SCRIBBLE_OUTLINE.FOUR_DIR,0,false);
+scribble_font_bake_outline_and_shadow("Font_Small","Font_Small_new",3,3,SCRIBBLE_OUTLINE.NO_OUTLINE,0,false);
+scribble_font_set_default("Font_Small_new");
 
 
 ///@func draw_self_pixel([x_offset], [y_offset])
@@ -44,37 +48,116 @@ function room_y_to_gui(view = 0) {
 }
 #endregion
 
-#region TEXT BOXES AND MESSAGES
 
-///@func draw_text_outline(x, y, str, color, [outline_color], [width])
+///@func convert_hexcode_to_string(_color)
+///@arg {Constant.Color} _color
+///@returns {String}
+function convert_hexcode_to_string(_color) {
+	return $"#{dec_to_hex(_color, 6)}";
+}
+
+
+#region TEXT BOXES AND MESSAGES (SCRIBBLE VERSION)
+///@func draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, pad, shadow, [width], [text_color], [shadow_color], [image_alpha])
+///@desc draw a text box. If you don't provide a sprite it just draws text
+///@arg {real} x								// x-coordinate for drawing text
+///@arg {real} y								// y-coordinate for drawing text
+///@arg {real} w								// desired width of text box
+///@arg {real} h								// desired height of text box
+///@arg {string} message						// the string to be drawn
+///@arg {asset.GMSprite} sprite_index			// the sprite to use as the background for the message box
+///@arg {real} image_index						// the image index of the sprite
+///@arg {Real} [image_alpha]					// image_alpha for the message box
+///@arg {real} pad								// text padding
+///@arg {bool} shadow							// do you want the text to have a shadow
+///@arg {real} [width]							// text wrapping
+///@arg {Constant.Color} [text_color]			// text color
+///@arg {Constant.Color} [shadow_color]			// shadow color (black by default)
+function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_alpha, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #0000001) {
+	// NEW BETTER VERSION OF THIS FUNCTION THAT USES SCRIBBLE
+	var c_text = convert_hexcode_to_string(text_color ?? c_white);
+	var c_shad = (shadow_color ?? c_black);
+	var a_shad = shadow? 0.5 : 0;
+	var _2p = pad * 2;
+	
+	var _text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad).wrap(width);
+	
+		
+	// MESSAGE BACKGROUND
+	if (sprite_index != noone) {
+		// GET TEXT SIZE
+		var _bbox = _text.get_bbox(x, y);
+		
+		var spr_w = 20; //sprite_get_width(sprite_index)
+		var spr_h = 20; //sprite_get_height(sprite_index)
+		
+		// TEXT BOX HEIGHT
+		var _bbox_width = (_bbox.right - _bbox.left) + _2p;  
+		var _bbox_height = (_bbox.bottom - _bbox.top) + _2p; 
+		
+
+		// MINIMUM SIZE FOR THE TEXT BOXES
+		var min_w = max(spr_w, _bbox_width);
+		var min_h = max(spr_h, _bbox_height);
+	
+		var _w = max(w, min_w);
+		var _h = max(h, min_h);
+		draw_sprite_stretched_ext(sprite_index, image_index, x - pad, y - pad, _w, _h, c_white, image_alpha);
+		
+		// DIAGNOSIS
+		//if (TESTING)
+		//{ draw_rectangle_colour(_bbox.left, _bbox.top, _bbox.right, _bbox.bottom, c_white, c_white, c_white, c_white, true); }
+	}
+	
+	_text.draw(x, y)
+	
+
+	return;
+} 
+
+#endregion
+
+
+
+#region TEXT BOXES AND MESSAGES (OLD)
+
+///@func draw_text_outline(x, y, str, _color, [outline_color], [width])
 ///@desc draw a string with an outline of [outline_color] around it
 ///@arg {real} x
 ///@arg {real} y
 ///@arg {string} str
-///@arg {constant.color} color
+///@arg {constant.color} _color
 ///@arg {constant.color} [outline_color]
 ///@arg {real} [width]
-function draw_text_outline(x, y, str, color, outline_color = c_black, width = -1) {
+function draw_text_outline(x, y, str, _color, outline_color = #000000, width = -1) {
 	var do_fixed_width = (width != -1);
-	var c_text = color ?? COLORS.COLOR_RED, c_line = outline_color ?? c_black;
+	var c_text = convert_hexcode_to_string(_color ?? COLORS.COLOR_RED), 
+		c_line = (outline_color ?? c_black);
 	
-	if (!do_fixed_width) {
-		// DEFAULT
-		draw_text_color(x + 1, y, str, c_line, c_line, c_line, c_line, 1);
-		draw_text_color(x - 1, y, str, c_line, c_line, c_line, c_line, 1);
-		draw_text_color(x, y + 1, str, c_line, c_line, c_line, c_line, 1);
-		draw_text_color(x, y - 1, str, c_line, c_line, c_line, c_line, 1);
-		draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
+	// convert c_text into a string
+	
+	var c_prev = draw_get_colour();
+	//draw_set_color(c_text)	
+	scribble($"[{c_text}]{str}").shadow(c_black,0).outline(c_line).draw(x, y);
+	draw_set_colour(c_prev);
+	
+	//if (!do_fixed_width) {
+	//	// DEFAULT
+	//	draw_text_color(x + 1, y, str, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_color(x - 1, y, str, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_color(x, y + 1, str, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_color(x, y - 1, str, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
 		
-	} else {
-		// FIXED-WIDTH
-		draw_text_ext_color(x - 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
-		draw_text_ext_color(x + 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
-		draw_text_ext_color(x, y - 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
-		draw_text_ext_color(x, y + 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
-		draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
-	}
-
+	//} else {
+	//	// FIXED-WIDTH
+	//	draw_text_ext_color(x - 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_ext_color(x + 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_ext_color(x, y - 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_ext_color(x, y + 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
+	//	draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
+	//}
+	return;
 }
 
 
@@ -88,7 +171,8 @@ function draw_text_outline(x, y, str, color, outline_color = c_black, width = -1
 ///@arg {real} [x_offset]
 ///@arg {real} [y_offset]
 ///@arg {real} [width]
-function draw_text_drop_shadow(x, y, str, color = COLORS.COLOR_RED, shadow_color = c_black, x_offset = 3, y_offset = 3, width = -1) {
+///@arg {real} [pad]
+function draw_text_drop_shadow(x, y, str, color = COLORS.COLOR_RED, shadow_color = #000000, x_offset = 3, y_offset = 3, width = -1, pad = 1) {
 	// IF WIDTH IS SET TO ANYTHING BESIDES THE DEFAULT VALUE (-1) ENTER "FIXED-WIDTH" MODE
 	var do_fixed_width = (width != -1);
 
@@ -99,19 +183,32 @@ function draw_text_drop_shadow(x, y, str, color = COLORS.COLOR_RED, shadow_color
 	dy = y_offset ?? 3;
 	
 	// TEXT AND SHADOW COLORS
-	c_text = color ?? COLORS.COLOR_RED;
-	c_shad = shadow_color ?? c_black;
+	c_text = convert_hexcode_to_string(color ?? COLORS.COLOR_RED);
+	c_shad = (shadow_color ?? #000000);
 	
-	if (!do_fixed_width) {
-		// DEFAULT
-		draw_text_color(x + dx, y+dy, str, c_shad, c_shad, c_shad, c_shad, 0.5);	
-		draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
+	var c_prev = draw_get_colour();
+	var a_prev = draw_get_alpha();
+	
+
+	//scribble($"[{c_shad}][alpha,0.5]{str}[/alpha][/c]").padding(pad,pad,pad,pad).wrap(width).draw(x+dx, y+dy);
+
+	scribble($"[{c_text}]{str}[/c]").shadow(c_shad,0.5).padding(pad,pad,pad,pad).wrap(width).draw(x, y);
+	
+	
+	draw_set_colour(c_prev);
+	draw_set_alpha(a_prev);
+	
+	//if (!do_fixed_width) {
+	//	// DEFAULT
+	//	draw_text_color(x + dx, y+dy, str, c_shad, c_shad, c_shad, c_shad, 0.5);	
+	//	draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
 		
-	} else {
-		// FIXED-WIDTH
-		draw_text_ext_color(x + dx, y + dy, str, -1, width, c_shad, c_shad, c_shad, c_shad, 0.5);	
-		draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
-	}
+	//} else {
+	//	// FIXED-WIDTH
+	//	draw_text_ext_color(x + dx, y + dy, str, -1, width, c_shad, c_shad, c_shad, c_shad, 0.5);	
+	//	draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
+	//}
+	return;
 }
 
 ///@func get_size(w, h, pad, [tile_size])
@@ -138,23 +235,22 @@ function get_size(w, h, pad, tile_size = 20) {
 
 ///@func draw_text_box(x, y, w, h, message, sprite_index, image_index, pad, shadow, [width], [text_color], [shadow_color], [image_alpha])
 ///@desc draw a text box. If you don't provide a sprite it just draws text
-///@arg {real} x
-///@arg {real} y
-///@arg {real} w
-///@arg {real} h
-///@arg {string} message
-///@arg {asset.GMSprite} sprite_index
-///@arg {real} image_index
-///@arg {real} pad
-///@arg {bool} shadow
-///@arg {real} [width]
-///@arg {Constant.Color} [text_color]
-///@arg {Constant.Color} [shadow_color]
-///@arg {Real} [image_alpha]
-function draw_text_box(x, y, w, h, message, sprite_index, image_index, pad, shadow, width = -1, text_color = c_white, shadow_color = c_black, image_alpha = 1) {
+///@arg {real} x								// x-coordinate for drawing text
+///@arg {real} y								// y-coordinate for drawing text
+///@arg {real} w								// desired width of text box
+///@arg {real} h								// desired height of text box
+///@arg {string} message						// the string to be drawn
+///@arg {asset.GMSprite} sprite_index			// the sprite to use as the background for the message box
+///@arg {real} image_index						// the image index of the sprite
+///@arg {real} pad								// text padding
+///@arg {bool} shadow							// do you want the text to have a shadow
+///@arg {real} [width]							// text wrapping
+///@arg {Constant.Color} [text_color]			// text color
+///@arg {Constant.Color} [shadow_color]			// shadow color (black by default)
+///@arg {Real} [image_alpha]					// image_alpha for the message box
+function draw_text_box(x, y, w, h, message, sprite_index, image_index, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #000000, image_alpha = 1) {
 	
 	// if this argument is set, it will automatically draw it in fixed width mode
-	//var _width = is_null(argument[9], 1);
 	var do_fixed = width != -1;
 	
 	// really tired of doing this over and over!
@@ -162,8 +258,8 @@ function draw_text_box(x, y, w, h, message, sprite_index, image_index, pad, shad
 	
 	// backdrop
 	if (sprite_index != noone) {
-		var spr_w = 40;//32;
-		var spr_h = 20;//16;
+		var spr_w = 40;
+		var spr_h = 20;
 		
 		// multi line ternary statement because I couldn't read the single line one
 		// cursed. Note to self to do this as little as humanly possible.
@@ -181,21 +277,32 @@ function draw_text_box(x, y, w, h, message, sprite_index, image_index, pad, shad
 		draw_sprite_stretched_ext(sprite_index, image_index, x, y, _w, _h, c_white, image_alpha);
 	}
 	
-	
+	var c_prev = draw_get_colour();
+	draw_set_color(text_color);
 	if (!shadow) {
 		// Draw text without a shadow		
-		if (do_fixed) {draw_text(x+pad, y+pad, message);}
+		if (do_fixed) {
+			//draw_text(x+pad, y+pad, message);
+			scribble(message).padding(pad,pad,pad,pad).wrap(width).draw(x, y)
+		}
 		else {
-			draw_text_ext(x+pad, y+pad, message, -1, width - _2p );
+			scribble(message).padding(pad,pad,pad,pad).draw(x,y)
+			//draw_text_ext(x+pad, y+pad, message, -1, width - _2p ); 
 		}
 	} else {
 		// Draw text with a shadow
-		if (do_fixed) {
-			draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1, width - _2p );
-		} else {
-			draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1);
+		if (do_fixed) {	
+			//draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1, width - _2p );	 
+			//scribble(message).padding(pad,pad,pad,pad).wrap(width).sdf_shadow(shadow_color,0.5,3,3,0).draw(x, y)
+			draw_text_drop_shadow(x, y, message, text_color, shadow_color, 1, 1, width, pad);
+		} else { 	
+			//draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1);
+			//scribble(message).padding(pad,pad,pad,pad).sdf_shadow(shadow_color,0.5,3,3,0).draw(x, y)
+			draw_text_drop_shadow(x, y, message, text_color, shadow_color, 1, 1, -1, pad);
 		}
 	}
+	draw_set_colour(c_prev);
+	return;
 } 
 #endregion
 

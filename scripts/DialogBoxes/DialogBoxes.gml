@@ -7,7 +7,7 @@
 function Dialog(_message, _speaker, _talksound, _setflag = []) constructor {
 	self.message = _message ?? "this is a default message";	// THE MESSAGE 
 	self.speaker = _speaker ?? objPlayer_SP;				// OBJECT INDEX OF THE SPEAKER	
-	self.talksound = _talksound ?? sfxTalksound_Dahlia;			// THE FUNNY SOUND THEY MAKE
+	self.talksound = _talksound ?? sfxTalksound_Dahlia;		// THE FUNNY SOUND THEY MAKE
 	self.flags = _setflag;									// PUT [variable, newValue] IN HERE TO HAVE THIS MESSAGE DO SOMETHING 
 }
 

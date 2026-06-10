@@ -14,20 +14,15 @@ else { ENABLED = false; }
 var FINAL_XX = 0, FINAL_YY = 0;
 if (ENABLED) {
 	var _player = instance_nearest(x, y, objMapWalker);
-	
+	image_alpha = 1;
 	if (instance_exists(_player)) {
 		var _direction = point_direction(x, y, _player.x, _player.y);
 		var _distance = point_distance(x, y, _player.x, _player.y);
 		var _lineofsight = collision_line(x, y, _player.x, _player.y, LOS_CHECK, false, true) < 0;
 		
 		if (_lineofsight && _distance <= 32) {
-			// CREEPY JUMPSCARE
-			image_alpha = approach(image_alpha, 1, 0.2);
 			FINAL_XX = lengthdir_x(WALK_SP, _direction);
 			FINAL_YY = lengthdir_y(WALK_SP, _direction);
-		}
-		else {
-			image_alpha = approach(image_alpha, 0, 0.2);
 		}
 	}
 	XX = approach(XX, FINAL_XX, 0.6)

@@ -6,7 +6,7 @@ _X = GUI_W div 2;
 _Y = GUI_H div 3;
 
 DO_SAVE_SETTINGS_ON_CLOSE = true;
-MENU_PAD = 8;
+MENU_PAD = 5;
 
 MENU_ELEMENTS=[
 	//0

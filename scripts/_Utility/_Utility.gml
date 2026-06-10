@@ -7,6 +7,34 @@ function Point(_x = 0, _y= 0) constructor{
 	y = _y;	
 }
 
+/// @func   dec_to_hex(dec, len)
+/// @desc   Returns a given value as a string of hexadecimal digits.
+///         Hexadecimal strings can be padded to a minimum length.
+///         Note: If the given value is negative, it will
+///         be converted using its two's complement form.
+/// @arg	{real}      dec			integer
+/// @arg	{real}      [len]		minimum number of digits
+/// @return {string}				hexadecimal digits
+/// GMLscripts.com/license THANKS PIXELATEDPOPE
+function dec_to_hex(dec, len = 1)
+{
+    var hex = "";
+ 
+    if (dec < 0) {
+        len = max(len, ceil(logn(16, 2 * abs(dec))));
+    }
+ 
+    var dig = "0123456789ABCDEF";
+    while (len-- || dec) {
+        hex = string_char_at(dig, (dec & $F) + 1) + hex;
+        dec = dec >> 4;
+    }
+ 
+    return hex;
+}
+
+
+
 ///@func approach(_initial, _final, _rate)
 ///@desc approach final value at a given rate
 ///@arg {Real} _initial

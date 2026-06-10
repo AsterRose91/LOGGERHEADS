@@ -5,7 +5,7 @@ if (!DRAW_MESSAGE) {exit;}
 
 var MSG = UPDATE_MESSAGE();
 var MSG_W = 300;
-var MSG_H = string_height_ext(MSG, -1, MSG_W);
+var MSG_H = string_height_scribble_ext(MSG, MSG_W);
 var PAD = 20;
 var _X = (GUI_W div 2) - (MSG_W div 2);
 
@@ -16,6 +16,6 @@ if (room_y_to_gui() <= (GUI_H div 2)) {
 }
 
 // DRAW THE MESSAGE
-draw_text_box(_X, _Y, 0, 0, MSG, sprMenuBack3, 0, PAD, true, MSG_W);
+draw_text_box_v2(_X, _Y, 0, 0, MSG, sprMenuBack3, 0, PAD, true, MSG_W);
 
 DRAW_MESSAGE = false;
