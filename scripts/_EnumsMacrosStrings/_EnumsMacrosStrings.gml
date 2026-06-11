@@ -1,6 +1,6 @@
 /// NOT EVERY ENUM AND MACRO IS IN HERE BUT A LOT ARE.
 
-#macro GAME_VERSION_THINGY 23
+#macro GAME_VERSION_THINGY 25
 
 #macro TAU (2*pi)
 
@@ -17,7 +17,6 @@ global.log_gridsnap = true;
 // USE THESE IN THE VS MODE CONTROLLER SO YOU DON'T HAVE TO CHANGE STUFF SO MUCH
 #macro PLAYER_1_OBJ objPlayer1
 #macro PLAYER_2_OBJ objPlayer2_BETTER_PATHFINDING
-
 
 enum PLAYERS {
 	PLAYER_NONE = 0,
@@ -78,12 +77,12 @@ enum OOPSY_TYPES {							// When the Player gets hurt
 }
 
 enum SPECIALROOMS {
-	LEVEL_SELECT = -2, // Hm, how to alter this to enable multiple level selects?
+	LEVEL_SELECT = -2,  // Hm, how to alter this to enable multiple level selects?
 	TITLE_SCREEN = -4,
 	VERSUS_MODE = -5,
 	HATMAN_ROOM = -6,
 	PLAYER_HOUSE = -7,
-	HUB_LEVEL_0 = -8,
+	HUB_LEVEL_0 = -8,	// ...MAYBE?
 	HUB_LEVEL_1 = -9,
 }
 

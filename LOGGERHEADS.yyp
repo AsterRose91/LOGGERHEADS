@@ -179,6 +179,7 @@
     {"id":{"name":"objDepthDrawer","path":"objects/objDepthDrawer/objDepthDrawer.yy",},},
     {"id":{"name":"objDetective","path":"objects/objDetective/objDetective.yy",},},
     {"id":{"name":"objDialogBox","path":"objects/objDialogBox/objDialogBox.yy",},},
+    {"id":{"name":"objDialogBoxNEW","path":"objects/objDialogBoxNEW/objDialogBoxNEW.yy",},},
     {"id":{"name":"objDisplayManager","path":"objects/objDisplayManager/objDisplayManager.yy",},},
     {"id":{"name":"objDoor","path":"objects/objDoor/objDoor.yy",},},
     {"id":{"name":"objErrorHandler","path":"objects/objErrorHandler/objErrorHandler.yy",},},

@@ -138,6 +138,7 @@
     {"name":"objCustomLogger","order":4,"path":"objects/objCustomLogger/objCustomLogger.yy",},
     {"name":"objDepthDrawer","order":4,"path":"objects/objDepthDrawer/objDepthDrawer.yy",},
     {"name":"objDetective","order":3,"path":"objects/objDetective/objDetective.yy",},
+    {"name":"objDialogBoxNEW","order":1,"path":"objects/objDialogBoxNEW/objDialogBoxNEW.yy",},
     {"name":"objDisplayManager","order":1,"path":"objects/objDisplayManager/objDisplayManager.yy",},
     {"name":"objDoor","order":9,"path":"objects/objDoor/objDoor.yy",},
     {"name":"objErrorHandler","order":4,"path":"objects/objErrorHandler/objErrorHandler.yy",},

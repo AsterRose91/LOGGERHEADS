@@ -73,14 +73,20 @@ function convert_hexcode_to_string(_color) {
 ///@arg {real} [width]							// text wrapping
 ///@arg {Constant.Color} [text_color]			// text color
 ///@arg {Constant.Color} [shadow_color]			// shadow color (black by default)
-function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_alpha, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #0000001) {
+///@arg {Real} [message_index]					// How much of the message to show (-1 for the full message)
+function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_alpha, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #000000, msg_index = -1) {
 	// NEW BETTER VERSION OF THIS FUNCTION THAT USES SCRIBBLE
 	var c_text = convert_hexcode_to_string(text_color ?? c_white);
 	var c_shad = (shadow_color ?? c_black);
 	var a_shad = shadow? 0.5 : 0;
 	var _2p = pad * 2;
 	
-	var _text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad).wrap(width);
+	var _text;
+	if (msg_index == -1) {
+		_text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad).wrap(width);
+	} else {
+		_text = scribble_typist()
+	}
 	
 		
 	// MESSAGE BACKGROUND
@@ -94,7 +100,6 @@ function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_
 		// TEXT BOX HEIGHT
 		var _bbox_width = (_bbox.right - _bbox.left) + _2p;  
 		var _bbox_height = (_bbox.bottom - _bbox.top) + _2p; 
-		
 
 		// MINIMUM SIZE FOR THE TEXT BOXES
 		var min_w = max(spr_w, _bbox_width);
@@ -114,6 +119,35 @@ function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_
 
 	return;
 } 
+
+
+function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, width = -1, typist) {
+	var _TEXT = scribble(message).padding(pad, pad, pad, pad).width(width)
+	
+	var _2p = pad * 2;
+	var _BBOX = _TEXT.get_bbox(x, y);
+	
+		
+	// TEXT BOX SIZE
+	var _BBOX_WIDTH = (_BBOX.right - _BBOX.left) + _2p;  
+	var _BBOX_HEIGHT = (_BBOX.bottom - _BBOX.top) + _2p; 
+
+	// MINIMUM SIZE FOR THE TEXT BOXES
+	var _w = max(w, max(20, _BBOX_WIDTH) );
+	var _h = max(h, max(20, _BBOX_HEIGHT));
+	
+	// DRAW THE SPEECH BUBBLE
+	draw_sprite_stretched_ext(sprDialogBoxBack1, 0, x - pad, y - pad, _w, _h, c_white, 1);
+		
+	
+	
+	
+	
+	_TEXT.draw(x, y, typist);
+	
+	return
+}
+
 
 #endregion
 
