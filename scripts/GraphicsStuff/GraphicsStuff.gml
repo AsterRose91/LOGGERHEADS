@@ -87,15 +87,14 @@ function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_
 	// MESSAGE BACKGROUND
 	if (sprite_index != noone) {
 		// GET TEXT SIZE
-		var _bbox = _text.get_bbox(x, y);
-		
+	
 		var spr_w = 20
 		, spr_h = 20
-		, _bbox_width = (_bbox.right - _bbox.left)
-		, _bbox_height = (_bbox.bottom - _bbox.top) ; 
+		, _width = _text.get_width()
+		, _height = _text.get_height(); 
 		
 		// MINIMUM SIZE FOR THE TEXT BOXES
-		var _size = get_size(_bbox_width, _bbox_height, pad);
+		var _size = get_size(_width, _height, pad);
 		
 		var min_w = max(spr_w, _size.w);
 		var min_h = max(spr_h, _size.h);

@@ -1,6 +1,6 @@
 /// @description DRAW LEVEL INFO WHEN YOU'RE STANDING ON A SIGNPOST
 
-if (isGamePaused()) {exit;} // THIS GOD FORSAKEN FUNCTION DOESN'T WORK?
+//if (isGamePaused()) {exit;} // THIS GOD FORSAKEN FUNCTION DOESN'T WORK?
 //if (ON_SIGNPOST == noone) {exit;}
 
 //draw_set_font(Font_Small);

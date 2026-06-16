@@ -175,7 +175,7 @@ function CheckboxButton(sprite_index = sprButtonsSmall_transbackNEW, image_index
 ///@arg {Asset.GMSound} [play_sound_on_click]
 ///@arg {string} [name]
 ///@returns {struct}
-function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 4, do_action = do_nothing, sprite_index = sprMenuBack1NEW, play_sound_on_click = sfxClick, name = "TEXT BUTTON") : GUIButton() constructor{
+function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 5, do_action = do_nothing, sprite_index = sprMenuBack1NEW, play_sound_on_click = sfxClick, name = "TEXT BUTTON") : GUIButton() constructor{
 	self.sprite_index = sprite_index; //background sprite
 	self.image_index = 0;
 	self.message = message; 
