@@ -23,16 +23,16 @@ array_push(MENU_ELEMENTS, new GUITextMessage(
 if (!FATAL)	{
 	array_push(MENU_ELEMENTS, new TextButton(	
 							"OK", 
-							(GUI_W div 2) - (string_width("OK") div 2), 
-							(GUI_H div 2) - (string_height("OK") div 2) + H + MENU_PAD, 
+							(GUI_W div 2) - (string_width_scribble("OK") div 2), 
+							(GUI_H div 2) - (string_height_scribble("OK") div 2) + H + MENU_PAD, 
 							4, 
 							[DestroyMenu, id]));
 							
 } else {
 	array_push(MENU_ELEMENTS, new TextButton(	
 						"DIE", 
-						(GUI_W div 2) - (string_width("DIE") div 2), 
-						(GUI_H div 2) - (string_height("DIE") div 2) + H + MENU_PAD, 
+						(GUI_W div 2) - (string_width_scribble("DIE") div 2), 
+						(GUI_H div 2) - (string_height_scribble("DIE") div 2) + H + MENU_PAD, 
 						4, 
 						[Quit, id]));
 }

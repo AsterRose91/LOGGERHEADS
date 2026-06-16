@@ -54,6 +54,11 @@ switch (SPRITE_TYPE) {
 		draw_sprite_ext(sprHous, HIGHLIGHT?5:4, floor(x), floor(y), 1, 1, 0, c_white, 1);
 		break;
 
+	case 3:
+		// HOUSE TYPE 3
+		draw_sprite_ext(sprHous, HIGHLIGHT?1:0, floor(x), floor(y), 1, 1, 0, c_white, 1);
+		break;
+
 
 }
 

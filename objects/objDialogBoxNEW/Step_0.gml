@@ -1,10 +1,59 @@
-/// @description advance dialog?
+/// @description DIALOG BOX NEW CODE
 if (TransitionEffectActive()) {exit;}
-
 if (isGamePaused()) {exit;}
 
-
 switch (_STATE) {
+	default:
+	case DIALOGBOX_STATES.NONE: {
+		_DIALOGS_LIST_LEN = array_length(_DIALOGS);
+		_INDEX = -1;
+		_STATE = DIALOGBOX_STATES.LOADING_NEW_DIALOG;
+		break;
+	}
 	
+	case DIALOGBOX_STATES.LOADING_NEW_DIALOG: {
+		// LOAD THE NEXT BIT OF DIALOGUE
+		_INDEX++;
+		if (_INDEX == _DIALOGS_LIST_LEN) {
+			// OR ELSE GO TO THE END CONVERSATION STATE
+			_STATE = DIALOGBOX_STATES.ENDING_DIALOG;
+			break;
+		}
+		
+		// SET UP SPEAKER, MESSAGE, TALKSOUND,
+		_CURRENT_SPEAKER = _DIALOGS[_INDEX].speaker;
+		_CURRENT_MESSAGE = _DIALOGS[_INDEX].message;
+		_CURRENT_MESSAGE_LEN = string_length_scribble(_CURRENT_MESSAGE);
+		_CURRENT_TALKSOUND = _DIALOGS[_INDEX].talksound;
+		
+		_SCRIBBLE_TYPIST.sound(_CURRENT_TALKSOUND,0.2,0.96,1.04);
+		
+		// RESET TYPIST
+		_SCRIBBLE_TYPIST.reset();
 
+		// GO TO DISPLAYING MESSAGE STATE
+		_STATE = DIALOGBOX_STATES.DISPLAYING_DIALOG;
+		break;
+	}
+	case DIALOGBOX_STATES.DISPLAYING_DIALOG: {
+		// CONTINUE TO NEXT MESSAGE
+		if (input_check_pressed("CHOP")) {	
+			if (_SCRIBBLE_TYPIST.get_state() == 1) {
+				_STATE = DIALOGBOX_STATES.LOADING_NEW_DIALOG;
+				break;
+			} 
+		}
+		
+		// CHANGE MESSAGE SPEED
+		if (input_check("CHOP")) {_SCRIBBLE_TYPIST.in(_FAST_MSG_SPEED, 0);} 
+		else {_SCRIBBLE_TYPIST.in(_MSG_SPEED, 0);}
+		
+		break;
+	}
+	
+	case DIALOGBOX_STATES.ENDING_DIALOG: {
+		// THE END OF THE DIALOG
+		instance_destroy(self);
+		break;
+	}
 }

@@ -39,11 +39,7 @@ if (global.story_flags.post_serena_killed_detective_encounter) {
 		new Dialog("(Did... Did this idiot suspect Serena to be the killer??)",objPlayer_SP, sfxTalksound_Bobr),
 		new Dialog("Suspect was something of an outcast and had an interest in dark and occult subject matter. We figured if anyone had a motive to do shit, that'd fit.",objDetective, sfxTalksound_Hatman),
 		new Dialog("(NO FUCKING WAY HE ACTUALLY DID)",objPlayer_SP, sfxTalksound_Bobr),
-		new Dialog("I must go. I need to find out who did it.",objDetective, sfxTalksound_Hatman),
+		new Dialog("I must go. See you again soon, hopefully still alive.",objDetective, sfxTalksound_Hatman),
 	],x,y);
 	global.story_flags.post_serena_killed_detective_encounter = false;
 }
-
-
-// HATMAN_ENCOUNTER_NUMBER++;
-// ENABLE_DETECTIVE_SPAWN = false;

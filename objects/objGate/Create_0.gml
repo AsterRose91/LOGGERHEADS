@@ -41,10 +41,12 @@ CHECK_ALL_COMPLETED = function(_arr) {
 
 UPDATE_MESSAGE = function(_arr) {
 	var _message = "To open this gate, you need to beat:\n"
+	var _len = array_length(_arr);
 	// UPDATE THE LIST OF HOW MANY OBJECTIVES HAVE BEEN COMPLETED
-	for (var l = 0; l < array_length(_arr); l++){
+	for (var l = 0; l < _len; l++){
 		var _iscleared = hasLevelBeenCleared(_arr[l]);
-		_message += $"Level {_arr[l]}: {_iscleared ? "(COMPLETE)": "(INCOMPLETE)"} \n"
+		_message += $"Level {_arr[l]}: {_iscleared ? "[c_lime](COMPLETE)[/c]": "[c_red](INCOMPLETE)[/c]"}"
+		if (l != _len - 1) {_message += "\n"}
 	}
 	return _message;
 };

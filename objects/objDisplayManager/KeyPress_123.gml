@@ -2,12 +2,12 @@
 
 
 // this was originally in a different object
-var _year = current_year;
-var _month = string_replace_all(string_format(current_month, 2, 0), " ", "0"); //string_pad_zeroes(current_month, 2);
-var _day =  string_replace_all(string_format(current_day, 2, 0), " ", "0"); //string_pad_zeroes(current_day,2);
-var _hour =  string_replace_all(string_format(current_hour, 2, 0), " ", "0"); //string_pad_zeroes(current_hour,2);
-var _minute =  string_replace_all(string_format(current_minute, 2, 0), " ", "0"); //string_pad_zeroes(current_minute,2);
-var _second = string_replace_all(string_format(current_second, 2, 0), " ", "0"); //string_pad_zeroes(current_second,2);
+var _year =		current_year
+, _month =		string_pad_zeroes(current_month, 2)
+, _day =		string_pad_zeroes(current_day,2)
+, _hour =		string_pad_zeroes(current_hour,2)
+, _minute =		string_pad_zeroes(current_minute,2)
+, _second =		string_pad_zeroes(current_second,2); //string_replace_all(string_format(current_second, 2, 0), " ", "0"); //
 
 var _iter = 0, _iter_string = "", _filename = ""
 
@@ -20,7 +20,7 @@ while(true) {
 		// take the screenshot?
 		
 		// play a prank on the user?
-		if (random(1) > 0.8) {
+		if (random(1) > 0.5) {
 			var _surf = surface_create(GUI_W, GUI_H);
 			surface_set_target(_surf);
 			draw_clear_alpha(0, 0);

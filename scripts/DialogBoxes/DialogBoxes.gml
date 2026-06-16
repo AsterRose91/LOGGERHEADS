@@ -13,15 +13,16 @@ function Dialog(_message, _speaker, _talksound, _setflag = []) constructor {
 
 ///@func createDialogBox(_dialogs, [x], [y])
 ///@desc creates an instance of objDialogBox with the specified dialog tree
-///@param {Array} _dialogs
-///@param {Real} [x]
-///@param {Real} [y]
+///@param {Array<Struct.Dialog>} _dialogs			// The array containing Dialog() structs representing the dialogue
+///@param {Real} [x]								// x-coordinate
+///@param {Real} [y]								// y-coordinate
 ///@returns Id.Instance<objDialogBox>
 function createDialogBox(_dialogs, x = 0, y = 0) {
 	var _ = noone;
 	try { 
-		_ =	instance_create_layer(x, y, "Instances", objDialogBox);
-		_._DIALOGS = _dialogs;
+		//_ =	instance_create_layer(x, y, "Instances", objDialogBox);
+		_ =	instance_create_layer(x, y, "Instances", objDialogBoxNEW);
+		with (_) {_DIALOGS = _dialogs;}
 	} catch(e) {
 		debug_msg(string(e));
 	}

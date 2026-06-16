@@ -73,9 +73,9 @@ if (ON_SIGNPOST != noone && instance_exists(ON_SIGNPOST) ) {
 		if (!DEMO_END_FLAG) {
 			DO_TELEPORT = true;
 			GOTO_LEVEL = LEVEL_ID;
-			HIGHLIGHT = true; 
-			SHOW_LEVEL_INFO = true; 
 		}
+		HIGHLIGHT = true; 
+		SHOW_LEVEL_INFO = true; 
 	}
 	// GOTO THE LEVEL THE SIGNPOST CORRESPONDS TO 
 	if (CHOP_LOG && DO_TELEPORT) { 

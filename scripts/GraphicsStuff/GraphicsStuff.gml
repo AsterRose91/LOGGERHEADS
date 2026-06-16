@@ -16,9 +16,10 @@ fx_create("_filter_large_blur");
 fx_create("_effect_gaussian_blur");
 
 // SCRIBBLE STUFF
+#macro _SCRIBBLE_DEFAULT_FONT "Font_Small_new"
 scribble_font_bake_outline_and_shadow("Font_Diagnostics","Font_Diagnostics_new",2,2,SCRIBBLE_OUTLINE.FOUR_DIR,0,false);
 scribble_font_bake_outline_and_shadow("Font_Small","Font_Small_new",3,3,SCRIBBLE_OUTLINE.NO_OUTLINE,0,false);
-scribble_font_set_default("Font_Small_new");
+scribble_font_set_default(_SCRIBBLE_DEFAULT_FONT);
 
 
 ///@func draw_self_pixel([x_offset], [y_offset])
@@ -58,6 +59,7 @@ function convert_hexcode_to_string(_color) {
 
 
 #region TEXT BOXES AND MESSAGES (SCRIBBLE VERSION)
+
 ///@func draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, pad, shadow, [width], [text_color], [shadow_color], [image_alpha])
 ///@desc draw a text box. If you don't provide a sprite it just draws text
 ///@arg {real} x								// x-coordinate for drawing text
@@ -73,82 +75,112 @@ function convert_hexcode_to_string(_color) {
 ///@arg {real} [width]							// text wrapping
 ///@arg {Constant.Color} [text_color]			// text color
 ///@arg {Constant.Color} [shadow_color]			// shadow color (black by default)
-///@arg {Real} [message_index]					// How much of the message to show (-1 for the full message)
-function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_alpha, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #000000, msg_index = -1) {
-	// NEW BETTER VERSION OF THIS FUNCTION THAT USES SCRIBBLE
+function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_alpha, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #000000) {
+	// NEW VERSION OF THIS FUNCTION THAT USES SCRIBBLE
 	var c_text = convert_hexcode_to_string(text_color ?? c_white);
 	var c_shad = (shadow_color ?? c_black);
-	var a_shad = shadow? 0.5 : 0;
+	var a_shad = shadow? 0.9 : 0;
 	var _2p = pad * 2;
 	
-	var _text;
-	if (msg_index == -1) {
-		_text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad).wrap(width);
-	} else {
-		_text = scribble_typist()
-	}
+	var _text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad).wrap(width);
 	
-		
 	// MESSAGE BACKGROUND
 	if (sprite_index != noone) {
 		// GET TEXT SIZE
 		var _bbox = _text.get_bbox(x, y);
 		
-		var spr_w = 20; //sprite_get_width(sprite_index)
-		var spr_h = 20; //sprite_get_height(sprite_index)
+		var spr_w = 20
+		, spr_h = 20
+		, _bbox_width = (_bbox.right - _bbox.left)
+		, _bbox_height = (_bbox.bottom - _bbox.top) ; 
 		
-		// TEXT BOX HEIGHT
-		var _bbox_width = (_bbox.right - _bbox.left) + _2p;  
-		var _bbox_height = (_bbox.bottom - _bbox.top) + _2p; 
-
 		// MINIMUM SIZE FOR THE TEXT BOXES
-		var min_w = max(spr_w, _bbox_width);
-		var min_h = max(spr_h, _bbox_height);
+		var _size = get_size(_bbox_width, _bbox_height, pad);
+		
+		var min_w = max(spr_w, _size.w);
+		var min_h = max(spr_h, _size.h);
 	
 		var _w = max(w, min_w);
 		var _h = max(h, min_h);
 		draw_sprite_stretched_ext(sprite_index, image_index, x - pad, y - pad, _w, _h, c_white, image_alpha);
 		
-		// DIAGNOSIS
-		//if (TESTING)
-		//{ draw_rectangle_colour(_bbox.left, _bbox.top, _bbox.right, _bbox.bottom, c_white, c_white, c_white, c_white, true); }
 	}
-	
 	_text.draw(x, y)
-	
-
 	return;
 } 
 
+///@func draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, [width], [speaker_obj])
+///@desc draw a comicbook-style speech bubble for cutscenes
+///@arg {real} x									// x-coordinate for drawing text
+///@arg {real} y									// y-coordinate for drawing text
+///@arg {real} w									// desired width of text box
+///@arg {real} h									// desired height of text box
+///@arg {string} message							// the string to be drawn
+///@arg {real} pad									// text padding
+///@arg {Struct.__scribble_class_typist} typist		// Scribble typist
+///@arg {real} [width]								// text wrapping
+///@arg {Id.Instance} [speaker_obj]					// the object representing the character speaking
+function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width = -1, speaker_obj = noone) {
+	var scrib_current = scribble($"[Font_Dialogbox][c_black]{message}").padding(pad,pad,pad,pad).wrap(width);
 
-function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, width = -1, typist) {
-	var _TEXT = scribble(message).padding(pad, pad, pad, pad).width(width)
-	
-	var _2p = pad * 2;
-	var _BBOX = _TEXT.get_bbox(x, y);
-	
-		
-	// TEXT BOX SIZE
-	var _BBOX_WIDTH = (_BBOX.right - _BBOX.left) + _2p;  
-	var _BBOX_HEIGHT = (_BBOX.bottom - _BBOX.top) + _2p; 
 
-	// MINIMUM SIZE FOR THE TEXT BOXES
-	var _w = max(w, max(20, _BBOX_WIDTH) );
-	var _h = max(h, max(20, _BBOX_HEIGHT));
-	
-	// DRAW THE SPEECH BUBBLE
-	draw_sprite_stretched_ext(sprDialogBoxBack1, 0, x - pad, y - pad, _w, _h, c_white, 1);
-		
-	
-	
-	
-	
-	_TEXT.draw(x, y, typist);
-	
-	return
+	// DRAW SPEECH BUBBLE
+	var bbox = scrib_current.get_bbox(x, y)
+	,	bbox_width = bbox.right - bbox.left
+	,	bbox_height = bbox.bottom - bbox.top
+	,	_2p = pad * 2;
+
+	draw_sprite_stretched_ext(sprDialogBoxBack1, 0, x - pad, y - pad, _2p + bbox_width, _2p + bbox_height, c_white, 1);
+
+	// draw the tail of the speech bubble
+	if (speaker_obj != noone) {
+		if (instance_exists(speaker_obj)) {
+			var _INSTANCE_SPEAKER = instance_nearest(x, y, speaker_obj)
+			,	_x1 = (_INSTANCE_SPEAKER.bbox_left + _INSTANCE_SPEAKER.bbox_right) div 2
+			,	_y1 = _INSTANCE_SPEAKER.bbox_top
+			,	_x2 = x
+			,	_y2 = y
+			,	_x3 = _x2 + 20
+			,	_y3 = _y2;
+			draw_triangle_color(_x1, _y1, _x2, _y2, _x3, _y3, c_white, c_white, c_white, false);
+		}
+	}
+	scrib_current.draw(x, y, typist); 
+	return;
 }
 
 
+
+
+///@func draw_hintbox(gui_y, [w], [h], message)
+///@desc Use this for the signpost and gate objects, they always draw in the center of the screen
+///@arg {string} message		// message to be drawn
+///@arg {real} [w]				// width of message box
+///@arg {real} [h]				// height of message box
+function draw_hintbox(message, w = 0, h = 0) {
+	var pad		=	10
+	,	_2p		=	pad * 2
+	,	_scrib  =	scribble($"[c_white]{message}").padding(pad,pad,pad,pad).shadow(#000000, 0.8).wrap(300)
+	,	_width  =	_scrib.get_width()
+	,	_height =	_scrib.get_height()
+	,	_draw_x =	(GUI_W div 2) - (_width div 2)
+	,	_draw_y =	(room_y_to_gui() <= (GUI_H div 2)) ? (5 * (GUI_H div 6)) - _height : (GUI_H div 6) + _height;
+	
+	var spr_w = 20
+	,	spr_h = 20
+			
+	// MINIMUM SIZE FOR THE TEXT BOXES
+	,	_size = get_size(_width, _height, pad)
+	,	min_w = max(spr_w, _size.w)
+	,	min_h = max(spr_h, _size.h)
+	,	_w = max(w, min_w)
+	,	_h = max(h, min_h);
+	draw_sprite_stretched_ext(sprMenuBack3NEW, 0, _draw_x - pad, _draw_y - pad, _w, _h, c_white, 1);
+		
+	_scrib.draw(_draw_x, _draw_y);
+	
+	return;
+}
 #endregion
 
 
@@ -175,25 +207,8 @@ function draw_text_outline(x, y, str, _color, outline_color = #000000, width = -
 	scribble($"[{c_text}]{str}").shadow(c_black,0).outline(c_line).draw(x, y);
 	draw_set_colour(c_prev);
 	
-	//if (!do_fixed_width) {
-	//	// DEFAULT
-	//	draw_text_color(x + 1, y, str, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_color(x - 1, y, str, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_color(x, y + 1, str, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_color(x, y - 1, str, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
-		
-	//} else {
-	//	// FIXED-WIDTH
-	//	draw_text_ext_color(x - 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_ext_color(x + 1, y, str, -1, width, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_ext_color(x, y - 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_ext_color(x, y + 1, str, -1, width, c_line, c_line, c_line, c_line, 1);
-	//	draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
-	//}
 	return;
 }
-
 
 ///@func draw_text_drop_shadow(x, y, str, color, [shadow_color], [x_offset], [y_offset], [width])
 ///@desc draw a string with a shadow below it.
@@ -208,7 +223,7 @@ function draw_text_outline(x, y, str, _color, outline_color = #000000, width = -
 ///@arg {real} [pad]
 function draw_text_drop_shadow(x, y, str, color = COLORS.COLOR_RED, shadow_color = #000000, x_offset = 3, y_offset = 3, width = -1, pad = 1) {
 	// IF WIDTH IS SET TO ANYTHING BESIDES THE DEFAULT VALUE (-1) ENTER "FIXED-WIDTH" MODE
-	var do_fixed_width = (width != -1);
+	var fixed_width = (width != -1);
 
 	var c_text,c_shad,dx,dy;
 	
@@ -217,40 +232,28 @@ function draw_text_drop_shadow(x, y, str, color = COLORS.COLOR_RED, shadow_color
 	dy = y_offset ?? 3;
 	
 	// TEXT AND SHADOW COLORS
-	c_text = convert_hexcode_to_string(color ?? COLORS.COLOR_RED);
-	c_shad = (shadow_color ?? #000000);
+	c_text = color ?? COLORS.COLOR_RED;
+	c_shad = shadow_color ?? c_black;
 	
-	var c_prev = draw_get_colour();
-	var a_prev = draw_get_alpha();
-	
-
-	//scribble($"[{c_shad}][alpha,0.5]{str}[/alpha][/c]").padding(pad,pad,pad,pad).wrap(width).draw(x+dx, y+dy);
-
-	scribble($"[{c_text}]{str}[/c]").shadow(c_shad,0.5).padding(pad,pad,pad,pad).wrap(width).draw(x, y);
-	
-	
-	draw_set_colour(c_prev);
-	draw_set_alpha(a_prev);
-	
-	//if (!do_fixed_width) {
-	//	// DEFAULT
-	//	draw_text_color(x + dx, y+dy, str, c_shad, c_shad, c_shad, c_shad, 0.5);	
-	//	draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
+	if (!fixed_width) {
+		// DEFAULT
+		draw_text_color(x + dx, y+dy, str, c_shad, c_shad, c_shad, c_shad, 0.5);	
+		draw_text_color(x, y, str, c_text, c_text, c_text, c_text, 1);	
 		
-	//} else {
-	//	// FIXED-WIDTH
-	//	draw_text_ext_color(x + dx, y + dy, str, -1, width, c_shad, c_shad, c_shad, c_shad, 0.5);	
-	//	draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
-	//}
+	} else {
+		// FIXED-WIDTH
+		draw_text_ext_color(x + dx, y + dy, str, -1, width, c_shad, c_shad, c_shad, c_shad, 0.5);	
+		draw_text_ext_color(x, y, str, -1, width, c_text, c_text, c_text, c_text, 1);			
+	}
 	return;
 }
 
 ///@func get_size(w, h, pad, [tile_size])
-///@desc returns a multiple of [tile_size] that will fit the message within a box comprised of tiles
-///@arg {real} w
-///@arg {real} h
-///@arg {real} pad
-///@arg {real} [tile_size]
+///@desc returns multiples of [tile_size] that will fit the message within a box
+///@arg {real} w						// width of the message that needs to be boxed
+///@arg {real} h						// height of the message that needs to be boxed
+///@arg {real} pad						// padding of the message
+///@arg {real} [tile_size]				// tile size
 ///@returns {struct}
 function get_size(w, h, pad, tile_size = 20) {
 	var r = tile_size div 2;						// ROUNDING THRESHOLD
@@ -293,12 +296,12 @@ function draw_text_box(x, y, w, h, message, sprite_index, image_index, pad, shad
 	// backdrop
 	if (sprite_index != noone) {
 		var spr_w = 40;
-		var spr_h = 20;
+		var spr_h = 40;
 		
 		// multi line ternary statement because I couldn't read the single line one
 		// cursed. Note to self to do this as little as humanly possible.
 		var _size = do_fixed ? 
-			get_size(width - _2p, string_height_ext(message, -1,width - _2p), pad) 
+			get_size(width, string_height_ext(message, -1,width), pad) 
 		:	get_size(string_width(message), string_height(message), pad);
 	
 		// try not to make the background sprite too small
@@ -316,28 +319,23 @@ function draw_text_box(x, y, w, h, message, sprite_index, image_index, pad, shad
 	if (!shadow) {
 		// Draw text without a shadow		
 		if (do_fixed) {
-			//draw_text(x+pad, y+pad, message);
-			scribble(message).padding(pad,pad,pad,pad).wrap(width).draw(x, y)
+			draw_text(x+pad, y+pad, message);
 		}
 		else {
-			scribble(message).padding(pad,pad,pad,pad).draw(x,y)
-			//draw_text_ext(x+pad, y+pad, message, -1, width - _2p ); 
+			draw_text_ext(x+pad, y+pad, message, -1, width - _2p ); 
 		}
 	} else {
 		// Draw text with a shadow
 		if (do_fixed) {	
-			//draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1, width - _2p );	 
-			//scribble(message).padding(pad,pad,pad,pad).wrap(width).sdf_shadow(shadow_color,0.5,3,3,0).draw(x, y)
-			draw_text_drop_shadow(x, y, message, text_color, shadow_color, 1, 1, width, pad);
+			draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1, width - _2p );	 
 		} else { 	
-			//draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1);
-			//scribble(message).padding(pad,pad,pad,pad).sdf_shadow(shadow_color,0.5,3,3,0).draw(x, y)
-			draw_text_drop_shadow(x, y, message, text_color, shadow_color, 1, 1, -1, pad);
+			draw_text_drop_shadow(x+pad, y+pad, message, text_color, shadow_color, 1, 1);
 		}
 	}
 	draw_set_colour(c_prev);
 	return;
 } 
+
 #endregion
 
 #region GUI NUMBERS STUFF

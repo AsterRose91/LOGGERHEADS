@@ -1,3 +1,3 @@
-/// @description make the hatman disappear if he's there
+/// @description MAKE THE HATMAN GO AWAY
 
 with (objDetective) { DISAPPEAR = true; }

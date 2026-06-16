@@ -15,11 +15,12 @@ global.credits = [
 	,"Krita"
 	,"DarkAudacity"
 	,"Input 6.1 by Juju Adams, Alynne Keith, and Friends"
-	,"bktGlitch by Jan Vorisek (@odditica) https://odditica.itch.io/bktglitch"
+	,"Scribble Deluxe 9.7.3 by Juju Adams"
+	// ,"bktGlitch by Jan Vorisek (@odditica) https://odditica.itch.io/bktglitch"
 	
 	
 	,"CODE HELP"
-	,"TarbacularElf"
+	,"TabularElf"
 	,"Kormex"
 	,"Gleb"
 	,"Cecil"
@@ -29,6 +30,8 @@ global.credits = [
 	,"Marcess"
 	,"Gloobys"
 	,"Germ"
+	,"JujuAdams"
+	,"Mimpy"
 
 	,"SPECIAL THANKS TO"
 	,"Emiko"
@@ -37,6 +40,7 @@ global.credits = [
 	,"Ryusui"
 	,"Scarfworks"
 	,"Twinkle"
+	,"Pozzo"
 	,"Phil"
 	,"Ian"
 	,"Maedaez"
