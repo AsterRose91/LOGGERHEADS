@@ -152,7 +152,7 @@ function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width =
 
 
 
-///@func draw_hintbox(gui_y, [w], [h], message)
+///@func draw_hintbox(message, [w], [h])
 ///@desc Use this for the signpost and gate objects, they always draw in the center of the screen
 ///@arg {string} message		// message to be drawn
 ///@arg {real} [w]				// width of message box

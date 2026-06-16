@@ -49,5 +49,7 @@ global.credits = [
 	,"Tony"
 	,"Callan"
 	,"Juniper"
+	,"Grem"
+	,"Critter"
 	
 ];
