@@ -22,7 +22,7 @@ function createDialogBox(_dialogs, x = 0, y = 0) {
 	try { 
 		//_ =	instance_create_layer(x, y, "Instances", objDialogBox);
 		_ =	instance_create_layer(x, y, "Instances", objDialogBoxNEW);
-		with (_) {_DIALOGS = _dialogs;}
+		with (_) {_DIALOGS = _dialogs; _STATE = DIALOGBOX_STATES.NONE;}
 	} catch(e) {
 		debug_msg(string(e));
 	}

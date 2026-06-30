@@ -148,7 +148,7 @@ function levelRestart() {
 ///@desc returns true if there's an active dialog box/speech bubble
 ///@returns {Bool}
 function isDialogBoxRunning() {
-	return instance_exists(objDialogBox);
+	return instance_exists(objDialogBox) || instance_exists(objDialogBoxNEW);
 }
 
 

@@ -91,21 +91,23 @@ function GUIButton() constructor {
 /// @param {string} [name] Special name for GUI element
 /// @returns {struct} Description
 function SpriteButton(sprite_index, image_index = 0, x = 0, y = 0, do_action = do_nothing, background = sprMenuBackNone, play_sound_on_click = sfxClick, name = "SPRITE BUTTON") : GUIButton() constructor {
-	self.sprite_index = sprite_index;
-	self.image_index = image_index;
+	self.sprite_index	= sprite_index;
+	self.image_index	= image_index;
 	
-	self.image_alpha = 1;
-	self.image_blend = c_white;
-	self.image_angle = 0;
-	self.image_xscale = 1;
-	self.image_yscale = 1;
+	self.image_alpha	= 1;
+	self.image_blend	= c_white;
+	self.image_angle	= 0;
+	self.image_xscale	= 1;
+	self.image_yscale	= 1;
 	
 	self.x = x; 
 	self.y = y; 
 	self.w = sprite_get_width(sprite_index) ?? 1;
 	self.h = sprite_get_height(sprite_index) ?? 1;
-	self.do_action = do_action; //is_null(argument[4], noone);
-	self.background = background; //is_null(argument[5], sprMenuBackNone);
+	
+	
+	self.do_action = do_action; 
+	self.background = background; 
 	self.play_sound_on_click = play_sound_on_click;
 	self.name = name;
 	
@@ -114,6 +116,7 @@ function SpriteButton(sprite_index, image_index = 0, x = 0, y = 0, do_action = d
 	static draw = function() { 
 		if (!self.visible) {return;}
 		if (self.background != noone)  {
+			// SPRITE BUTTON BACKGROUND
 			draw_sprite_stretched_ext(self.background, self.has_focus, self.x, self.y, self.w, self.h, self.image_blend, self.image_alpha);
 		}
 		draw_sprite_ext(self.sprite_index, self.image_index, self.x, self.y, self.image_xscale, self.image_yscale, self.image_angle, self.image_blend, self.image_alpha);
@@ -175,7 +178,7 @@ function CheckboxButton(sprite_index = sprButtonsSmall_transbackNEW, image_index
 ///@arg {Asset.GMSound} [play_sound_on_click]
 ///@arg {string} [name]
 ///@returns {struct}
-function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 5, do_action = do_nothing, sprite_index = sprMenuBack1NEW, play_sound_on_click = sfxClick, name = "TEXT BUTTON") : GUIButton() constructor{
+function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 5, do_action = do_nothing, sprite_index = sprMenuBackSmallNEW, play_sound_on_click = sfxClick, name = "TEXT BUTTON") : GUIButton() constructor{
 	self.sprite_index = sprite_index; //background sprite
 	self.image_index = 0;
 	self.message = message; 
@@ -186,8 +189,8 @@ function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 5, do_action = d
 	self.image_blend = c_white;
 	
 	self.pad = pad; 
-	self.w = string_width_scribble(message) + (2 * self.pad); 
-	self.h = string_height_scribble(message) + (2 * self.pad);
+	self.w = string_width_scribble(message) + (2 * pad); 
+	self.h = string_height_scribble(message) + (2 * pad);
 	self.do_action = do_action; 
 	self.play_sound_on_click = play_sound_on_click;
 	self.name = name;
@@ -197,6 +200,7 @@ function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 5, do_action = d
 	static draw = function() { 
 		if (!visible) {return;}
 		draw_text_box_v2(self.x, self.y, self.w, self.h, self.message, self.sprite_index, self.has_focus, 1, self.pad, true);
+		//draw_button_custom(self.x, self.y, self.w, self.h, self.message, self.sprite_index, self.has_focus, 1, self.pad, true);
 	}
 	_ElementGUIid++;
 }
@@ -209,15 +213,15 @@ function TextButton(message = "UNDEFINED!", x = 0, y = 0, pad = 5, do_action = d
 ///@arg {real} pad
 ///@arg {string} [name]
 ///@returns {struct}
-function GUITextMessage(message = "CAPTION!", x = 0, y = 0, pad = 2, name = "GUI TEXT MESSAGE") : TextButton(message, x, y, pad) constructor {
+function GUITextMessage(message = "CAPTION!", x = 0, y = 0, pad = 5, name = "GUI TEXT MESSAGE") : TextButton(message, x, y, pad) constructor {
 	self.sprite_index = sprMenuBackNone;
 	self.image_index = 0;
 	self.message = message; 
 	self.x = x; 
 	self.y = y; 
 	self.pad = pad; 
-	self.w = string_width_scribble(self.message) + (2 * self.pad);
-	self.h = string_height_scribble(self.message) + (2 * self.pad);
+	self.w = string_width_scribble(message) + (2 * pad);
+	self.h = string_height_scribble(message) + (2 * pad);
 	self.do_action = noone; // does nothing when clicked
 	self.enabled = false;
 	self.visible = true;
@@ -322,7 +326,7 @@ function GamespeedIndicator(x, y) : GUIButton() constructor {
 ///@func GUIUserInputTextDisplayer(x, y): TextButton() {
 ///@desc displays what the user has input so far.
 function GUIUserInputTextDisplayer(message, x, y, pad): TextButton(message, x, y, pad) constructor {
-	self.id = global.element_id_counter++;
+	
 	self.sprite_index = sprMenuBackNone;
 	self.image_index = 0;
 	self.x = x;					//is_null(_x, 0);

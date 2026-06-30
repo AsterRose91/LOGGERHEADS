@@ -1,5 +1,6 @@
-
-function auto_background_stuff(){
+///@function auto_background([theme])
+///@description automatically sets up the backgrounds and background layers
+function auto_background(theme = 0){
 	/// SKY
 	var sky_exists = layer_exists("BG_SKY");
 	var sky_id = sky_exists ? layer_get_id("BG_SKY") : layer_create(900, "BG_SKY");

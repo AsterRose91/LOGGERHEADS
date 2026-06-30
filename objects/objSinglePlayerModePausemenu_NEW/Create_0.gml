@@ -2,60 +2,66 @@
 event_inherited();
 
 
-var MSG_TITLESCREEN= "EXIT TO TITLE SCREEN"
-, MSG_LVLSELECT = "EXIT TO LEVEL SELECT"
-, MSG_RESTART = "RESTART LEVEL"
-, MSG_OPTIONS = "OPTIONS"
-, MSG_RESUME = "CLOSE MENU"
-, MSG_QUIT = "QUIT GAME";
+var MSG_TITLESCREEN=	"EXIT TO TITLE"
+,	MSG_LVLSELECT =		"EXIT TO LEVEL SELECT"
+,	MSG_RESTART =		"RESTART LEVEL"
+,	MSG_OPTIONS =		"OPTIONS"
+,	MSG_RESUME =		"CLOSE MENU"
+,	MSG_QUIT =			"QUIT GAME";
 
 MENU_ACTIVE = false;
 MENU_ELEMENTS= [
-	new GUIImage(sprPausedText, 0, (GUI_W div 2) - 80, (GUI_H div 2) - 80 ),
+	// BIG TEXT THING THAT SAYS "PAUSE"
+	new GUIImage(
+		sprPausedText
+		, 0
+		, (GUI_W div 2) - (sprite_get_width(sprPausedText) div 2)
+		, (GUI_H div 2) - (sprite_get_height(sprPausedText) div 2) 
+	),
 	// BUTTON THAT TAKES YOU TO TITLE SCREEN
 	new TextButton(
 		MSG_TITLESCREEN
-		, (GUI_W div 2) - (string_width(MSG_TITLESCREEN) div 2)
+		, (GUI_W div 2) - (string_width_scribble(MSG_TITLESCREEN) div 2)
 		, (GUI_H div 2) - 40
-		, 4
+		, 2
 		, [gotoLevel, SPECIALROOMS.TITLE_SCREEN]), 
 	
 	// BUTTON THAT RETURNS YOU TO LEVEL SELECT
 	new TextButton(
 		MSG_LVLSELECT
-		, (GUI_W div 2) - (string_width(MSG_LVLSELECT) div 2)
+		, (GUI_W div 2) - (string_width_scribble(MSG_LVLSELECT) div 2)
 		, (GUI_H div 2) - 20
-		, 4
+		, 2
 		,  [gotoLevel, SPECIALROOMS.LEVEL_SELECT]),
 		
 	// BUTTON THAT RESTARTS LEVEL
 	new TextButton(
 		MSG_RESTART
-		, (GUI_W div 2) - (string_width(MSG_RESTART) div 2)
+		, (GUI_W div 2) - (string_width_scribble(MSG_RESTART) div 2)
 		, (GUI_H div 2)
-		, 4
+		, 2
 		, [levelRestart]),	
 		
 	new TextButton(
 		MSG_OPTIONS
-		, (GUI_W div 2) - (string_width(MSG_OPTIONS) div 2)
+		, (GUI_W div 2) - (string_width_scribble(MSG_OPTIONS) div 2)
 		, (GUI_H div 2) + 20
-		, 4
+		, 2
 		, [ActivateMenu, objSettingsMenu, objSinglePlayerModePausemenu_NEW]),
 		
 	new TextButton(
 		MSG_RESUME
-		, (GUI_W div 2) - (string_width(MSG_RESUME) div 2)
+		, (GUI_W div 2) - (string_width_scribble(MSG_RESUME) div 2)
 		, (GUI_H div 2) + 40
-		, 4
+		, 2
 		, [DeactivateMenu, id]),
 		
 		
 	new TextButton(
 		MSG_QUIT
-		, (GUI_W div 2) - (string_width(MSG_QUIT) div 2)
+		, (GUI_W div 2) - (string_width_scribble(MSG_QUIT) div 2)
 		, (GUI_H div 2) + 60
-		, 4
+		, 2
 		, [Quit]) 
 ];
 //MENU_RESIZE();

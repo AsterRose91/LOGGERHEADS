@@ -9,8 +9,8 @@
   "name":"objTextEntry",
   "overriddenProperties":[],
   "parent":{
-    "name":"MenusGUIs",
-    "path":"folders/Objects/MenusGUIs.yy",
+    "name":"_EXPERIMENTAL",
+    "path":"folders/Objects/_EXPERIMENTAL.yy",
   },
   "parentObjectId":{
     "name":"objParentMenu",

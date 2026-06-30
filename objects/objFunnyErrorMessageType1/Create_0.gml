@@ -9,8 +9,8 @@ var GET_ERROR_MESSAGE = getCreepyMessage();	// GET A CREEPY ERROR MESSAGE FROM A
 FATAL = GET_ERROR_MESSAGE.fatal ?? false;	// THIS ERROR MESSAGE MAKES YOU DIE 
 ERROR_MESSAGE = GET_ERROR_MESSAGE.text;		// ERROR MESSAGE STRING
 
-var W = string_width(ERROR_MESSAGE);
-var H = string_height(ERROR_MESSAGE);
+var W = string_width_scribble(ERROR_MESSAGE);
+var H = string_height_scribble(ERROR_MESSAGE);
 
 MENU_ELEMENTS =	[];							// BUTTONS AND SHIT. USE EXISTING GUI STUFF?
 

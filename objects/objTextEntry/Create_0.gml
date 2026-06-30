@@ -28,6 +28,7 @@ var LETTERS_COUNT = array_length(LETTERS);
 var _X = (GUI_W div 2) - (W div 2);
 var _Y = (GUI_H div 2) - (H div 2) + 48;
 
+var PAD = 2;
 
 var _newButton, current_letter;
 
@@ -45,13 +46,6 @@ for (var i = 0; i < LETTERS_COUNT; i++;) {
 				[gui_append_letter, current_letter],
 				sprMenuBackSmallNEW,
 			);
-			//new TextButton(
-			//	current_letter, 
-			//	_X, 
-			//	_Y,
-			//	1,
-			//	[gui_append_letter, current_letter],
-			//);
 			break;
 		}
 		case "0": {
@@ -64,14 +58,6 @@ for (var i = 0; i < LETTERS_COUNT; i++;) {
 				[gui_text_backspace],
 				sprMenuBackSmallNEW,
 			);	
-			
-			//new TextButton(
-			//	"BACK", 
-			//	_X, 
-			//	_Y,
-			//	1,
-			//	[gui_text_backspace],
-			//);
 			break;
 		}
 		case "1": {
@@ -84,13 +70,6 @@ for (var i = 0; i < LETTERS_COUNT; i++;) {
 				[gui_text_clear],
 				sprMenuBackSmallNEW,
 			);	
-			//new TextButton(
-			//		"CLR", 
-			//		_X, 
-			//		_Y,
-			//		1,
-			//		[gui_text_clear],
-			//	);
 			break;
 		}
 		case "2": {
@@ -103,13 +82,6 @@ for (var i = 0; i < LETTERS_COUNT; i++;) {
 				[DeactivateMenu, id],
 				sprMenuBackSmallNEW,
 			);	
-			//new TextButton(
-			//	"ENTER", 
-			//	_X, 
-			//	_Y,
-			//	1,
-			//	[DeactivateMenu, id],
-			//);
 			break;
 		}
 	}
@@ -118,9 +90,9 @@ for (var i = 0; i < LETTERS_COUNT; i++;) {
 	array_push(MENU_ELEMENTS, _newButton)
 	
 	// NEW ROW OF BUTTONS
-	_X += 19;
+	_X += 16 + (2 * PAD);
 	if (i % 9 == 8) { 
-		_Y += 19; 
+		_Y += 16 + (2 * PAD); 
 		_X = (GUI_W div 2) - (W div 2);
 	}
 }

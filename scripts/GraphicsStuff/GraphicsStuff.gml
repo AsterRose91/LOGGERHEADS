@@ -17,7 +17,7 @@ fx_create("_effect_gaussian_blur");
 
 // SCRIBBLE STUFF
 #macro _SCRIBBLE_DEFAULT_FONT "Font_Small_new"
-scribble_font_bake_outline_and_shadow("Font_Diagnostics","Font_Diagnostics_new",2,2,SCRIBBLE_OUTLINE.FOUR_DIR,0,false);
+scribble_font_bake_outline_and_shadow("Font_Diagnostics","Font_Diagnostics_new",1,1,SCRIBBLE_OUTLINE.FOUR_DIR,0,false);
 scribble_font_bake_outline_and_shadow("Font_Small","Font_Small_new",3,3,SCRIBBLE_OUTLINE.NO_OUTLINE,0,false);
 scribble_font_set_default(_SCRIBBLE_DEFAULT_FONT);
 
@@ -60,8 +60,9 @@ function convert_hexcode_to_string(_color) {
 
 #region TEXT BOXES AND MESSAGES (SCRIBBLE VERSION)
 
-///@func draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, pad, shadow, [width], [text_color], [shadow_color], [image_alpha])
-///@desc draw a text box. If you don't provide a sprite it just draws text
+
+///@func draw_button_custom(x, y, w, h, message, sprite_index, image_index, pad, shadow, [text_color], [shadow_color], [image_alpha])
+///@desc draw a button. sprites are mandatory
 ///@arg {real} x								// x-coordinate for drawing text
 ///@arg {real} y								// y-coordinate for drawing text
 ///@arg {real} w								// desired width of text box
@@ -69,13 +70,51 @@ function convert_hexcode_to_string(_color) {
 ///@arg {string} message						// the string to be drawn
 ///@arg {asset.GMSprite} sprite_index			// the sprite to use as the background for the message box
 ///@arg {real} image_index						// the image index of the sprite
+///@arg {real} [image_alpha]					// image_alpha for the message box
+///@arg {real} pad								// text padding
+///@arg {bool} shadow							// do you want the text to have a shadow
+///@arg {Constant.Color} [text_color]			// text color
+///@arg {Constant.Color} [shadow_color]			// shadow color (black by default)
+function draw_button_custom(x, y, w, h, message, sprite_index, image_index, image_alpha = 1, pad, shadow, text_color = #ffffff, shadow_color = #000000) {
+	var c_text = convert_hexcode_to_string(text_color ?? c_white);
+	var c_shad = (shadow_color ?? c_black);
+	var a_shad = shadow? 0.9 : 0;
+	var _2p = pad * 2;
+	
+	var _text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad);
+	
+	// MINIMUM SIZE FOR THE BUTTONS
+	var _width = _text.get_width()
+	,	_height = _text.get_height()
+	,	_size = get_size(_width, _height, _2p)
+	,	_w = max(w, _size.w)
+	,	_h = max(h, _size.h);
+		
+	// BUTTON BACKGROUND
+	// MESSAGES ARE CENTERED INSIDE THE BUTTONS
+	draw_sprite_stretched_ext(sprite_index, image_index, x - pad, y - pad, _w, _h, c_white, image_alpha);	
+	
+	
+	_text.draw(x, y);
+	return;
+}
+
+///@func draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, pad, shadow, [width], [text_color], [shadow_color], [image_alpha])
+///@desc draw a text box. If you don't provide a sprite it just draws text
+///@arg {real} x								// x-coordinate for drawing text
+///@arg {real} y								// y-coordinate for drawing text
+///@arg {real} w								// desired width of text box
+///@arg {real} h								// desired height of text box
+///@arg {string} message						// the string to be drawn
+///@arg {asset.GMSprite} [sprite_index]			// the sprite to use as the background for the message box
+///@arg {real} [image_index]					// the image index of the sprite
 ///@arg {Real} [image_alpha]					// image_alpha for the message box
 ///@arg {real} pad								// text padding
 ///@arg {bool} shadow							// do you want the text to have a shadow
 ///@arg {real} [width]							// text wrapping
 ///@arg {Constant.Color} [text_color]			// text color
 ///@arg {Constant.Color} [shadow_color]			// shadow color (black by default)
-function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_alpha, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #000000) {
+function draw_text_box_v2(x, y, w, h, message, sprite_index = sprMenuBackNone, image_index = 0, image_alpha = 1, pad, shadow, width = -1, text_color = #ffffff, shadow_color = #000000) {
 	// NEW VERSION OF THIS FUNCTION THAT USES SCRIBBLE
 	var c_text = convert_hexcode_to_string(text_color ?? c_white);
 	var c_shad = (shadow_color ?? c_black);
@@ -85,25 +124,23 @@ function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_
 	var _text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad).wrap(width);
 	
 	// MESSAGE BACKGROUND
-	if (sprite_index != noone) {
-		// GET TEXT SIZE
+	// GET TEXT SIZE
+	var spr_w = 20
+	, spr_h = 20
+	, _width = _text.get_width()
+	, _height = _text.get_height(); 
+		
+	// MINIMUM SIZE FOR THE TEXT BOXES
+	var _size = get_size(_width, _height, pad);
+		
+	var min_w = max(spr_w, _size.w);
+	var min_h = max(spr_h, _size.h);
 	
-		var spr_w = 20
-		, spr_h = 20
-		, _width = _text.get_width()
-		, _height = _text.get_height(); 
+	var _w = max(w, min_w);
+	var _h = max(h, min_h);
+	draw_sprite_stretched_ext(sprite_index, image_index, x - pad, y - pad, _w, _h, c_white, image_alpha);
 		
-		// MINIMUM SIZE FOR THE TEXT BOXES
-		var _size = get_size(_width, _height, pad);
-		
-		var min_w = max(spr_w, _size.w);
-		var min_h = max(spr_h, _size.h);
 	
-		var _w = max(w, min_w);
-		var _h = max(h, min_h);
-		draw_sprite_stretched_ext(sprite_index, image_index, x - pad, y - pad, _w, _h, c_white, image_alpha);
-		
-	}
 	_text.draw(x, y)
 	return;
 } 
@@ -120,16 +157,14 @@ function draw_text_box_v2(x, y, w, h, message, sprite_index, image_index, image_
 ///@arg {real} [width]								// text wrapping
 ///@arg {Id.Instance} [speaker_obj]					// the object representing the character speaking
 function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width = -1, speaker_obj = noone) {
-	var scrib_current = scribble($"[Font_Dialogbox][c_black]{message}").padding(pad,pad,pad,pad).wrap(width);
-
+	var _SCRIB_CURRENT = scribble($"[Font_Dialogbox][c_black]{message}[/c]").padding(pad,pad,pad,pad).wrap(width);
 
 	// DRAW SPEECH BUBBLE
-	var bbox = scrib_current.get_bbox(x, y)
-	,	bbox_width = bbox.right - bbox.left
-	,	bbox_height = bbox.bottom - bbox.top
+	var _width = _SCRIB_CURRENT.get_width()
+	,	_height = _SCRIB_CURRENT.get_height()
 	,	_2p = pad * 2;
 
-	draw_sprite_stretched_ext(sprDialogBoxBack1, 0, x - pad, y - pad, _2p + bbox_width, _2p + bbox_height, c_white, 1);
+	draw_sprite_stretched_ext(sprDialogBoxBack1, 0, x - pad, y - pad, _2p + _width, _2p + _height, c_white, 1);
 
 	// draw the tail of the speech bubble
 	if (speaker_obj != noone) {
@@ -144,12 +179,9 @@ function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width =
 			draw_triangle_color(_x1, _y1, _x2, _y2, _x3, _y3, c_white, c_white, c_white, false);
 		}
 	}
-	scrib_current.draw(x, y, typist); 
+	_SCRIB_CURRENT.draw(x, y, typist); 
 	return;
 }
-
-
-
 
 ///@func draw_hintbox(message, [w], [h])
 ///@desc Use this for the signpost and gate objects, they always draw in the center of the screen
@@ -159,7 +191,7 @@ function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width =
 function draw_hintbox(message, w = 0, h = 0) {
 	var pad		=	10
 	,	_2p		=	pad * 2
-	,	_scrib  =	scribble($"[c_white]{message}").padding(pad,pad,pad,pad).shadow(#000000, 0.8).wrap(300)
+	,	_scrib  =	scribble($"[c_white]{message}[/c]").padding(pad,pad,pad,pad).shadow(#000000, 0.8).wrap(300)
 	,	_width  =	_scrib.get_width()
 	,	_height =	_scrib.get_height()
 	,	_draw_x =	(GUI_W div 2) - (_width div 2)

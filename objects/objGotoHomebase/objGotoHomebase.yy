@@ -38,9 +38,6 @@
     "name":"sprHous",
     "path":"sprites/sprHous/sprHous.yy",
   },
-  "spriteMaskId":{
-    "name":"sprTinyBlockCollisionMask",
-    "path":"sprites/sprTinyBlockCollisionMask/sprTinyBlockCollisionMask.yy",
-  },
+  "spriteMaskId":null,
   "visible":true,
 }

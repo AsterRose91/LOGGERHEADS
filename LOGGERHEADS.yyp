@@ -978,8 +978,8 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"preTitleScreen","path":"rooms/preTitleScreen/preTitleScreen.yy",},},
-    {"roomId":{"name":"autotileExperimentalRoom","path":"rooms/autotileExperimentalRoom/autotileExperimentalRoom.yy",},},
     {"roomId":{"name":"textEntryTester","path":"rooms/textEntryTester/textEntryTester.yy",},},
+    {"roomId":{"name":"autotileExperimentalRoom","path":"rooms/autotileExperimentalRoom/autotileExperimentalRoom.yy",},},
     {"roomId":{"name":"titleScreen","path":"rooms/titleScreen/titleScreen.yy",},},
     {"roomId":{"name":"VSmode","path":"rooms/VSmode/VSmode.yy",},},
     {"roomId":{"name":"secretRoom","path":"rooms/secretRoom/secretRoom.yy",},},

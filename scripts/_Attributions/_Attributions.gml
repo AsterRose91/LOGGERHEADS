@@ -1,10 +1,11 @@
 ///CREDITS///
 
-global.credits = [
+credits = [
 	"GRAPHICS, SOUND, CONCEPT, CODING"
 	,"The Blue Rose"
 	,"The Star"
 	,"The Devil"
+	,"Inspired by the game 'Hackenbush' by John Conway"
 	
 	,"Hanna Barbera sound effects"
 	,"RPG Maker 2000/2003 RTP"

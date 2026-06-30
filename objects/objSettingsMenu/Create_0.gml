@@ -15,7 +15,7 @@ MENU_ELEMENTS=[
 	//1
 	new GUITextMessage(	
 	"Music Volume: ", 
-	_X - string_width("Music Volume: "), 
+	_X - string_width_scribble("Music Volume: "), 
 	_Y, 
 	4),
 	//2
@@ -29,7 +29,7 @@ MENU_ELEMENTS=[
 	//5
 	new GUITextMessage(	
 	"Effects Volume: ", 
-	_X - string_width("Effects Volume: "), 
+	_X - string_width_scribble("Effects Volume: "), 
 	_Y + 20, 
 	4),
 	//6
@@ -43,7 +43,7 @@ MENU_ELEMENTS=[
 	//9
 	new GUITextMessage(	
 	"Particle Effects: ", 
-	_X - string_width("Particle Effects: "), 
+	_X - string_width_scribble("Particle Effects: "), 
 	_Y + 40, 
 	4),
 	//10
@@ -53,7 +53,7 @@ MENU_ELEMENTS=[
 	//11
 	new GUITextMessage(	
 	"Show Grid: ", 
-	_X - string_width("Show Grid: "), 
+	_X - string_width_scribble("Show Grid: "), 
 	_Y + 60, 
 	4),
 	//12
@@ -63,7 +63,7 @@ MENU_ELEMENTS=[
 	//13
 	new GUITextMessage(	
 	"Fullscreen: ", 
-	_X - string_width("Fullscreen: "), 
+	_X - string_width_scribble("Fullscreen: "), 
 	_Y + 80, 
 	4),
 	//14
@@ -73,7 +73,7 @@ MENU_ELEMENTS=[
 	//15
 	new GUITextMessage(	
 	"Movement Hints: ", 
-	_X - string_width("Movement Hints: "), 
+	_X - string_width_scribble("Movement Hints: "), 
 	_Y + 100, 
 	4),
 	//16
@@ -83,7 +83,7 @@ MENU_ELEMENTS=[
 	//17
 	new GUITextMessage(	
 	"Enable Error correction: ", 
-	_X - string_width("Enable Error correction: "), 
+	_X - string_width_scribble("Enable Error correction: "), 
 	_Y + 120, 
 	4),
 	//18
@@ -93,7 +93,7 @@ MENU_ELEMENTS=[
 	//19
 	new GUITextMessage(	
 	"Movement Speed", 
-	_X - string_width("Movement Speed"), 
+	_X - string_width_scribble("Movement Speed"), 
 	_Y + 140, 
 	4),
 	//20

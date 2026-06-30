@@ -187,7 +187,7 @@
     {"name":"objSolid","order":5,"path":"objects/objSolid/objSolid.yy",},
     {"name":"objStump","order":4,"path":"objects/objStump/objStump.yy",},
     {"name":"objTeleportToHubLevels","order":12,"path":"objects/objTeleportToHubLevels/objTeleportToHubLevels.yy",},
-    {"name":"objTextEntry","order":2,"path":"objects/objTextEntry/objTextEntry.yy",},
+    {"name":"objTextEntry","order":1,"path":"objects/objTextEntry/objTextEntry.yy",},
     {"name":"objTitleScreenMenu_NEW","order":2,"path":"objects/objTitleScreenMenu_NEW/objTitleScreenMenu_NEW.yy",},
     {"name":"objTransitionLinearBlur","order":2,"path":"objects/objTransitionLinearBlur/objTransitionLinearBlur.yy",},
     {"name":"objTransitionPixelate","order":1,"path":"objects/objTransitionPixelate/objTransitionPixelate.yy",},
