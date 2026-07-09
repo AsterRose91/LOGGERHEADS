@@ -1,4 +1,4 @@
-/// @description post draw
+/// @description FULLSCREEN MODE SWITCH
 if !FULLSCREEN_MODE {
 	draw_surface_stretched(application_surface, 0, 0, DISP_W, DISP_H);
 } else {

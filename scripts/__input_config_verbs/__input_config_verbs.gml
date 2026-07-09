@@ -15,10 +15,17 @@ function __input_config_verbs()
     return {
         keyboard_and_mouse:
         {
-            UP:    [input_binding_key(vk_up),    ],
-            DOWN:  [input_binding_key(vk_down),  ],
-            LEFT:  [input_binding_key(vk_left),  ],
-            RIGHT: [input_binding_key(vk_right), ],
+            UP:    [input_binding_key(vk_up)],
+            DOWN:  [input_binding_key(vk_down)],
+            LEFT:  [input_binding_key(vk_left)],
+            RIGHT: [input_binding_key(vk_right)],
+			
+			CAMERA_UP:    [input_binding_key("W")],
+            CAMERA_DOWN:  [input_binding_key("S")],
+            CAMERA_LEFT:  [input_binding_key("A")],
+            CAMERA_RIGHT: [input_binding_key("D")],
+			CAMERA_RESET: [input_binding_key("Q")]
+			
             
 			CHOP:		[input_binding_key("Z")],
 			TURN:		[input_binding_key("X")],
@@ -37,6 +44,12 @@ function __input_config_verbs()
             LEFT:  [input_binding_gamepad_axis(gp_axislh, true),  input_binding_gamepad_button(gp_padl)],
             RIGHT: [input_binding_gamepad_axis(gp_axislh, false), input_binding_gamepad_button(gp_padr)],
             
+			CAMERA_UP:    [input_binding_gamepad_axis(gp_axisrv, true)],
+            CAMERA_DOWN:  [input_binding_gamepad_axis(gp_axisrv, false)],
+            CAMERA_LEFT:  [input_binding_gamepad_axis(gp_axisrh, true)],
+            CAMERA_RIGHT: [input_binding_gamepad_axis(gp_axisrh, false)],
+            CAMERA_RESET: [input_binding_gamepad_button(gp_stickr)],
+			
 			CHOP:	input_binding_gamepad_button(gp_face1),
 			TURN:	input_binding_gamepad_button(gp_face2),
 			UNDO:	input_binding_gamepad_button(gp_face3),

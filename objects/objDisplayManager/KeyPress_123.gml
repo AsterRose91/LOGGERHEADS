@@ -1,4 +1,4 @@
-/// @description Take a screenshot
+/// @description SCREENSHOT BUTTON
 
 
 // this was originally in a different object
