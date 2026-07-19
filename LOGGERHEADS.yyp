@@ -191,6 +191,7 @@
     {"id":{"name":"objGameOverSpecialEffect","path":"objects/objGameOverSpecialEffect/objGameOverSpecialEffect.yy",},},
     {"id":{"name":"objGate","path":"objects/objGate/objGate.yy",},},
     {"id":{"name":"objGatePar","path":"objects/objGatePar/objGatePar.yy",},},
+    {"id":{"name":"objGhost1","path":"objects/objGhost1/objGhost1.yy",},},
     {"id":{"name":"objGotoHomebase","path":"objects/objGotoHomebase/objGotoHomebase.yy",},},
     {"id":{"name":"objHintMessage","path":"objects/objHintMessage/objHintMessage.yy",},},
     {"id":{"name":"objInventoryDisplayer","path":"objects/objInventoryDisplayer/objInventoryDisplayer.yy",},},

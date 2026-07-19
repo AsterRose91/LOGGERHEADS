@@ -24,7 +24,7 @@ function __input_config_verbs()
             CAMERA_DOWN:  [input_binding_key("S")],
             CAMERA_LEFT:  [input_binding_key("A")],
             CAMERA_RIGHT: [input_binding_key("D")],
-			CAMERA_RESET: [input_binding_key("Q")]
+			CAMERA_RESET: [input_binding_key("Q")],
 			
             
 			CHOP:		[input_binding_key("Z")],

@@ -39,5 +39,5 @@
     "path":"sprites/sprHous/sprHous.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

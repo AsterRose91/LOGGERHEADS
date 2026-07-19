@@ -16,8 +16,7 @@ function Point(_x = 0, _y= 0) constructor{
 /// @arg	{real}      [len]		minimum number of digits
 /// @return {string}				hexadecimal digits
 /// GMLscripts.com/license THANKS PIXELATEDPOPE
-function dec_to_hex(dec, len = 1)
-{
+function dec_to_hex(dec, len = 1) {
     var hex = "";
  
     if (dec < 0) {
@@ -32,8 +31,6 @@ function dec_to_hex(dec, len = 1)
  
     return hex;
 }
-
-
 
 ///@func approach(_initial, _final, _rate)
 ///@desc approach final value at a given rate
@@ -64,7 +61,6 @@ function string_to_num_arr(_str, _sep = ",") {
 	//}
 	return _arr;	
 };
-
 
 ///@func random_array_element( _arr, [_start], [_end] )
 ///@desc returns a random element from an array, (from between indexes [_start] and [_end] if specified)
@@ -262,13 +258,3 @@ function ErrorCorrection() {
 	}
 	return SECRET_VALUE;
 }
-
-
-///@func is_null(_original,_replacement)
-///@desc if the original value is undefined, replace it with an alternative value.
-///@arg {any} _original
-///@arg {any} _replacement
-///@returns {any}
-//function is_null(_original, _replacement) {
-//	return _original ?? _replacement;
-//}

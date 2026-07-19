@@ -148,6 +148,7 @@
     {"name":"objFunnyErrorMessageType1","order":5,"path":"objects/objFunnyErrorMessageType1/objFunnyErrorMessageType1.yy",},
     {"name":"objGameOverSpecialEffect","order":1,"path":"objects/objGameOverSpecialEffect/objGameOverSpecialEffect.yy",},
     {"name":"objGatePar","order":4,"path":"objects/objGatePar/objGatePar.yy",},
+    {"name":"objGhost1","order":4,"path":"objects/objGhost1/objGhost1.yy",},
     {"name":"objHintMessage","order":8,"path":"objects/objHintMessage/objHintMessage.yy",},
     {"name":"objInventoryDisplayer","order":13,"path":"objects/objInventoryDisplayer/objInventoryDisplayer.yy",},
     {"name":"objLevelCompleteSpecialEffect","order":2,"path":"objects/objLevelCompleteSpecialEffect/objLevelCompleteSpecialEffect.yy",},

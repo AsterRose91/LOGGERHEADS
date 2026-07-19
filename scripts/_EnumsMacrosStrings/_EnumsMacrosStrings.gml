@@ -18,6 +18,13 @@ global.log_gridsnap = true;
 #macro PLAYER_1_OBJ objPlayer1
 #macro PLAYER_2_OBJ objPlayer2_BETTER_PATHFINDING
 
+enum CAMERA_MODES {
+	DEFAULT = 0,
+	FOLLOW_PLAYER = 1,
+	FREECAM = 2,
+}
+
+
 enum PLAYERS {
 	PLAYER_NONE = 0,
 	PLAYER_1 = 1,
