@@ -161,10 +161,11 @@ function change_game_speed(amt) {
 
 global.DEBUGFLAG = false;									// TURN THIS OFF LATER
 global.CUSTOMLOGFILE = $"{working_directory}/Log/err";		// SAVE LOGS TO FILE?
+global.PLAYERGETNAME = "";
 #macro TESTING global.DEBUGFLAG
 #macro CUSTOMLOGGERFILE global.CUSTOMLOGFILE
 #macro KEY_DELAY_MAX 8										// USED TO PUT A DELAY IN CHARACTER MOVEMENT
-
+#macro USERNAME global.PLAYERGETNAME
 
 #region	STRINGS, MESSAGES
 
@@ -180,7 +181,6 @@ function getUsername(){
 		switch (os_type){
 			default:
 			case os_windows:
-				//_name = string_split( environment_get_variable("HOMEPATH") , "\\")[2]; // C:\Users\{username}
 				_name = environment_get_variable("USERNAME");
 				break;
 			case os_linux:
@@ -271,7 +271,7 @@ function populateCreepyMessagesList(){
 	array_push(CREEPY_MSG, new creepyErrorMessage("THE MAIN CHARACTER OF THIS GAME IS A\nSMALL, BROWN, FLAT-CHESTED INSANE FURRY LESBIAN\nDEI SWEET BABY WOKESLOP CONFIRMED", false));
 	array_push(CREEPY_MSG, new creepyErrorMessage("IF YOU DON'T LIKE THIS GAME,\nFREE TO STEAL THIS ITS ASSETS\nAND MAKE A SHITTIER VERSION CALLED 'LOG GAME'\nWHERE THE MAIN CHARACTER IS STRAIGHT\nIT WON'T ACHIEVE A THING IN THE LONG RUN\nBUT YOU'LL MAKE PEOPLE UPSET WITH YOU, AND YOU'LL ALSO LOOK LIKE A POMPOUS FUDGE BURGLAR!", false));
 	array_push(CREEPY_MSG, new creepyErrorMessage("THE CREATOR OF SNOOT GAME WAS FOUND LYING DEAD IN HIS OWN SHIT\nAFTER HE ATE SOMETHING LABELED 'STOMACH-EXPLODING POISON: DO NOT EAT' BECAUSE\nHE DIDN'T WANT LABELS TO DENY HIM HIS AGENCY", false));
-	array_push(CREEPY_MSG, new creepyErrorMessage("GAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\n", false));
+	// array_push(CREEPY_MSG, new creepyErrorMessage("GAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\nGAMERGATE WAS A MOSSAD PSYOP!\n", false));
 	#endregion
 	
 	#region EPIC
@@ -325,20 +325,20 @@ function populateCreepyMessagesList(){
 	// USERNAME BASED EASTER EGGS
 	#region USERNAME EASTER EGGS				
 	// USERNAME SPECIFIC
-	var _name = getUsername(); 
+	USERNAME = getUsername(); 
 		
-	if (string_length(_name) > 0) { 
+	if (string_length(USERNAME) > 0) { 
 		// JUST A NORMAL HELLO MESSAGE
-		array_push(CREEPY_MSG, new creepyErrorMessage($"Hey, {_name}. Hope you're enjoying the game so far", false) );
+		array_push(CREEPY_MSG, new creepyErrorMessage($"Hey, {USERNAME}. Hope you're enjoying the game so far", false) );
 			
-		array_push(CREEPY_MSG, new creepyErrorMessage($"Every copy of Loggerheads is personalized, {_name}, even yours.\nBecause you're all so wonderful and special :)", false) );
+		array_push(CREEPY_MSG, new creepyErrorMessage($"Every copy of Loggerheads is personalized, {USERNAME}, even yours.\nBecause you're all so wonderful and special :)", false) );
 		// SPECIAL UNCREATIVE USERNAME MESSAGE
-		if (string_lower(_name) == "user" || string_lower(_name) == "username" ) {
-			array_push(CREEPY_MSG, new creepyErrorMessage($"Your name's... {_name}? Seriously? Couldn't pick a better one?", false) ); 
+		if (string_lower(USERNAME) == "user" || string_lower(USERNAME) == "username" ) {
+			array_push(CREEPY_MSG, new creepyErrorMessage($"Your name's... {USERNAME}? Seriously? Couldn't pick a better one?", false) ); 
 		}
 			
-		if (string_lower(_name) == "root") {
-			array_push(CREEPY_MSG, new creepyErrorMessage($"Your lack of creativity is at the {_name} of your problems, {_name}", false) ); 
+		if (string_lower(USERNAME) == "root") {
+			array_push(CREEPY_MSG, new creepyErrorMessage($"Your lack of creativity is at the {USERNAME} of your problems, {USERNAME}", false) ); 
 		}
 			
 		// SOME STUFF FOR SPECIFIC STREAMERS/CELEBRITIES?
@@ -347,7 +347,7 @@ function populateCreepyMessagesList(){
 	#endregion
 
 	// DO NOT EXPOSE THE FULL LIST OF CREEPY MESSAGES IN THE CONSOLE LOG 
-	debug_msg($"There are {array_length(CREEPY_MSG)} possible error messages:");
+	debug_msg($"There are {array_length(CREEPY_MSG)} possible error messages");
 	
 }
 populateCreepyMessagesList();
