@@ -828,6 +828,7 @@
     {"id":{"name":"bgClouds_backNEW","path":"sprites/bgClouds_backNEW/bgClouds_backNEW.yy",},},
     {"id":{"name":"bgCloudsNEW","path":"sprites/bgCloudsNEW/bgCloudsNEW.yy",},},
     {"id":{"name":"bgHouse1","path":"sprites/bgHouse1/bgHouse1.yy",},},
+    {"id":{"name":"bgHouse2","path":"sprites/bgHouse2/bgHouse2.yy",},},
     {"id":{"name":"bgMountains_backNEW","path":"sprites/bgMountains_backNEW/bgMountains_backNEW.yy",},},
     {"id":{"name":"bgMountains_frontNEW","path":"sprites/bgMountains_frontNEW/bgMountains_frontNEW.yy",},},
     {"id":{"name":"bgSkyNEW","path":"sprites/bgSkyNEW/bgSkyNEW.yy",},},

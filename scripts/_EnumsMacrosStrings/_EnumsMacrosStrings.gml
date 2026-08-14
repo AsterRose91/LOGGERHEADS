@@ -24,7 +24,6 @@ enum CAMERA_MODES {
 	FREECAM = 2,
 }
 
-
 enum PLAYERS {
 	PLAYER_NONE = 0,
 	PLAYER_1 = 1,
@@ -184,6 +183,12 @@ function getUsername(){
 				_name = environment_get_variable("USERNAME");
 				break;
 			case os_linux:
+				try {
+					_name = environment_get_variable("USER");
+				} except (e) {
+					_name = environment_get_variable("LOGNAME");
+				}
+				break;
 			case os_macosx:
 				_name = environment_get_variable("USER");
 				break;
@@ -199,7 +204,7 @@ function getUsername(){
 ///@retruns Struct
 function creepyErrorMessage(_text, _fatal) constructor {
 	text = _text;
-	fatal = _fatal;
+	fatal = _fatal; // DOES THIS ERROR MESSAGE "CRASH" THE GAME?
 }
 
 ///@function populateCreepyMessagesList()
@@ -291,6 +296,7 @@ function populateCreepyMessagesList(){
 			array_push(CREEPY_MSG, new creepyErrorMessage("HOW MUCH DO YOU THINK THIS ADVANCED OPERATING ENVIRONMENT IS WORTH!?", false)); 
 			array_push(CREEPY_MSG, new creepyErrorMessage("SEND MY REGARDS TO DAVE PLUMMER", false));
 			array_push(CREEPY_MSG, new creepyErrorMessage("COPILOT CAN EAT MY WHOLE ASS", false));
+			array_push(CREEPY_MSG, new creepyErrorMessage("FUCKING WINDOWS 11.", false));
 			array_push(CREEPY_MSG, new creepyErrorMessage("YO DAWG WE HEARD YOU LIKE SPYWARE,\nSO WE PUT SPYWARE IN YOUR SPYWARE\nSO YOU CAN BE SPIED ON WHILE BEING SPIED ON", false));
 			break;
 		case os_ios:
@@ -299,17 +305,22 @@ function populateCreepyMessagesList(){
 			array_push(CREEPY_MSG, new creepyErrorMessage("WANT AIRPODS? TAKE A REGULAR PAIR OF HEADPHONES AND A PAIR OF SCISSORS, AND SNIP", false)); 
 			break;
 		case os_switch:
+		case os_switch2:
 			array_push(CREEPY_MSG, new creepyErrorMessage("SO EIN MIST", false)); 
 			array_push(CREEPY_MSG, new creepyErrorMessage("YOU THINK THIS IS 'FUN'? WARIO WILL SHOW YOU FUN!", false)); 
+			array_push(CREEPY_MSG, new creepyErrorMessage("CALL LUIGI", false)); 
+			array_push(CREEPY_MSG, new creepyErrorMessage("THERE'S NO LAWS AGAINST THE POKEMON, BATMAN!", false)); 
 			break;
 		case os_unknown:
 			array_push(CREEPY_MSG, new creepyErrorMessage("WHAT IN GOD'S NAME ARE YOU RUNNING THIS GAME ON?", false));
+			array_push(CREEPY_MSG, new creepyErrorMessage("ARE YOU RUNNING THIS THING ON A FUCKING FRIDGE?", false));
+			
 			break;
 		case os_gxgames:
 			array_push(CREEPY_MSG, new creepyErrorMessage("WONDER HOW THOSE LOAN APPS WORKED OUT FOR 'EM?", false));
 			break;
 		case os_linux:
-			array_push(CREEPY_MSG, new creepyErrorMessage( "THIS VERSION OF LOGGERHEADS MAY NOT BE FULLY COMPATIBLE WITH YOUR LINUX DISTRO.\nPLEASE RUN THE COMMAND :(){ :|:& };: TO SOLVE ANY ISSUES", false));
+			array_push(CREEPY_MSG, new creepyErrorMessage("THIS VERSION OF LOGGERHEADS MAY NOT BE FULLY COMPATIBLE WITH YOUR LINUX DISTRO.\nPLEASE RUN THE COMMAND :(){ :|:& };: TO SOLVE ANY ISSUES", false));
 			break;
 		case os_ps3:
 		case os_ps4:
@@ -326,7 +337,7 @@ function populateCreepyMessagesList(){
 	#region USERNAME EASTER EGGS				
 	// USERNAME SPECIFIC
 	USERNAME = getUsername(); 
-		
+	// IF A USERNAME IS FOUND, ADD THE FOLLOWING MESSAGES TO THE LIST OF POSSIBLE CREEPY MESSAGES
 	if (string_length(USERNAME) > 0) { 
 		// JUST A NORMAL HELLO MESSAGE
 		array_push(CREEPY_MSG, new creepyErrorMessage($"Hey, {USERNAME}. Hope you're enjoying the game so far", false) );
@@ -356,9 +367,8 @@ populateCreepyMessagesList();
 ///@description Retrieves a creepy message from a prepopulated list of creepy messages
 ///@returns Struct
 function getCreepyMessage(){
-	var len = array_length(CREEPY_MSG);
-	if (len <= 0) {return new creepyErrorMessage("SOMEHOW, NO CREEPY ERROR MESSAGES WERE FOUND", false); }
-	return random_array_element(CREEPY_MSG); //CREEPY_MSG[irandom(len - 1)];
+	if (array_length(CREEPY_MSG) <= 0) { return new creepyErrorMessage("SOMEHOW, NO CREEPY ERROR MESSAGES WERE FOUND", false); }
+	return random_array_element(CREEPY_MSG); 
 }
 
 #endregion
