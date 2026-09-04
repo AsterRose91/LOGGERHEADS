@@ -10,7 +10,7 @@
   "compression":3,
   "compressionQuality":4,
   "conversionMode":0,
-  "duration":220.02939,
+  "duration":229.95592,
   "exportDir":"",
   "name":"bgm08_Overworld1",
   "parent":{

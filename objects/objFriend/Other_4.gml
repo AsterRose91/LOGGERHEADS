@@ -12,6 +12,7 @@ if (have_met_friend(FRIEND_ID)) {
 }
 
 // CREATE DIALOG BOX
+// MOVE THIS INTO A NEW FUNCTION?
 switch FRIEND_ID {
 	default:
 		break;
@@ -58,6 +59,15 @@ switch FRIEND_ID {
 			new Dialog("You bet. Hurry up!",objFriend, sfxTalksound_Serena),
 		],x,y);
 		break;
+	}
 	
+	case FRIENDS.CAT_BOY: {
+		createDialogBox([
+			new Dialog("Hi there Mr. Scratch, how's business?",objPlayer_SP, sfxTalksound_Bobr),
+			new Dialog("Oh! Bobbie! What are you doing here!?",objFriend, sfxTalksound_Scrachy),
+			new Dialog("My axe is a little dull. Could you help me sharpen it?",objPlayer_SP, sfxTalksound_Bobr),
+			new Dialog("Errrr... uh, sure! come over here by the grindstone and I'll fix it up for you",objFriend, sfxTalksound_Scrachy),		
+		],x,y);
+		break;
 	}
 }

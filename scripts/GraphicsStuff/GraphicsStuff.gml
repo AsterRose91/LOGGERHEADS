@@ -76,10 +76,10 @@ function convert_hexcode_to_string(_color) {
 ///@arg {Constant.Color} [text_color]			// text color
 ///@arg {Constant.Color} [shadow_color]			// shadow color (black by default)
 function draw_button_custom(x, y, w, h, message, sprite_index, image_index, image_alpha = 1, pad, shadow, text_color = #ffffff, shadow_color = #000000) {
-	var c_text = convert_hexcode_to_string(text_color ?? c_white);
-	var c_shad = (shadow_color ?? c_black);
-	var a_shad = shadow? 0.9 : 0;
-	var _2p = pad * 2;
+	var c_text = convert_hexcode_to_string(text_color ?? c_white)
+	,	c_shad = (shadow_color ?? c_black)
+	,	a_shad = shadow? 0.9 : 0
+	,	_2p = pad * 2;
 	
 	var _text = scribble($"[{c_text}]{message}").padding(pad,pad,pad,pad).shadow(c_shad, a_shad);
 	
@@ -131,13 +131,12 @@ function draw_text_box_v2(x, y, w, h, message, sprite_index = sprMenuBackNone, i
 	, _height = _text.get_height(); 
 		
 	// MINIMUM SIZE FOR THE TEXT BOXES
-	var _size = get_size(_width, _height, pad);
-		
-	var min_w = max(spr_w, _size.w);
-	var min_h = max(spr_h, _size.h);
+	var _size = get_size(_width, _height, pad)
+	,	min_w = max(spr_w, _size.w)
+	,	min_h = max(spr_h, _size.h)
+	,	_w = max(w, min_w)
+	,	_h = max(h, min_h);
 	
-	var _w = max(w, min_w);
-	var _h = max(h, min_h);
 	draw_sprite_stretched_ext(sprite_index, image_index, x - pad, y - pad, _w, _h, c_white, image_alpha);
 		
 	

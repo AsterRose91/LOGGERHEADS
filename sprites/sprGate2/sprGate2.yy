@@ -47,8 +47,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"groupBG_Map",
-    "path":"folders/Sprites/groupBG_Map.yy",
+    "name":"group_WorldMap",
+    "path":"folders/Sprites/group_WorldMap.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

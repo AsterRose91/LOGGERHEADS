@@ -44,8 +44,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"groupLevelBGNEW",
-    "path":"folders/Sprites/group_40x40_sprites/groupLevelBGNEW.yy",
+    "name":"group_BGs",
+    "path":"folders/Sprites/group_BGs.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

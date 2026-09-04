@@ -7,6 +7,8 @@ credits = [
 	,"The Devil"
 	,"Inspired by the game 'Hackenbush' by John Conway"
 	
+	,"Additional Graphics by Darannas"
+	
 	,"Hanna Barbera sound effects"
 	,"RPG Maker 2000/2003 RTP"
 	,"Cartoon Trax sound effects"
@@ -35,7 +37,7 @@ credits = [
 	,"Mimpy"
 
 	,"SPECIAL THANKS TO"
-	,"Emiko"
+	,"Emily"
 	,"Rocky"
 	,"Zeikier"
 	,"Ryusui"
