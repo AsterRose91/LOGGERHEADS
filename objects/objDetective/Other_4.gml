@@ -43,3 +43,24 @@ if (global.story_flags.post_serena_killed_detective_encounter) {
 	],x,y);
 	global.story_flags.post_serena_killed_detective_encounter = false;
 }
+
+
+if (global.story_flags.post_mr_scratchy_killed_detective_encounter) { 
+	createDialogBox([
+		new Dialog("Hey Detective Nasser, how goes?",objPlayer_SP, sfxTalksound_Bobr),
+		new Dialog("Not good. Killer went after local business owner and pillar of the community. Killed him right in front of his store",objDetective, sfxTalksound_Hatman),
+		new Dialog("(pillar of the community my ass- he sold faulty and subpar shit at atrocious prices)",objPlayer_SP, sfxTalksound_Bobr),
+		new Dialog("Normally that would be GOOD- there were a bunch of security cameras monitoring the place",objDetective, sfxTalksound_Hatman),
+		new Dialog("(oh fuck, the cameras)",objPlayer_SP, sfxTalksound_Bobr),
+		new Dialog("Sadly it was a Fring camera, and victim had apparently not paid his subscription in months- thing had less useful information than mobile game advertising",objDetective, sfxTalksound_Hatman),
+		new Dialog("(Whew, the one time I'm glad he was an awful cheapskate)",objPlayer_SP, sfxTalksound_Bobr),
+		new Dialog("Had to try a new angle- I went through his papers",objDetective, sfxTalksound_Hatman),
+		new Dialog("Found a wastepaper basket full of shredded receipts and... a crumpled up note... It said:",objDetective, sfxTalksound_Hatman),
+		new Dialog("'K.C DEAD BECAUSE WE SOLD HIM SHIT PARTS. WIPE THE BOOKS SO WE DON'T GET SUSPECTED OF KILLING HIM' ",objDetective, sfxTalksound_Hatman),
+		new Dialog("...",objPlayer_SP, sfxTalksound_Bobr),
+		new Dialog("I suspect whoever 'K.C.' was, the killer was close to them... and killing Mr. Scratch here was an act of revenge on him for selling faulty merchandise...",objDetective, sfxTalksound_Hatman),
+		new Dialog("... But if that's the case, then why go after his wife?",objDetective, sfxTalksound_Hatman),
+		new Dialog("...",objPlayer_SP, sfxTalksound_Bobr),
+	],x,y);
+	global.story_flags.post_mr_scratchy_killed_detective_encounter = false;
+}

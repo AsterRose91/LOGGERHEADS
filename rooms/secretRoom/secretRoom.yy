@@ -13,8 +13,8 @@
   ],
   "name":"secretRoom",
   "parent":{
-    "name":"Rooms",
-    "path":"folders/Rooms.yy",
+    "name":"_UNUSED",
+    "path":"folders/Rooms/_UNUSED.yy",
   },
   "parentRoom":null,
   "physicsSettings":{

@@ -19,6 +19,16 @@ _text = $"[Font_Diagnostics_new]Game version: {GAME_VERSION_THINGY}[/font]";
 draw_text_outline(draw_x, draw_y, _text, c_white, c_black, max_w);
 draw_y += string_height_ext(_text, 1, max_w);
 
+_text = $"[Font_Diagnostics_new]Segment: {SECRET_VALUE}[/font]";
+draw_text_outline(draw_x, draw_y, _text, c_white, c_black, max_w);
+draw_y += string_height_ext(_text, 1, max_w);
+
+_text = $"[Font_Diagnostics_new]Iteration: {rand_number}[/font]";
+draw_text_outline(draw_x, draw_y, _text, c_white, c_black, max_w);
+draw_y += string_height_ext(_text, 1, max_w);
+
+
+
 _text = $"[Font_Diagnostics_new]Levels completed: {countLevelsCleared()}[/font]";
 draw_text_outline(draw_x, draw_y, _text, c_white, c_black, max_w);
 draw_y += string_height_ext(_text, 1, max_w);
@@ -26,6 +36,8 @@ draw_y += string_height_ext(_text, 1, max_w);
 _text = $"[Font_Diagnostics_new]Friends Met: {totalFriendsMet()}[/font]";
 draw_text_outline(draw_x, draw_y, _text, c_white, c_black, max_w);
 draw_y += string_height_ext(_text, 1, max_w);
+
+
 
 _text = $"[Font_Diagnostics_new]Current Room: {room_get_name(room)} (ID {room}) isHubLevel: ({isHubLevel(room)})[/font]";
 draw_text_outline(draw_x, draw_y, _text, c_white, c_black, max_w);

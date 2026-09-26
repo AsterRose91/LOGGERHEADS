@@ -190,6 +190,7 @@
     {"id":{"name":"objFriendGift","path":"objects/objFriendGift/objFriendGift.yy",},},
     {"id":{"name":"objFunnyErrorMessageType1","path":"objects/objFunnyErrorMessageType1/objFunnyErrorMessageType1.yy",},},
     {"id":{"name":"objGameOverSpecialEffect","path":"objects/objGameOverSpecialEffect/objGameOverSpecialEffect.yy",},},
+    {"id":{"name":"objGameShutdown","path":"objects/objGameShutdown/objGameShutdown.yy",},},
     {"id":{"name":"objGate","path":"objects/objGate/objGate.yy",},},
     {"id":{"name":"objGatePar","path":"objects/objGatePar/objGatePar.yy",},},
     {"id":{"name":"objGhost1","path":"objects/objGhost1/objGhost1.yy",},},
@@ -253,6 +254,7 @@
     {"id":{"name":"autotileExperimentalRoom","path":"rooms/autotileExperimentalRoom/autotileExperimentalRoom.yy",},},
     {"id":{"name":"autotileTestRoom","path":"rooms/autotileTestRoom/autotileTestRoom.yy",},},
     {"id":{"name":"BossRoomTest","path":"rooms/BossRoomTest/BossRoomTest.yy",},},
+    {"id":{"name":"gameShutdownScreen","path":"rooms/gameShutdownScreen/gameShutdownScreen.yy",},},
     {"id":{"name":"Hub0","path":"rooms/Hub0/Hub0.yy",},},
     {"id":{"name":"Hub1","path":"rooms/Hub1/Hub1.yy",},},
     {"id":{"name":"PlayerHomeBase","path":"rooms/PlayerHomeBase/PlayerHomeBase.yy",},},
@@ -1021,6 +1023,7 @@
     {"roomId":{"name":"SinglePlayerRoom18","path":"rooms/SinglePlayerRoom18/SinglePlayerRoom18.yy",},},
     {"roomId":{"name":"SinglePlayerRoom19_hatman","path":"rooms/SinglePlayerRoom19_hatman/SinglePlayerRoom19_hatman.yy",},},
     {"roomId":{"name":"SinglePlayerRoom1A","path":"rooms/SinglePlayerRoom1A/SinglePlayerRoom1A.yy",},},
+    {"roomId":{"name":"gameShutdownScreen","path":"rooms/gameShutdownScreen/gameShutdownScreen.yy",},},
   ],
   "templateType":null,
   "TextureGroups":[

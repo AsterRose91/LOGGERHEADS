@@ -1,6 +1,6 @@
 /// NOT EVERY ENUM AND MACRO IS IN HERE BUT A LOT ARE.
 
-#macro GAME_VERSION_THINGY 27
+#macro GAME_VERSION_THINGY 28
 
 #macro TAU (2*pi)
 
@@ -158,7 +158,7 @@ function change_game_speed(amt) {
 #endregion
 
 
-global.DEBUGFLAG = false;									// TURN THIS OFF LATER
+global.DEBUGFLAG = true;									// TURN THIS OFF LATER
 global.CUSTOMLOGFILE = $"{working_directory}/Log/err";		// SAVE LOGS TO FILE?
 global.PLAYERGETNAME = "";
 #macro TESTING global.DEBUGFLAG

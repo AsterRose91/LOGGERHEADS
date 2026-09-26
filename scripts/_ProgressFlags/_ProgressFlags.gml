@@ -32,6 +32,7 @@ function SetupStoryFlags() {
 		secret_key: false,
 		ice_key: false,
 		
+		// PERHAPS MAKE THE PLAYER RETURN TO THEIR HOUSE TO PROPERLY UNLOCK THE BLOCKS?
 		red_blocks_opened: false,
 		blue_blocks_opened: false,
 		green_blocks_opened: false,
@@ -44,7 +45,9 @@ function SetupStoryFlags() {
 		
 		
 		// THE DETECTIVE SPAWNS WHENEVER YOU KILL SOMEONE
+		// HAVE THE DETECTIVE TURN OFF THESE FLAGS
 		post_giggles_killed_detective_encounter: false,
+		post_mr_scratchy_killed_detective_encounter: false,
 		post_mrs_scratchy_killed_detective_encounter: false,
 		post_serena_killed_detective_encounter: false,
 		

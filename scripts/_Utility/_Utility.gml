@@ -70,13 +70,12 @@ function string_to_num_arr(_str, _sep = ",") {
 ///@returns {Any}
 function random_array_element(_arr, _start = 0, _end = -1) {
 	try {
-		var _len = array_length(_arr);
-		
 		
 		var _index = 0;
 		if (_end != -1) {
 			_index = irandom_range(_start, _end);
 		} else {
+			var _len = array_length(_arr);
 			_index = irandom_range(_start, _len - 1);	
 		}
 
@@ -129,7 +128,10 @@ function remap(_value, _min1, _max1, _min2, _max2) {
 
 ///@func Quit()
 ///@desc used to allow GUI/menu buttons to quit the game
-function Quit() { game_end(); }
+function Quit() {
+	room_goto(gameShutdownScreen);
+	//game_end(); 
+}
 
 ///@func TransitionEffectActive()
 ///@desc returns true if a transition effect exists
