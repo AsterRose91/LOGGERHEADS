@@ -33,7 +33,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"sprMechanism",
+    "path":"sprites/sprMechanism/sprMechanism.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

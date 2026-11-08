@@ -1,6 +1,6 @@
 /// NOT EVERY ENUM AND MACRO IS IN HERE BUT A LOT ARE.
 
-#macro GAME_VERSION_THINGY 28
+#macro GAME_VERSION_THINGY 33
 
 #macro TAU (2*pi)
 
@@ -140,27 +140,17 @@ enum TRANSITION_TYPES {
 
 #macro T 40									// TILE AND SPRITE SIZE CONSTANT
 
-#region GAME SPEED SETTINGS
 #macro MOVE_SPEED 6							// CHARACTER/LOG MOVEMENT 
 #macro DEFAULT_MOVESPEED 6					// THIS IS GOING TO BE CHANGABLE NOW
 
 #macro MIN_MOVESPEED 1
 #macro MAX_MOVESPEED 24
 
-///@function change_game_speed([amt])
-///@description increase or decrease game speed
-///@arg Real [amt] 
-///@returns Bool
-function change_game_speed(amt) {
-	MOVEMENT_SPEEDSETTING = clamp(MOVEMENT_SPEEDSETTING + amt, MIN_MOVESPEED, MAX_MOVESPEED);
-	return true;
-}
-#endregion
 
-
-global.DEBUGFLAG = true;									// TURN THIS OFF LATER
+global.DEBUGFLAG = false;									// TURN THIS OFF LATER
 global.CUSTOMLOGFILE = $"{working_directory}/Log/err";		// SAVE LOGS TO FILE?
 global.PLAYERGETNAME = "";
+global.PLAYERGETCOUNTRY = "";								// INTRUSIVE SHIT
 #macro TESTING global.DEBUGFLAG
 #macro CUSTOMLOGGERFILE global.CUSTOMLOGFILE
 #macro KEY_DELAY_MAX 8										// USED TO PUT A DELAY IN CHARACTER MOVEMENT
@@ -169,8 +159,22 @@ global.PLAYERGETNAME = "";
 #region	STRINGS, MESSAGES
 
 global.creepy_messages = [];
+global.creepy_messages_rng = noone; // CREATE THE MARBLE BAG 
+global.goodbye_messages = [
+	"[Font_Diagnostics_new]IT'S NOW SAFE TO SHUT DOWN YOUR COMPUTER[/font]"
+	, "[Font_Diagnostics_new]IT'S NOW SAFE TO SHUT DOWN YOUR COMPUTER : )[/font]"
+	, "[Font_Diagnostics_new]IT'S NOW SAFE TO SHIT YOURSELF[/font]"
+	, "[Font_Diagnostics_new]Farewell.[/font]"
+	, "[Font_Diagnostics_new]We hope to see you again.[/font]"
+	, "[Font_Diagnostics_new]...[/font]"
+	, "[Font_Diagnostics_new]THROUGH THE DARKNESS OF FUTURE PAST,\nTHE MAGICIAN LONGS TO SEE\nONE CHANTS OUT BETWEEN TWO WORLDS\n'FIRE WALK WITH ME'[/font]"
+	, "[Font_Diagnostics_new]Did you find all the keys yet? How about the ritual items?[/font]"
+	, "[Font_Diagnostics_new]Make sure you say hi to all your friends, it's important.[/font]"
+	, "[Font_Diagnostics_new]Don't mind the officer, he isn't very smart[/font]"
+];
 #macro CREEPY_MSG global.creepy_messages
-
+#macro CREEPY_MSG_MARBLEBAG global.creepy_messages_rng
+#macro GOODBYE_MSG global.goodbye_messages
 
 ///@func getUsername()
 ///@desc gets the user's name based on their OS
@@ -195,6 +199,12 @@ function getUsername(){
 		}
 	} catch (e) { debug_msg(e); }
 	return _name;
+}
+
+///@func getRegion()
+///@desc gets which region the user is in?
+function getRegion(){
+	
 }
 
 ///@func creepyErrorMessage(_text, _fatal) constructor
@@ -266,6 +276,10 @@ function populateCreepyMessagesList(){
 	array_push(CREEPY_MSG, new creepyErrorMessage("THROUGH THE DARKNESS OF FUTURE PAST,\nTHE MAGICIAN LONGS TO SEE\nONE CHANTS OUT BETWEEN TWO WORLDS\n'FIRE WALK WITH ME'", false));
 	array_push(CREEPY_MSG, new creepyErrorMessage("I HAVE THE FURY OF MY OWN MOMENTUM", false));
 	array_push(CREEPY_MSG, new creepyErrorMessage("HOW'S ANNIE?", false));
+	#endregion
+	
+	#region STEPHEN KING
+	array_push(CREEPY_MSG, new creepyErrorMessage("HE BANGS HIS FISTS AGAINST THE POSTS\nAND STILL INSISTS HE SEES THE GHOSTS", false));
 	#endregion
 	
 	#region POLITICS
@@ -360,15 +374,35 @@ function populateCreepyMessagesList(){
 	// DO NOT EXPOSE THE FULL LIST OF CREEPY MESSAGES IN THE CONSOLE LOG 
 	debug_msg($"There are {array_length(CREEPY_MSG)} possible error messages");
 	
+	// INITIALIZE THE MARBLE BAG
+	CREEPY_MSG_MARBLEBAG = new MarbleBag(CREEPY_MSG);
+	
 }
 populateCreepyMessagesList();
+
+
+
+
 
 ///@function getCreepyMessage()
 ///@description Retrieves a creepy message from a prepopulated list of creepy messages
 ///@returns Struct
 function getCreepyMessage(){
-	if (array_length(CREEPY_MSG) <= 0) { return new creepyErrorMessage("SOMEHOW, NO CREEPY ERROR MESSAGES WERE FOUND", false); }
-	return random_array_element(CREEPY_MSG); 
+	// if (array_length(CREEPY_MSG) <= 0) { return new creepyErrorMessage("SOMEHOW, NO CREEPY ERROR MESSAGES WERE FOUND", false); }
+	if (CREEPY_MSG_MARBLEBAG == noone) {
+		// INITIALIZE THE MARBLE BAG
+		CREEPY_MSG_MARBLEBAG = new MarbleBag(CREEPY_MSG);
+	}
+	
+	return CREEPY_MSG_MARBLEBAG.pull(); //random_array_element(CREEPY_MSG); 
+}
+
+///@function getGoodbyeMessage()
+///@description Retrieves a goodbye message for when you shut down the game
+///@returns String
+function getGoodbyeMessage(){
+	// this doesn't really need the new marble bag RNG because you're shutting down the game right after
+	return random_array_element(GOODBYE_MSG)
 }
 
 #endregion

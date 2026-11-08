@@ -20,9 +20,10 @@ switch FRIEND_ID {
 	case FRIENDS.CHIPMUNK_GIRL: {
 		createDialogBox([
 			new Dialog("Oh hey Dahlia, how are ya?",objPlayer_SP, sfxTalksound_Bobr),
-			new Dialog("Hey Bobbie! I'm doing great. Looks like you've been busy",objFriend, sfxTalksound_Dahlia),
-			new Dialog("Yep! I've been wanting some more furniture! I got an idea for how to really brighten up the place!",objPlayer_SP, sfxTalksound_Bobr),
+			new Dialog("Hey Bobbie! I'm doing great. Looks like you've been busy, got your axe out and everything",objFriend, sfxTalksound_Dahlia),
+			new Dialog("Yep! I was just out getting some wood, gonna make some furniture! I got an idea for how to really brighten up the place!",objPlayer_SP, sfxTalksound_Bobr),
 			new Dialog("Oh, What is it?",objFriend, sfxTalksound_Dahlia),
+			new Dialog("Exactly what you deserve.",objPlayer_SP, sfxTalksound_Bobr, true),
 		],x,y);
 		break;
 	}

@@ -10,7 +10,7 @@ var _X = (GUI_W div 2) - (_MSG_WIDTH div 2)
 
 switch _STATE { 
 	case DIALOGBOX_STATES.DISPLAYING_DIALOG: {
-		draw_dialogbox_scribbletypist(_X, _Y, 0, 0, _CURRENT_MESSAGE, _PAD, _SCRIBBLE_TYPIST, _MSG_WIDTH, _CURRENT_SPEAKER);
+		draw_dialogbox_scribbletypist(_X, _Y, 0, 0, _CURRENT_MESSAGE, _PAD, _SCRIBBLE_TYPIST, _MSG_WIDTH, _CURRENT_SPEAKER, _IS_THOUGHT);
 		break;
 	}
 }

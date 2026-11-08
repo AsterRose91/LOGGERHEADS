@@ -1,4 +1,64 @@
-//global.element_id_counter = 0;
+#region FUNCTIONS FOR ACTIVATING, DEACTIVATING AND DELETING MENU OBJECTS, PREVIOUSLY HELD IN _Utility.gml
+///@func ActivateMenu(menu_obj,[self_obj],[deactivate_self])
+///@desc used within a menu to activate another menu object
+///@arg {Asset.GMObject|ID.Instance} menu_obj the menu object that needs to be activated
+///@arg {Asset.GMObject|ID.Instance} [self_obj] the object calling the function
+///@arg {Bool} [deactivate_self] whether or not to deactivate the menu object calling this function
+function ActivateMenu(menu_obj, self_obj = id, deactivate_self = true) {
+	if (TESTING) {debug_msg($"activating {object_get_name(menu_obj)}");}
+	var _target;
+	
+	if (menu_obj != noone) {
+		if (!instance_exists(menu_obj)) {
+			// CREATE A NEW INSTANCE OF menu_obj IF IT DOESN'T ALREADY EXIST
+			_target = instance_create_layer(x, y, "Instances", menu_obj);
+		} else {
+			// GRAB THE NEAREST INSTANCE OF menu_obj IF IT EXISTS
+			_target = instance_nearest(x, y, menu_obj);
+		}
+		// ACTIVATE THE MENU
+		with (_target) { MENU_ACTIVE = true; }
+	}
+	
+	if (deactivate_self) {
+		with (self_obj) {
+			// ONLY WORK WITH MENU OBJECTS
+			if (object_get_parent(object_index) == objParentMenu)	{
+				MENU_ACTIVE = false;
+				// WITH SETTINGS MENU, USE THIS TO SAVE THE GAME SETTINGS TO FILE
+				event_perform(ev_other, ev_user0);
+			}
+		}
+	}
+	return;
+}
+
+///@func DestroyMenu([_id])
+///@desc Outright destroy a menu instance or other object from a menu
+///@arg {ID.Instance} [_id] the menu object to be destroyed
+function DestroyMenu(_id = id) {
+	instance_destroy(_id);
+}
+
+///@func DeactivateMenu([target_menu_obj])
+///@desc Deactivate the menu object.
+///@arg {Asset.Instance} [target_menu_obj] 
+function DeactivateMenu(target_menu_obj = id){
+	with (target_menu_obj) {
+		if (object_get_parent(object_index) == objParentMenu)	{
+			MENU_ACTIVE = false;
+			// WITH SETTINGS MENU, USE THIS TO SAVE THE GAME SETTINGS TO FILE
+			event_perform(ev_other, ev_user0);
+			// if (object_index == objSettingsMenu) { saveSettings(); }
+		}
+	}
+	ErrorCorrection(); // Error Correction 
+	return;
+}
+#endregion
+
+
+
 
 ///@func GUIButton() 
 ///@desc Parent struct to all the buttons and GUI elements
@@ -89,7 +149,7 @@ function GUIButton() constructor {
 /// @param {Asset.GMSprite} [background] Background
 /// @param {Asset.gmsound} [play_sound_on_click] Sound effect
 /// @param {string} [name] Special name for GUI element
-/// @returns {struct} Description
+/// @returns {struct} SpriteButton
 function SpriteButton(sprite_index, image_index = 0, x = 0, y = 0, do_action = do_nothing, background = sprMenuBackNone, play_sound_on_click = sfxClick, name = "SPRITE BUTTON") : GUIButton() constructor {
 	self.sprite_index	= sprite_index;
 	self.image_index	= image_index;

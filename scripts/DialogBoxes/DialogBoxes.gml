@@ -1,13 +1,15 @@
-///@func Dialog(_message, _speaker, _talksound) constructor
+///@func Dialog(_message, _speaker, _talksound, [_is_thought], [_setflag]) constructor
 ///@desc individual lines of a dialog cutscene
 ///@param {String} _message
 ///@param {Asset.GMObject} _speaker
 ///@param {Asset.GMSound} _talksound
+///@param {Bool} [_is_thought]
 ///@param {Array} [_setflag]
-function Dialog(_message, _speaker, _talksound, _setflag = []) constructor {
+function Dialog(_message, _speaker, _talksound, _is_thought = false, _setflag = []) constructor {
 	self.message = _message ?? "this is a default message";	// THE MESSAGE 
 	self.speaker = _speaker ?? objPlayer_SP;				// OBJECT INDEX OF THE SPEAKER	
 	self.talksound = _talksound ?? sfxTalksound_Dahlia;		// THE FUNNY SOUND THEY MAKE
+	self.is_thought = _is_thought ?? false;					// PUT TRUE TO MAKE THE VARIABLE A THOUGHT BUBBLE
 	self.flags = _setflag;									// PUT [variable, newValue] IN HERE TO HAVE THIS MESSAGE DO SOMETHING 
 }
 

@@ -6,8 +6,7 @@ switch (SECRET_VALUE) {
 		break;
 	
 	case 0:
-	case 1:
-	case 5:
+	case 8:
 	case 16:
 		// CREATE A CREEPY ERROR MESSAGE
 		ActivateMenu(objFunnyErrorMessageType1, noone, false);

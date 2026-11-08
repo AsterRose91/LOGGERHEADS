@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"_Attributions",
+  "%Name":"SoundsBGM",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"_Attributions",
+  "name":"SoundsBGM",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

@@ -155,7 +155,8 @@ function draw_text_box_v2(x, y, w, h, message, sprite_index = sprMenuBackNone, i
 ///@arg {Struct.__scribble_class_typist} typist		// Scribble typist
 ///@arg {real} [width]								// text wrapping
 ///@arg {Id.Instance} [speaker_obj]					// the object representing the character speaking
-function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width = -1, speaker_obj = noone) {
+///@arg {Bool} [thoughtbubble]						// is the message a thought bubble?
+function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width = -1, speaker_obj = noone, thoughtbubble = false) {
 	var _SCRIB_CURRENT = scribble($"[Font_Dialogbox][c_black]{message}[/c]").padding(pad,pad,pad,pad).wrap(width);
 
 	// DRAW SPEECH BUBBLE
@@ -163,9 +164,7 @@ function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width =
 	,	_height = _SCRIB_CURRENT.get_height()
 	,	_2p = pad * 2;
 
-	draw_sprite_stretched_ext(sprDialogBoxBack1, 0, x - pad, y - pad, _2p + _width, _2p + _height, c_white, 1);
-
-	// draw the tail of the speech bubble
+	// DRAW THE TAIL OF THE SPEECH BUBBLE
 	if (speaker_obj != noone) {
 		if (instance_exists(speaker_obj)) {
 			var _INSTANCE_SPEAKER = instance_nearest(x, y, speaker_obj)
@@ -173,11 +172,25 @@ function draw_dialogbox_scribbletypist(x, y, w, h, message, pad, typist, width =
 			,	_y1 = _INSTANCE_SPEAKER.bbox_top
 			,	_x2 = x
 			,	_y2 = y
-			,	_x3 = _x2 + 20
-			,	_y3 = _y2;
-			draw_triangle_color(_x1, _y1, _x2, _y2, _x3, _y3, c_white, c_white, c_white, false);
+			
+			if (!thoughtbubble) {
+				// POINTY TAIL
+				var _x3 = _x2 + 20
+				,	_y3 = _y2;
+				draw_triangle_color(_x1, _y1, _x2, _y2, _x3, _y3, c_white, c_white, c_white, false);
+			} else {
+				// CIRCLES
+				var tail_len = point_distance(_x1, _y1, _x2, _y2);
+				var tail_dir = point_direction(_x1, _y1, _x2, _y2);
+				// A STRETCHED SPRITE DRAWN FROM THE TOP OF SPEAKER OBJECT TO THE POSITION OF THE TEXT BUBBLE
+				draw_sprite_ext(sprDialogBox_thoughtbubbletail,0,_x1,_y1, tail_len div 20, 1, tail_dir, c_white, 1);
+			}
 		}
 	}
+	
+	// DRAW THE BACKGROUND OF THE SPEECH BUBBLE AFTERWARDS, TO OBSCURE THE TAIL
+	draw_sprite_stretched_ext(sprDialogBoxBack1, thoughtbubble?1:0, x - pad, y - pad, _2p + _width, _2p + _height, c_white, 1);
+	
 	_SCRIB_CURRENT.draw(x, y, typist); 
 	return;
 }

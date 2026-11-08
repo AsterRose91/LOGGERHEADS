@@ -9,6 +9,7 @@ function auto_background(theme = 0){
 	layer_depth(sky_id, 900);
 	layer_background_change(sky_bg_id, bgSkyNEW); // IF ALREADY EXISTS BUT WRONG SPRITE, CHANGE IT
 	layer_background_htiled(sky_bg_id, true);
+	layer_background_speed(sky_bg_id, 0);		  // HOLY SHIT, SEIZURE TOWN
 	
 	/// FAR CLOUDS
 	var cloud1_exists = layer_exists("BG_CLOUDS_1");

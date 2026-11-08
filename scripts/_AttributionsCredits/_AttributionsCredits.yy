@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"SoundStuff",
+  "%Name":"_AttributionsCredits",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"SoundStuff",
+  "name":"_AttributionsCredits",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

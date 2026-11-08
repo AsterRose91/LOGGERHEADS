@@ -20,6 +20,69 @@ global.enable_secrets = true;
 #macro ENABLE_SECRETS global.enable_secrets
 
 
+#region FUNCTIONS FOR CHANGING INDIVIDUAL GAME SETTINGS, MOVED FROM _Utility.gml TO HERE
+///@func ToggleParticles()
+///@desc Toggles particles to be either on or off.
+///@returns {bool}
+function ToggleParticles() {
+	PARTICLES_ENABLED ^= true;
+	return PARTICLES_ENABLED;
+}
+
+///@func ToggleGrid()
+///@desc Toggles Grid to be either on or off.
+///@returns {bool}
+function ToggleGrid() {
+	SHOWGRID_SETTING ^= true; //= !SHOWGRID_SETTING;
+	return SHOWGRID_SETTING;
+}
+
+///@func ToggleFullscreen()
+///@desc used to toggle fullscreen.
+///@returns {bool}
+function ToggleFullscreen(){
+	FULLSCREEN_MODE ^= true; //= !FULLSCREEN_MODE;
+	window_set_fullscreen(FULLSCREEN_MODE);
+	
+	// cursor desync issue?
+	if (instance_exists(objCursor)) {
+		with (objCursor) {
+			MOUSE_PREV_X = GUI_MOUSE_X;
+			MOUSE_PREV_Y = GUI_MOUSE_Y;
+		}
+	}
+	return FULLSCREEN_MODE;
+}
+
+///@func ToggleMovehints()
+///@desc used to toggle movement hints.
+///@returns {bool}
+function ToggleMovehints(){
+	MOVEMENT_HINTS ^= true; //= !MOVEMENT_HINTS;
+	return MOVEMENT_HINTS;
+}
+
+///@func ToggleErrorCorrection()
+///@desc used to toggle "error correction".
+function ToggleErrorCorrection(){
+	ENABLE_SECRETS ^= true; //= !ENABLE_SECRETS;
+	return;
+}
+
+///@func change_game_speed([amt])
+///@desc increase or decrease game speed
+///@arg Real [amt] 
+///@returns Bool
+function change_game_speed(amt) {
+	MOVEMENT_SPEEDSETTING = clamp(MOVEMENT_SPEEDSETTING + amt, MIN_MOVESPEED, MAX_MOVESPEED);
+	return true;
+}
+
+
+
+#endregion
+
+
 
 ///@func defaultSettings()
 ///@desc Returns the default settings for the game's options
@@ -61,7 +124,6 @@ function saveSettings( _filename = "settings" ) {
 	} catch (e) { debug_msg(e); }
 	return false;
 }
-
 
 ///@func loadSettings([_filename])
 ///@desc Load the game settings from a file

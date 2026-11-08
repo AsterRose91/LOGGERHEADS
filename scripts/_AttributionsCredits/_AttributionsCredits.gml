@@ -36,7 +36,7 @@ credits = [
 	,"JujuAdams"
 	,"Mimpy"
 
-	,"SPECIAL THANKS TO"
+	,"TESTERS/FEEDBACK"
 	,"Emily"
 	,"Rocky"
 	,"Zeikier"

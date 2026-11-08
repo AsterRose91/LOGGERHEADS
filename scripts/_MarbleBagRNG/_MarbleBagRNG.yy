@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"Credits",
+  "%Name":"_MarbleBagRNG",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"Credits",
+  "name":"_MarbleBagRNG",
   "parent":{
-    "name":"OTHER",
-    "path":"folders/Scripts/OTHER.yy",
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

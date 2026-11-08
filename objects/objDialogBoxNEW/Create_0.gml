@@ -3,10 +3,11 @@
 // MAYBE WITH SOME TAILS TO SHOW WHO'S TALKING
 // NO BRANCHING PATHS OR CHOICES OR ANYTHING 
 _DIALOGS = [
-	new Dialog("Hi Dahlia! This is a line of test dialogue.", objPlayer_SP, sfxTalksound_Bobr),
-	new Dialog("Hey Bobby, This is another line of test dialogue!", objFriend, sfxTalksound_Dahlia),
-	new Dialog("Let's try and keep this simple", objPlayer_SP, sfxTalksound_Bobr),
-	new Dialog("Use a struct to store details like who's speaking", objFriend, sfxTalksound_Dahlia)
+	new Dialog("Hi Dahlia! This is a line of test dialogue.", objPlayer_SP, sfxTalksound_Bobr, false),
+	new Dialog("Hey Bobby, This is another line of test dialogue!", objFriend, sfxTalksound_Dahlia, false),
+	new Dialog("Let's try and keep this simple", objPlayer_SP, sfxTalksound_Bobr, false),
+	new Dialog("Use a struct to store details like who's speaking", objFriend, sfxTalksound_Dahlia, false),
+	new Dialog("And remember to set the thought bubble flag!", objPlayer_SP, sfxTalksound_Bobr, true),
 ];
 
 _INDEX = -1;
@@ -32,6 +33,7 @@ _CURRENT_MESSAGE_LEN = 0;
 _CURRENT_TALKSOUND = sfxTalksound_Bobr;
 _CURRENT_SPEAKER = objPlayer_SP;
 _SCRIBBLE_CURRENT = noone;
+_IS_THOUGHT = false;
 
 _MSG_WIDTH = 400;
 _PAD = 10;

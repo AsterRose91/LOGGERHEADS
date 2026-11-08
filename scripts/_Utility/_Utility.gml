@@ -126,11 +126,46 @@ function remap(_value, _min1, _max1, _min2, _max2) {
 	
 }
 
+///@func create_num_range(_start, _end, [_step])
+///@desc create an array of numbers including both _start and _end, separated by _step (default value = 1)
+///@arg {real} _start
+///@arg {real} _end
+///@arg {real} [_step]
+function create_num_range(_start, _end, _step = 1) {
+	var _diff = abs(_end - _start);
+	
+	if ( _diff <= abs(_step) || _step == 0 ) {
+		// LOL WAT
+		return [_start, _end];
+	}
+
+	// NUMBER OF ELEMENTS	
+	var _size = ceil( _diff / abs(_step) ) + 1;
+	
+	// DIRECTION OF ARRAY?
+	// -VE STEP MEANS FROM BIGGER TO SMALLER
+	// +VE STEP MEANS FROM SMALLER TO BIGGER
+	var arr_start, arr_end
+	if (_step < 0) {
+		arr_start = (_start > _end) ? _start : _end;
+		arr_end = (_end > _start) ? _start : _end;
+	} else {
+		arr_start = (_start > _end) ? _end: _start;
+		arr_end = (_end > _start) ? _end: _start;
+	}
+	
+	// LAMBDA SHIT I GUESS
+	var _lambda = {fstart: arr_start, fstep: _step,  func: function(i) {return fstart + (i * fstep);} }
+	var _range = array_create_ext(_size, _lambda.func);
+	
+	return _range;
+}
+
+
 ///@func Quit()
-///@desc used to allow GUI/menu buttons to quit the game
+///@desc used to allow GUI/menu buttons to end the game
 function Quit() {
 	room_goto(gameShutdownScreen);
-	//game_end(); 
 }
 
 ///@func TransitionEffectActive()
@@ -142,121 +177,3 @@ function TransitionEffectActive() {
 	return false;
 }
 
-///@func ActivateMenu(menu_obj,[self_obj],[deactivate_self])
-///@desc used within a menu to activate another menu object
-///@arg {Asset.GMObject|ID.Instance} menu_obj the menu object that needs to be activated
-///@arg {Asset.GMObject|ID.Instance} [self_obj] the object calling the function
-///@arg {Bool} [deactivate_self] whether or not to deactivate the menu object calling this function
-function ActivateMenu(menu_obj, self_obj = id, deactivate_self = true) {
-	if (TESTING) {debug_msg($"activating {object_get_name(menu_obj)}");}
-	var _target;
-	
-	if (menu_obj != noone) {
-		if (!instance_exists(menu_obj)) {
-			// CREATE A NEW INSTANCE OF menu_obj IF IT DOESN'T ALREADY EXIST
-			_target = instance_create_layer(x, y, "Instances", menu_obj);
-		} else {
-			// GRAB THE NEAREST INSTANCE OF menu_obj IF IT EXISTS
-			_target = instance_nearest(x, y, menu_obj);
-		}
-		// ACTIVATE THE MENU
-		with (_target) { MENU_ACTIVE = true; }
-	}
-	
-	if (deactivate_self) {
-		with (self_obj) {
-			// ONLY WORK WITH MENU OBJECTS
-			if (object_get_parent(object_index) == objParentMenu)	{
-				MENU_ACTIVE = false;
-				// WITH SETTINGS MENU, USE THIS TO SAVE THE GAME SETTINGS TO FILE
-				event_perform(ev_other, ev_user0);
-			}
-		}
-	}
-	return;
-}
-
-///@func DestroyMenu([_id])
-///@desc Outright destroy a menu instance or other object from a menu
-///@arg {ID.Instance} [_id] the menu object to be destroyed
-function DestroyMenu(_id = id) {
-	instance_destroy(_id);
-}
-
-///@func DeactivateMenu([target_menu_obj])
-///@desc Deactivate the menu object.
-///@arg {Asset.Instance} [target_menu_obj] 
-function DeactivateMenu(target_menu_obj = id){
-	with (target_menu_obj) {
-		if (object_get_parent(object_index) == objParentMenu)	{
-			MENU_ACTIVE = false;
-			// WITH SETTINGS MENU, USE THIS TO SAVE THE GAME SETTINGS TO FILE
-			event_perform(ev_other, ev_user0);
-			// if (object_index == objSettingsMenu) { saveSettings(); }
-		}
-	}
-	ErrorCorrection(); // Error Correction 
-	return;
-}
-
-///@func ToggleParticles()
-///@desc Toggles particles to be either on or off.
-///@returns {bool}
-function ToggleParticles() {
-	PARTICLES_ENABLED ^= true;
-	return PARTICLES_ENABLED;
-}
-
-///@func ToggleGrid()
-///@desc Toggles Grid to be either on or off.
-///@returns {bool}
-function ToggleGrid() {
-	SHOWGRID_SETTING = !SHOWGRID_SETTING;
-	return SHOWGRID_SETTING;
-}
-
-///@func ToggleFullscreen()
-///@desc used to toggle fullscreen.
-///@returns {bool}
-function ToggleFullscreen(){
-	FULLSCREEN_MODE = !FULLSCREEN_MODE;
-	window_set_fullscreen(FULLSCREEN_MODE);
-	
-	// cursor desync issue?
-	if (instance_exists(objCursor)) {
-		with (objCursor) {
-			MOUSE_PREV_X = GUI_MOUSE_X;
-			MOUSE_PREV_Y = GUI_MOUSE_Y;
-		}
-	}
-	return FULLSCREEN_MODE;
-}
-
-///@func ToggleMovehints()
-///@desc used to toggle movement hints.
-///@returns {bool}
-function ToggleMovehints(){
-	MOVEMENT_HINTS = !MOVEMENT_HINTS;
-	return MOVEMENT_HINTS;
-}
-
-///@func ToggleErrorCorrection()
-///@desc used to toggle "error correction".
-function ToggleErrorCorrection(){
-	ENABLE_SECRETS = !ENABLE_SECRETS;
-	return;
-}
-
-///@func ErrorCorrection()
-///@desc this isn't actually for errors, it's for secrets
-///@returns {real}
-function ErrorCorrection() {
-	SECRET_VALUE = irandom(20);
-	if (TESTING) {debug_msg( $"{SECRET_VALUE}"); }
-	
-	// CALL THE ERROR HANDLER
-	if (ENABLE_SECRETS) {
-		with (objErrorHandler) { event_perform(ev_other, ev_user0); }
-	}
-	return SECRET_VALUE;
-}

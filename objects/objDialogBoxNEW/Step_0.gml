@@ -25,6 +25,7 @@ switch (_STATE) {
 		_CURRENT_MESSAGE = _DIALOGS[_INDEX].message;
 		_CURRENT_MESSAGE_LEN = string_length_scribble(_CURRENT_MESSAGE);
 		_CURRENT_TALKSOUND = _DIALOGS[_INDEX].talksound;
+		_IS_THOUGHT = _DIALOGS[_INDEX].is_thought;
 
 		// SET UP TYPIST
 		_SCRIBBLE_TYPIST.sound(_CURRENT_TALKSOUND,0.2,0.96,1.04);
