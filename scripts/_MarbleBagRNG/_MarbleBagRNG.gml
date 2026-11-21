@@ -33,26 +33,3 @@ function MarbleBag(source) constructor {
 		return array_pop(bag);
 	}
 }
-
-global.err_rng = new MarbleBag( create_num_range(1, 20) );
-#macro ERR_RNG global.err_rng
-#macro ERR_RNG_DRAW global.err_rng.pull()
-
-///@func ErrorCorrection([set_val])
-///@desc oh, this isn't actually for errors, it's for secrets
-///@arg {real} [set_val]
-///@returns {real}
-function ErrorCorrection(set_val = -1) {
-	if (set_val != -1) {
-		SECRET_VALUE = set_val mod 21; // SECRET_VALUE CAN BE VALUES 0 - 20	
-	}
-	SECRET_VALUE = ERR_RNG_DRAW; // USING THE NEW "MARBLE BAG" RNG
-	
-	if (TESTING) {debug_msg( $"{SECRET_VALUE}"); }
-	
-	// CALL THE ERROR HANDLER
-	if (ENABLE_SECRETS) {
-		with (objErrorHandler) { event_perform(ev_other, ev_user0); }
-	}
-	return SECRET_VALUE;
-}

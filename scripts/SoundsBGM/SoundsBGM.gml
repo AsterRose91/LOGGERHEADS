@@ -1,3 +1,5 @@
+/// USE objMusicMan FOR INGAME MUSIC MANAGEMENT
+
 global.sfx_volume = 0.5;
 #macro SFX_VOL global.sfx_volume
 global.bgm_volume = 0.5;

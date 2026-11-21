@@ -68,14 +68,16 @@ ON_SIGNPOST = collision_rectangle(bbox_left - 1, bbox_top - 1, bbox_right + 1, b
 if (ON_SIGNPOST != noone && instance_exists(ON_SIGNPOST) ) {
 	// MAKE THE SIGNPOSTS ANIMATE/GLOW
 	// DISPLAY THE INFORMATION OF THE LEVEL THEY CORRESPOND TO
-	var GOTO_LEVEL = -1, DO_TELEPORT = false;
+	var GOTO_LEVEL = -1, DO_TELEPORT = false, SECRETWARP = false;
 	with (ON_SIGNPOST) {
 		if (!DEMO_END_FLAG) {
 			DO_TELEPORT = true;
 			GOTO_LEVEL = LEVEL_ID;
 		}
 		HIGHLIGHT = true; 
-		SHOW_LEVEL_INFO = true; 
+		SHOW_LEVEL_INFO = true;
+		
+
 	}
 	// GOTO THE LEVEL THE SIGNPOST CORRESPONDS TO 
 	if (CHOP_LOG && DO_TELEPORT) { 

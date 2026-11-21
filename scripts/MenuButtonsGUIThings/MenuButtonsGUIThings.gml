@@ -52,7 +52,6 @@ function DeactivateMenu(target_menu_obj = id){
 			// if (object_index == objSettingsMenu) { saveSettings(); }
 		}
 	}
-	ErrorCorrection(); // Error Correction 
 	return;
 }
 #endregion

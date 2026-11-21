@@ -13,11 +13,7 @@ global.movement_hints = false;
 global.movement_speed = DEFAULT_MOVESPEED;
 #macro MOVEMENT_SPEEDSETTING global.movement_speed
 
-global.randomizer = 0;
-#macro SECRET_VALUE global.randomizer
 
-global.enable_secrets = true;
-#macro ENABLE_SECRETS global.enable_secrets
 
 
 #region FUNCTIONS FOR CHANGING INDIVIDUAL GAME SETTINGS, MOVED FROM _Utility.gml TO HERE

@@ -30,6 +30,7 @@ if (STATE == CHARACTER_STATES.NONE) {
 		}
 	} else { 
 		sprite_index = sprBobbie_stand; 
+		if (SECRET_VALUE == ERR_TYPES.ERR_METABARRIERBROKEN) {image_index = 1;} else {image_index = 0;}
 		image_speed = 0;
 	}
 	
@@ -43,7 +44,7 @@ if (STATE == CHARACTER_STATES.NONE) {
 		if (CAN_MOVE_DOWN)	{draw_sprite(sprCrosshairNEW, 4, x, y + T);}
 	}
 	
-	draw_sprite_ext(sprite_index, 0, floor(x + _x), floor(y), _i, 1, 0, c_white, 1);
+	draw_sprite_ext(sprite_index, image_index, floor(x + _x), floor(y), _i, 1, 0, c_white, 1);
 	
 	// NO CROSSHAIR WHEN MEETING YOUR FRIENDS
 	if (!atFriendsHouse(room)) {
