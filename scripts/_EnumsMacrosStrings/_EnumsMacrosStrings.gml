@@ -1,6 +1,6 @@
 /// NOT EVERY ENUM AND MACRO IS IN HERE BUT A LOT ARE.
 
-#macro GAME_VERSION_THINGY 33
+#macro GAME_VERSION_THINGY 34
 
 #macro TAU (2*pi)
 
@@ -172,7 +172,7 @@ enum TRANSITION_TYPES {
 #macro MAX_MOVESPEED 24
 
 
-global.DEBUGFLAG = false;									// TURN THIS OFF LATER
+global.DEBUGFLAG = false;									// TURN THIS OFF WHEN COMPILING
 global.CUSTOMLOGFILE = $"{working_directory}/Log/err";		// SAVE LOGS TO FILE?
 global.PLAYERGETNAME = "";
 global.PLAYERGETCOUNTRY = "";								// INTRUSIVE SHIT

@@ -697,6 +697,7 @@
     {"name":"sfxClick","order":7,"path":"sounds/sfxClick/sfxClick.yy",},
     {"name":"sfxDoor","order":15,"path":"sounds/sfxDoor/sfxDoor.yy",},
     {"name":"sfxError","order":14,"path":"sounds/sfxError/sfxError.yy",},
+    {"name":"sfxError2","order":19,"path":"sounds/sfxError2/sfxError2.yy",},
     {"name":"sfxFinishHer","order":9,"path":"sounds/sfxFinishHer/sfxFinishHer.yy",},
     {"name":"sfxIronHit","order":11,"path":"sounds/sfxIronHit/sfxIronHit.yy",},
     {"name":"sfxKablooey","order":4,"path":"sounds/sfxKablooey/sfxKablooey.yy",},

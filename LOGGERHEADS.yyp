@@ -811,6 +811,7 @@
     {"id":{"name":"sfxClick","path":"sounds/sfxClick/sfxClick.yy",},},
     {"id":{"name":"sfxDoor","path":"sounds/sfxDoor/sfxDoor.yy",},},
     {"id":{"name":"sfxError","path":"sounds/sfxError/sfxError.yy",},},
+    {"id":{"name":"sfxError2","path":"sounds/sfxError2/sfxError2.yy",},},
     {"id":{"name":"sfxFinishHer","path":"sounds/sfxFinishHer/sfxFinishHer.yy",},},
     {"id":{"name":"sfxIronHit","path":"sounds/sfxIronHit/sfxIronHit.yy",},},
     {"id":{"name":"sfxKablooey","path":"sounds/sfxKablooey/sfxKablooey.yy",},},

@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"sfxError2",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":1,
+  "compression":3,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":15.674694,
+  "exportDir":"",
+  "name":"sfxError2",
+  "parent":{
+    "name":"SFX",
+    "path":"folders/Sounds/SFX.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"sfxError2.mp3",
+  "volume":0.31,
+}
